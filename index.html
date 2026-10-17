@@ -3,125 +3,124 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TASO - Jumia Style Store</title>
+<title>THE THRIFT STORE UG</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-.moving-bar{background:#f68b1e;color:white;padding:8px 0;overflow:hidden;white-space:nowrap;font-weight:bold;font-size:14px}
-.moving-bar span{display:inline-block;animation:move 20s linear infinite}
+body{padding-bottom:70px;background:#f5f5f5}
+/* MOVING WORDS TOP */
+.moving-bar{background:#00A651;color:white;padding:8px 0;overflow:hidden;white-space:nowrap;font-weight:bold;font-size:14px}
+.moving-bar span{display:inline-block;animation:move 25s linear infinite}
 @keyframes move{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
-header{background:#000;color:white;padding:12px 15px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.logo{font-size:24px;font-weight:900;color:#f68b1e}
-#search{padding:10px;width:250px;border-radius:4px;border:none;max-width:60vw}
-.cart-btn{background:#f68b1e;color:white;border:none;padding:10px 18px;border-radius:4px;font-weight:bold;cursor:pointer}
-.filters{display:flex;gap:8px;padding:12px;overflow-x:auto;background:white;position:sticky;top:0;z-index:5}
+header{background:#000;color:white;padding:12px 15px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo{font-size:22px;font-weight:900;color:#00A651}
+#search{padding:10px;width:55%;border-radius:20px;border:none}
+.cartTop{background:#00A651;color:white;border:none;padding:8px 12px;border-radius:20px;font-weight:bold}
+.filters{display:flex;gap:8px;padding:12px;overflow-x:auto;background:white}
 .filter-btn{padding:8px 18px;border:1px solid #ddd;border-radius:20px;background:white;cursor:pointer;white-space:nowrap}
-.filter-btn.active{background:#f68b1e;color:white;border-color:#f68b1e}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:10px;background:#f5f5f5}
+.filter-btn.active{background:#00A651;color:white;border-color:#00A651}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:10px}
 @media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
-.card{background:white;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);position:relative}
-.badge{position:absolute;top:8px;left:8px;background:#fe3e3e;color:white;padding:3px 7px;font-size:12px;border-radius:4px;font-weight:bold}
-.card img{width:100%;height:160px;object-fit:cover;background:#eee}
+.card{background:white;border-radius:8px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.08);position:relative}
+.badge{position:absolute;top:8px;left:8px;background:#ff3b30;color:white;padding:3px 7px;font-size:11px;border-radius:4px;font-weight:bold}
+.card img{width:100%;height:165px;object-fit:cover;background:#eee}
 .info{padding:10px}
-.name{font-size:14px;height:38px;overflow:hidden}
-.price{color:#f68b1e;font-weight:900;margin:5px 0}
-.old{color:#999;text-decoration:line-through;font-size:12px;margin-left:5px}
-.add{width:100%;background:#f68b1e;color:white;border:none;padding:8px;border-radius:4px;font-weight:bold;cursor:pointer}
-.add:hover{background:#e07a10}
-#cartDrawer{position:fixed;right:-100%;top:0;width:90%;max-width:380px;height:100%;background:white;box-shadow:-5px 0 15px rgba(0,0,0,0.2);z-index:100;transition:0.3s;padding:15px;overflow-y:auto}
+.name{font-size:13px;height:36px;overflow:hidden}
+.price{color:#00A651;font-weight:900}
+.old{color:#999;text-decoration:line-through;font-size:11px;margin-left:4px}
+.add{width:100%;background:#00A651;color:white;border:none;padding:8px;border-radius:4px;font-weight:bold;margin-top:6px;cursor:pointer}
+.wish{position:absolute;top:8px;right:8px;background:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
+/* CART DRAWER */
+#cartDrawer{position:fixed;right:-100%;top:0;width:90%;max-width:380px;height:100%;background:white;z-index:200;transition:0.3s;padding:15px;overflow-y:auto;box-shadow:-5px 0 15px rgba(0,0,0,0.2)}
 #cartDrawer.open{right:0}
+/* BOTTOM BAR - LIKE YOUR SCREENSHOT */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:8px 0 12px 0;z-index:100}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;color:#666;font-size:12px;cursor:pointer;text-decoration:none}
+.nav-item.active{color:#00A651;font-weight:bold}
+.nav-icon{position:relative;font-size:22px}
+.cart-badge{position:absolute;top:-8px;right:-10px;background:#00A651;color:white;font-size:10px;padding:2px 6px;border-radius:50%;font-weight:bold}
 </style>
 </head>
 <body>
 
-<div class="moving-bar"><span>🔥 HOT DEALS TODAY - UP TO 50% OFF 🔥 FREE DELIVERY IN KAMPALA ON ORDERS ABOVE 100,000 UGX 🔥 WHATSAPP: +256 700 000000 🔥 NEW STOCK EVERYDAY - BAGS, SHOES, CAPS, CLOTHES 🔥</span></div>
+<div class="moving-bar"><span>🔥 HOT DEALS - UP TO 50% OFF 🔥 FREE DELIVERY IN KAMPALA ABOVE 100K 🔥 WHATSAPP ORDER +256 700 000000 🔥 NEW BAGS, SHOES, CAPS, CLOTHES EVERYDAY 🔥</span></div>
 
 <header>
-<div class="logo">THE THRIFT STORE UG</div>
-<input id="search" placeholder="Search bags, shoes, caps..." oninput="renderProducts()">
-<button class="cart-btn" onclick="toggleCart()">Cart (<span id="cartCount">0</span>)</button>
+<div class="logo">THRIFT</div>
+<input id="search" placeholder="Search products..." oninput="renderProducts()">
+<button class="cartTop" onclick="toggleCart()">Cart</button>
 </header>
 
 <div class="filters" id="filters"></div>
 <div class="grid" id="productGrid"></div>
 
+<!-- CART -->
 <div id="cartDrawer">
-<h3>Your Cart <span style="float:right;cursor:pointer" onclick="toggleCart()">X</span></h3>
+<h3>Cart <span style="float:right;cursor:pointer" onclick="toggleCart()">X</span></h3>
 <div id="cartItems" style="margin-top:15px"></div>
 <div style="margin-top:15px;font-weight:bold">Total: <span id="cartTotal">UGX 0</span></div>
-<button onclick="checkout()" style="width:100%;margin-top:15px;background:#25D366;color:white;border:none;padding:12px;border-radius:4px;font-weight:bold">Order on WhatsApp</button>
+<button onclick="checkout()" style="width:100%;margin-top:15px;background:#25D366;color:white;border:none;padding:12px;border-radius:6px;font-weight:bold">Order on WhatsApp</button>
+<div id="wishListView" style="margin-top:25px;border-top:1px solid #eee;padding-top:10px">
+<h4>Wishlist (<span id="wishCount">0</span>)</h4>
+<div id="wishItems" style="margin-top:10px;color:#666">No items yet</div>
+</div>
+</div>
+
+<!-- BOTTOM NAV LIKE JUMIA -->
+<div class="bottom-nav">
+<div class="nav-item active" onclick="goHome()"><div class="nav-icon">🏠</div><span>Home</span></div>
+<div class="nav-item" onclick="goCategories()"><div class="nav-icon">☰</div><span>Categories</span></div>
+<div class="nav-item" onclick="toggleCart()"><div class="nav-icon">🛒<span class="cart-badge" id="cartBadge">0</span></div><span>Cart</span></div>
+<div class="nav-item" onclick="toggleCart();showWishlist()"><div class="nav-icon">♡</div><span>Wishlist</span></div>
+<div class="nav-item" onclick="showAccount()"><div class="nav-icon">👤</div><span>Account</span></div>
 </div>
 
 <script>
-const whatsappNumber = "256749253155";
-const products = [
-{ id: 1, name: "Everyday Crossbody Bag", category: "Bags", price: 15000, oldPrice: 25000, discount: "-40%", image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80" },
-{ id: 2, name: "Street Cap", category: "Accessories", price: 15000, oldPrice: 20000, discount: "-25%", image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80" },
-{ id: 3, name: "Everyday Sunglasses", category: "Accessories", price: 10000, oldPrice: 15000, discount: "-33%", image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80" },
-{ id: 4, name: "Casual Shoulder Bag", category: "Bags", price: 20000, oldPrice: 35000, discount: "-43%", image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80" },
-{ id: 5, name: "Everyday Trainers", category: "Shoes", price: 55000, oldPrice: 80000, discount: "-31%", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" },
-{ id: 6, name: "Patterned Shoulder Bag", category: "Bags", price: 25000, oldPrice: 40000, discount: "-37%", image: "IMG_2487.jpeg" },
-{ id: 7, name: "Lacoste Cap", category: "Accessories", price: 6000, oldPrice: 10000, discount: "-40%", image: "IMG_0732.jpeg" },
-{ id: 8, name: "Balenciaga Shoes", category: "Shoes", price: 50000, oldPrice: 75000, discount: "-33%", image: "IMG_0788.jpeg" },
-{ id: 9, name: "Spider-Man Crocs", category: "Shoes", price: 90000, oldPrice: 120000, discount: "-25%", image: "IMG_1905.jpeg" },
-{ id: 10, name: "Fashion Bag", category: "Bags", price: 30000, oldPrice: 50000, discount: "-40%", image: "IMG_2543.jpeg" },
-{ id: 11, name: "Air force Shoes", category: "Shoes", price: 45000, oldPrice: 65000, discount: "-30%", image: "IMG_2545.jpeg" },
-{ id: 12, name: "Air jordan Shoes", category: "Shoes", price: 45000, oldPrice: 70000, discount: "-35%", image: "IMG_2546.jpeg" },
-{ id: 13, name: "chrome Arts Jumper", category: "Clothes", price: 30000, oldPrice: 45000, discount: "-33%", image: "IMG_2547.jpeg" },
-{ id: 14, name: "chrome Arts Jumper", category: "Clothes", price: 30000, oldPrice: 45000, discount: "-33%", image: "IMG_2548.jpeg" }
+const whatsappNumber="256749253155"; // CHANGE TO YOUR NUMBER
+const products=[
+{id:1,name:"Everyday Crossbody Bag",category:"Bags",price:15000,oldPrice:25000,discount:"-40%",image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"},
+{id:2,name:"Street Cap",category:"Accessories",price:15000,oldPrice:20000,discount:"-25%",image:"https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80"},
+{id:3,name:"Everyday Sunglasses",category:"Accessories",price:10000,oldPrice:15000,discount:"-33%",image:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80"},
+{id:4,name:"Casual Shoulder Bag",category:"Bags",price:20000,oldPrice:35000,discount:"-43%",image:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80"},
+{id:5,name:"Everyday Trainers",category:"Shoes",price:55000,oldPrice:80000,discount:"-31%",image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80"},
+{id:6,name:"Patterned Shoulder Bag",category:"Bags",price:25000,oldPrice:40000,discount:"-37%",image:"IMG_2487.jpeg"},
+{id:7,name:"Lacoste Cap",category:"Accessories",price:6000,oldPrice:10000,discount:"-40%",image:"IMG_0732.jpeg"},
+{id:8,name:"Balenciaga Shoes",category:"Shoes",price:50000,oldPrice:75000,discount:"-33%",image:"IMG_0788.jpeg"},
+{id:9,name:"Spider-Man Crocs",category:"Shoes",price:90000,oldPrice:120000,discount:"-25%",image:"IMG_1905.jpeg"},
+{id:10,name:"Fashion Bag",category:"Bags",price:30000,oldPrice:50000,discount:"-40%",image:"IMG_2543.jpeg"},
+{id:11,name:"Air force Shoes",category:"Shoes",price:45000,oldPrice:65000,discount:"-30%",image:"IMG_2545.jpeg"},
+{id:12,name:"Air jordan Shoes",category:"Shoes",price:45000,oldPrice:70000,discount:"-35%",image:"IMG_2546.jpeg"},
+{id:13,name:"chrome Arts Jumper",category:"Clothes",price:30000,oldPrice:45000,discount:"-33%",image:"IMG_2547.jpeg"},
+{id:14,name:"chrome Arts Jumper",category:"Clothes",price:30000,oldPrice:45000,discount:"-33%",image:"IMG_2548.jpeg"}
 ];
-let activeCategory="All";
-const cart={};
-const money = amount => "UGX " + amount.toLocaleString("en-UG");
+let activeCategory="All";const cart={};let wishlist={};
+const money=a=>"UGX "+a.toLocaleString("en-UG");
 const categories=["All",...new Set(products.map(p=>p.category))];
-function renderFilters(){
-const c=document.getElementById("filters");
-c.innerHTML=categories.map(cat=>`<button class="filter-btn ${cat===activeCategory?'active':''}" onclick="setCategory('${cat}')">${cat}</button>`).join("");
-}
-function setCategory(cat){activeCategory=cat;renderFilters();renderProducts();}
+function renderFilters(){document.getElementById("filters").innerHTML=categories.map(c=>`<button class="filter-btn ${c===activeCategory?'active':''}" onclick="setCat('${c}')">${c}</button>`).join("")}
+function setCat(c){activeCategory=c;renderFilters();renderProducts();setActive(1)}
 function renderProducts(){
-const search=document.getElementById("search").value.trim().toLowerCase();
-const grid=document.getElementById("productGrid");
-const filtered=products.filter(p=>{
-const matchCat=activeCategory==="All"||p.category===activeCategory;
-const matchSearch=!search||p.name.toLowerCase().includes(search);
-return matchCat&&matchSearch;
-});
-grid.innerHTML=filtered.map(p=>`
-<div class="card">
-<div class="badge">${p.discount}</div>
-<img src="${p.image}" onerror="this.src='https://via.placeholder.com/300?text=No+Image'">
-<div class="info">
-<div class="name">${p.name}</div>
-<div><span class="price">${money(p.price)}</span><span class="old">${money(p.oldPrice)}</span></div>
-<button class="add" onclick="addToCart(${p.id})">Add to Cart</button>
-</div>
-</div>
-`).join("");
+const s=document.getElementById("search").value.toLowerCase();
+const g=document.getElementById("productGrid");
+const f=products.filter(p=>(activeCategory==="All"||p.category===activeCategory)&&(!s||p.name.toLowerCase().includes(s)));
+g.innerHTML=f.map(p=>`<div class="card"><div class="badge">${p.discount}</div><div class="wish" onclick="toggleWish(${p.id})">${wishlist[p.id]?'❤️':'♡'}</div><img src="${p.image}" onerror="this.src='https://via.placeholder.com/300?text=TASO'"><div class="info"><div class="name">${p.name}</div><div><span class="price">${money(p.price)}</span><span class="old">${money(p.oldPrice)}</span></div><button class="add" onclick="addCart(${p.id})">Add to Cart</button></div></div>`).join("");
 }
-function addToCart(id){cart[id]=(cart[id]||0)+1;updateCart();}
+function addCart(id){cart[id]=(cart[id]||0)+1;updateCart();toggleCart()}
 function updateCart(){
-let count=0,total=0,html="";
-for(const id in cart){
-const p=products.find(x=>x.id==id);
-count+=cart[id];
-total+=p.price*cart[id];
-html+=`<div style="display:flex;justify-content:space-between;margin:8px 0"><span>${p.name} x${cart[id]}</span><span>${money(p.price*cart[id])}</span></div>`;
+let c=0,t=0,h="";
+for(const id in cart){const p=products.find(x=>x.id==id);c+=cart[id];t+=p.price*cart[id];h+=`<div style="display:flex;justify-content:space-between;margin:6px 0"><span>${p.name} x${cart[id]}</span><span>${money(p.price*cart[id])}</span></div>`}
+document.getElementById("cartBadge").innerText=c;
+document.getElementById("cartTotal").innerText=money(t);
+document.getElementById("cartItems").innerHTML=h||"Cart empty";
 }
-document.getElementById("cartCount").innerText=count;
-document.getElementById("cartTotal").innerText=money(total);
-document.getElementById("cartItems").innerHTML=html||"Cart is empty";
-}
-function toggleCart(){document.getElementById("cartDrawer").classList.toggle("open");}
-function checkout(){
-let msg="Hello TASO STORE, I want to order:%0A";
-for(const id in cart){
-const p=products.find(x=>x.id==id);
-msg+=`-${p.name} x${cart[id]} = ${money(p.price*cart[id])}%0A`;
-}
-msg+=`Total: ${document.getElementById("cartTotal").innerText}`;
-window.open(`https://wa.me/${whatsappNumber}?text=${msg}`,"_blank");
-}
-renderFilters();renderProducts();
+function toggleCart(){document.getElementById("cartDrawer").classList.toggle("open")}
+function toggleWish(id){if(wishlist[id])delete wishlist[id];else wishlist[id]=true;renderProducts();updateWish()}
+function updateWish(){const ids=Object.keys(wishlist);document.getElementById("wishCount").innerText=ids.length;if(ids.length===0){document.getElementById("wishItems").innerHTML="No items yet";return}let h="";ids.forEach(id=>{const p=products.find(x=>x.id==id);h+=`<div style="margin:5px 0">♡ ${p.name} - ${money(p.price)}</div>`});document.getElementById("wishItems").innerHTML=h}
+function goHome(){window.scrollTo({top:0,behavior:"smooth"});setActive(0)}
+function goCategories(){document.getElementById("filters").scrollIntoView({behavior:"smooth"});setActive(1)}
+function showWishlist(){updateWish();setActive(3)}
+function showAccount(){alert("Account: Login / Register coming soon. WhatsApp us to order!");setActive(4)}
+function setActive(i){document.querySelectorAll(".nav-item").forEach((el,idx)=>{el.classList.toggle("active",idx===i)});if(i===2)document.getElementById("cartDrawer").classList.add("open")}
+function checkout(){let m="Hello TASO, I want:%0A";for(const id in cart){const p=products.find(x=>x.id==id);m+=`-${p.name} x${cart[id]} = ${money(p.price*cart[id])}%0A`}m+=`Total: ${document.getElementById("cartTotal").innerText}`;window.open(`https://wa.me/${whatsappNumber}?text=${m}`,"_blank")}
+renderFilters();renderProducts();updateCart();
 </script>
 </body>
 </html>
