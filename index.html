@@ -5,94 +5,124 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Thrift Shop UG - Kampala</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f5f5f5}
-.moving-bar{background:#00A651;color:white;padding:8px;overflow:hidden;white-space:nowrap}
-.moving-bar span{display:inline-block;animation:move 15s linear infinite}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
+body{background:#f6f6f6;padding-bottom:70px}
+.moving-bar{background:#00A651;color:white;padding:8px;overflow:hidden;white-space:nowrap;font-size:13px;font-weight:bold}
+.moving-bar span{display:inline-block;animation:move 18s linear infinite}
 @keyframes move{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
-header{background:white;padding:10px;position:sticky;top:0;z-index:100;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+header{background:white;padding:12px;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.1)}
 .logo-area{display:flex;justify-content:space-between;align-items:center}
-.logo-img{font-weight:bold;font-size:18px;color:#00A651}
-#search{width:100%;margin:10px 0;padding:12px;border-radius:8px;border:1px solid #ddd}
+.logo{font-weight:800;font-size:18px;color:#111}
+#search{width:100%;margin:10px 0;padding:12px 14px;border-radius:10px;border:1px solid #e5e5e5;background:#f9f9f9}
 .banner-wrap{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px;-webkit-overflow-scrolling:touch}
 .banner-wrap::-webkit-scrollbar{display:none}
-.banner-wrap img{min-width:100%;scroll-snap-align:start;border-radius:12px;display:block;height:auto}
+.banner-wrap img{min-width:100%;height:180px;object-fit:cover;scroll-snap-align:start;border-radius:12px;display:block}
 .filters{display:flex;gap:8px;overflow-x:auto;padding:10px}
-.filters button{padding:8px 14px;border:1px solid #00A651;border-radius:20px;background:white;color:#00A651;white-space:nowrap}
-.filters button.active{background:#00A651;color:white}
+.filters::-webkit-scrollbar{display:none}
+.filters button{padding:8px 16px;border:1px solid #ddd;border-radius:20px;background:white;font-size:12px;white-space:nowrap}
+.filters button.active{background:#111;color:white;border-color:#111}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.card{background:white;border-radius:12px;padding:10px;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
-.card img{width:100%;border-radius:8px;height:150px;object-fit:cover}
-.card h3{font-size:14px;margin:6px 0}
-.price{color:#00A651;font-weight:bold}
-.card button{width:100%;padding:8px;background:#00A651;color:white;border:none;border-radius:6px;margin-top:6px}
-footer{background:black;color:white;padding:20px;text-align:center;margin-top:20px}
-.whatsapp-btn{display:inline-block;background:#25D366;color:white;padding:12px 20px;border-radius:25px;text-decoration:none;margin:10px;font-weight:bold}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:200}
-.bottom-nav div{text-align:center;font-size:12px}
+.card{background:white;border-radius:14px;padding:10px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card img{width:100%;border-radius:10px;height:180px;object-fit:cover;background:#eee}
+.cat{font-size:10px;color:#888;letter-spacing:1px;margin-top:8px;font-weight:600}
+.name{font-size:13px;font-weight:600;margin:4px 0;line-height:1.3;min-height:32px}
+.price{font-size:13px;font-weight:800;margin:6px 0}
+.add-btn{width:100%;padding:10px;background:#111;color:white;border:none;border-radius:8px;font-size:11px;font-weight:700;letter-spacing:.5px}
+.wa-btn{display:block;text-align:center;background:#25D366;color:white;padding:8px;border-radius:8px;text-decoration:none;font-size:11px;margin-top:6px;font-weight:700}
+footer{background:#111;color:white;padding:24px;text-align:center;margin-top:20px}
+.whatsapp-big{display:inline-block;background:#25D366;color:white;padding:14px 24px;border-radius:30px;text-decoration:none;margin:10px;font-weight:800}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:200}
 </style>
 </head>
 <body>
 
-<div class="moving-bar"><span>🔥 THE THRIFT SHOP UG - Explosion Weekend | UP TO 60% OFF | BAGS 25K ONLY | SHOES FROM 30K | KAMPALA - Delivery Available | WhatsApp +256749253155 🔥</span></div>
+<div class="moving-bar"><span>🔥 THE THRIFT SHOP UG - BAGS | SHOES | CAPS | GLASSES - UP TO 60% OFF - WhatsApp +256749253155 - KAMPALA DELIVERY 🔥</span></div>
 
 <header>
-<div class="logo-area"><div class="logo-img">The Thrift Shop UG</div><div>🛒 <span id="cartCount">0</span></div></div>
-<input id="search" placeholder="Search bags, shoes...">
+<div class="logo-area"><div class="logo">The Thrift Shop UG</div><div>🛒 <span id="cartCount">0</span></div></div>
+<input id="search" placeholder="Search bags, shoes, caps, glasses..." oninput="searchProducts(this.value)">
 </header>
 
-<!-- SCROLLABLE BANNERS -->
+<!-- YOUR 2 BANNERS SCROLLABLE -->
 <div class="banner-wrap">
-  <img src="IMG_2639.jpeg" alt="Banner Boy">
-  <img src="IMG_2640.jpeg" alt="Banner Products">
+  <img src="IMG_2639.jpeg" alt="Banner 1" onerror="this.src='https://via.placeholder.com/800x300?text=The+Thrift+Shop+UG'">
+  <img src="IMG_2640.jpeg" alt="Banner 2" onerror="this.src='https://via.placeholder.com/800x300?text=Explosion+Weekend'">
 </div>
 
-<div class="filters" id="filters">
-  <button class="active" onclick="filterP('all')">All</button>
-  <button onclick="filterP('bags')">Bags</button>
-  <button onclick="filterP('shoes')">Shoes</button>
-  <button onclick="filterP('hot')">Hot Deals</button>
+<div class="filters" id="filterBar">
+  <button class="active" onclick="filterCat('all',this)">All</button>
+  <button onclick="filterCat('bags',this)">Bags</button>
+  <button onclick="filterCat('shoes',this)">Shoes</button>
+  <button onclick="filterCat('caps',this)">Caps</button>
+  <button onclick="filterCat('glasses',this)">Glasses</button>
+  <button onclick="filterCat('accessories',this)">Accessories</button>
 </div>
 
-<div class="grid" id="productGrid">
-  <div class="card" data-cat="bags"><img src="https://via.placeholder.com/300x300?text=Bag+25K"><h3>Quality Thrift Bag</h3><div class="price">25,000 UGX</div><button onclick="addCart('Bag')">Add to Cart</button><br><a href="https://wa.me/256749253155?text=Hi%20I%20want%20this%20Bag%2025K" class="whatsapp-btn" style="padding:6px 10px;font-size:12px">WhatsApp Order</a></div>
-  <div class="card" data-cat="shoes"><img src="https://via.placeholder.com/300x300?text=Shoe+30K"><h3>Stylish Thrift Shoe</h3><div class="price">30,000 UGX</div><button onclick="addCart('Shoe')">Add to Cart</button><br><a href="https://wa.me/256749253155?text=Hi%20I%20want%20this%20Shoe%2030K" class="whatsapp-btn" style="padding:6px 10px;font-size:12px">WhatsApp Order</a></div>
-</div>
-
-<div style="height:80px"></div>
-
-<div class="bottom-nav">
-  <div>🏠<br>Home</div>
-  <div>🗂️<br>Categories</div>
-  <div><a href="https://wa.me/256749253155" style="text-decoration:none;color:inherit">💬<br>WhatsApp</a></div>
-  <div>🛒<br>Cart</div>
-  <div>👤<br>Account</div>
-</div>
+<div class="grid" id="grid"></div>
 
 <footer>
-  <p>📍 UG KAMPALA - Delivery Available</p>
-  <p>📱 WhatsApp: +256749253155</p>
-  <a href="https://wa.me/256749253155?text=Hello%20The%20Thrift%20Shop%20UG" class="whatsapp-btn">💬 Chat on WhatsApp: +256749253155</a>
-  <p style="margin-top:15px">© The Thrift Shop UG 2026</p>
+<p>📍 UG KAMPALA - Delivery Available</p>
+<p style="margin:8px 0">📱 WhatsApp: +256 749 253 155</p>
+<a href="https://wa.me/256749253155?text=Hello%20The%20Thrift%20Shop%20UG%20I%20want%20to%20order" class="whatsapp-big">💬 Chat on WhatsApp</a>
+<p style="margin-top:15px;font-size:12px;color:#aaa">© 2026 The Thrift Shop UG - All items in UGX</p>
 </footer>
 
-<script>
-let cart=0;
-function addCart(item){cart++;document.getElementById('cartCount').innerText=cart;window.open('https://wa.me/256749253155?text=Hi%20I%20want%20to%20order%20'+item,'_blank');}
-function filterP(cat){
-  document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
-  event.target.classList.add('active');
-  document.querySelectorAll('.card').forEach(c=>{
-    if(cat==='all' || c.dataset.cat===cat || cat==='hot'){c.style.display='block'}else{c.style.display='none'}
-  });
-}
-document.getElementById('search').addEventListener('input',function(e){
-  let v=e.target.value.toLowerCase();
-  document.querySelectorAll('.card').forEach(c=>{
-    c.style.display=c.innerHTML.toLowerCase().includes(v)?'block':'none';
-  });
-});
-</script>
+<div class="bottom-nav">
+<div>🏠<br>Home</div>
+<div><a href="https://wa.me/256749253155" style="text-decoration:none;color:#111">💬<br>WhatsApp</a></div>
+<div>🛒<br>Bag</div>
+</div>
 
+<script>
+const WHATSAPP = "256749253155";
+let cartCount = 0;
+
+let products = [
+  { name: "Casual Shoulder Bag", price: 30000, cat: "bags", img: "IMG_2639.jpeg", subcat: "BAGS" },
+  { name: "Everyday Trainers", price: 55000, cat: "shoes", img: "IMG_2640.jpeg", subcat: "SHOES" },
+  { name: "Patterned Shoulder Bag", price: 25000, cat: "bags", img: "IMG_2639.jpeg", subcat: "BAGS" },
+  { name: "Lacoste Cap", price: 6000, cat: "caps", img: "cap.jpg", subcat: "ACCESSORIES" },
+  { name: "Balenciaga Shoes", price: 50000, cat: "shoes", img: "shoe1.jpg", subcat: "SHOES" },
+  { name: "Spider-Man Crocs", price: 90000, cat: "shoes", img: "crocs.jpg", subcat: "SHOES" },
+  { name: "Gucci Casual Bag", price: 35000, cat: "bags", img: "IMG_2639.jpeg", subcat: "BAGS" },
+  { name: "Designer Glasses", price: 15000, cat: "glasses", img: "glasses.jpg", subcat: "GLASSES" },
+  { name: "Trendy Cap", price: 10000, cat: "caps", img: "cap2.jpg", subcat: "CAPS" }
+];
+
+function render(list){
+  const grid = document.getElementById('grid');
+  grid.innerHTML = list.map(p => `
+    <div class="card">
+      <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400?text=${encodeURIComponent(p.name)}'" alt="${p.name}">
+      <div class="cat">${p.subcat || p.cat.toUpperCase()}</div>
+      <div class="name">${p.name}</div>
+      <div class="price">UGX ${p.price.toLocaleString()}</div>
+      <button class="add-btn" onclick="addToBag('${p.name}',${p.price})">+ ADD TO BAG</button>
+      <a class="wa-btn" href="https://wa.me/${WHATSAPP}?text=Hi%20I%20want%20${encodeURIComponent(p.name)}%20UGX%20${p.price}%20from%20Thrift%20Shop%20UG" target="_blank">WhatsApp ${WHATSAPP}</a>
+    </div>
+  `).join('');
+}
+
+function addToBag(name, price){
+  cartCount++;
+  document.getElementById('cartCount').innerText = cartCount;
+  window.open(`https://wa.me/${WHATSAPP}?text=Hello%20I%20want%20to%20order%20${encodeURIComponent(name)}%20UGX%20${price}`, '_blank');
+}
+
+function filterCat(cat, el){
+  document.querySelectorAll('#filterBar button').forEach(b=>b.classList.remove('active'));
+  if(el) el.classList.add('active');
+  if(cat==='all') render(products);
+  else render(products.filter(p=>p.cat===cat || p.subcat.toLowerCase()===cat));
+}
+
+function searchProducts(v){
+  let s = v.toLowerCase();
+  render(products.filter(p=>p.name.toLowerCase().includes(s)));
+}
+
+// Initial render
+render(products);
+</script>
 </body>
 </html>
