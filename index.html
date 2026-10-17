@@ -42,7 +42,7 @@ header{background:#000;color:white;padding:12px 15px;display:flex;align-items:ce
 </head>
 <body>
 
-<div class="moving-bar"><span>🔥 HOT DEALS - UP TO 50% OFF 🔥 FREE DELIVERY IN KAMPALA ABOVE 100K 🔥 WHATSAPP ORDER +256 700 000000 🔥 NEW BAGS, SHOES, CAPS, CLOTHES EVERYDAY 🔥</span></div>
+<div class="moving-bar"><span>🔥 HOT DEALS - UP TO 50% OFF 🔥 FREE DELIVERY IN KAMPALA ABOVE 100K 🔥 WHATSAPP ORDER +256 749253155 🔥 NEW BAGS, SHOES, CAPS, CLOTHES EVERYDAY 🔥</span></div>
 
 <header>
 <div class="logo">THRIFT</div>
@@ -101,7 +101,7 @@ function renderProducts(){
 const s=document.getElementById("search").value.toLowerCase();
 const g=document.getElementById("productGrid");
 const f=products.filter(p=>(activeCategory==="All"||p.category===activeCategory)&&(!s||p.name.toLowerCase().includes(s)));
-g.innerHTML=f.map(p=>`<div class="card"><div class="badge">${p.discount}</div><div class="wish" onclick="toggleWish(${p.id})">${wishlist[p.id]?'❤️':'♡'}</div><img src="${p.image}" onerror="this.src='https://via.placeholder.com/300?text=TASO'"><div class="info"><div class="name">${p.name}</div><div><span class="price">${money(p.price)}</span><span class="old">${money(p.oldPrice)}</span></div><button class="add" onclick="addCart(${p.id})">Add to Cart</button></div></div>`).join("");
+g.innerHTML=f.map(p=>`<div class="card"><div class="badge">${p.discount}</div><div class="wish" onclick="toggleWish(${p.id})">${wishlist[p.id]?'❤️':'♡'}</div><img src="${p.image}" onerror="this.src='https://via.placeholder.com/300?text=The Thrift'"><div class="info"><div class="name">${p.name}</div><div><span class="price">${money(p.price)}</span><span class="old">${money(p.oldPrice)}</span></div><button class="add" onclick="addCart(${p.id})">Add to Cart</button></div></div>`).join("");
 }
 function addCart(id){cart[id]=(cart[id]||0)+1;updateCart();toggleCart()}
 function updateCart(){
