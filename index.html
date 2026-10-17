@@ -3,126 +3,129 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Thrift Shop UG - Kampala</title>
+<title>The Thrift Shop UG</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
-body{background:#f6f6f6;padding-bottom:70px}
-.moving-bar{background:#00A651;color:white;padding:8px;overflow:hidden;white-space:nowrap;font-size:13px;font-weight:bold}
-.moving-bar span{display:inline-block;animation:move 18s linear infinite}
-@keyframes move{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
-header{background:white;padding:12px;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.1)}
-.logo-area{display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:18px;color:#111}
-#search{width:100%;margin:10px 0;padding:12px 14px;border-radius:10px;border:1px solid #e5e5e5;background:#f9f9f9}
-.banner-wrap{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px;-webkit-overflow-scrolling:touch}
-.banner-wrap::-webkit-scrollbar{display:none}
-.banner-wrap img{min-width:100%;height:180px;object-fit:cover;scroll-snap-align:start;border-radius:12px;display:block}
-.filters{display:flex;gap:8px;overflow-x:auto;padding:10px}
-.filters::-webkit-scrollbar{display:none}
-.filters button{padding:8px 16px;border:1px solid #ddd;border-radius:20px;background:white;font-size:12px;white-space:nowrap}
-.filters button.active{background:#111;color:white;border-color:#111}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.card{background:white;border-radius:14px;padding:10px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
-.card img{width:100%;border-radius:10px;height:180px;object-fit:cover;background:#eee}
-.cat{font-size:10px;color:#888;letter-spacing:1px;margin-top:8px;font-weight:600}
-.name{font-size:13px;font-weight:600;margin:4px 0;line-height:1.3;min-height:32px}
-.price{font-size:13px;font-weight:800;margin:6px 0}
-.add-btn{width:100%;padding:10px;background:#111;color:white;border:none;border-radius:8px;font-size:11px;font-weight:700;letter-spacing:.5px}
-.wa-btn{display:block;text-align:center;background:#25D366;color:white;padding:8px;border-radius:8px;text-decoration:none;font-size:11px;margin-top:6px;font-weight:700}
-footer{background:#111;color:white;padding:24px;text-align:center;margin-top:20px}
-.whatsapp-big{display:inline-block;background:#25D366;color:white;padding:14px 24px;border-radius:30px;text-decoration:none;margin:10px;font-weight:800}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:200}
+:root{--green:#00A651}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f7f7f7;padding-bottom:80px}
+.top-move{background:var(--green);color:#fff;padding:8px;overflow:hidden;white-space:nowrap;font-weight:800;font-size:13px}
+.top-move span{display:inline-block;animation:move 22s linear infinite}
+@keyframes move{0%{transform:translateX(100%)}100%{transform:translateX(-120%)}}
+header{background:#fff;padding:12px;position:sticky;top:0;z-index:100;box-shadow:0 1px 5px rgba(0,0,0,.08)}
+.hdr{display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;font-size:19px}.logo span{color:var(--green)}
+.acct{background:var(--green);color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;text-decoration:none;font-weight:700}
+#search{width:100%;margin-top:10px;padding:12px;border-radius:12px;border:1.5px solid #e5e5e5;background:#fafafa}
+.banners{display:flex;gap:10px;overflow-x:auto;padding:12px}.banners::-webkit-scrollbar{display:none}
+.banners img{min-width:100%;height:190px;object-fit:cover;border-radius:14px}
+.section-title{padding:12px 12px 2px;font-weight:900;font-size:16px;display:flex;justify-content:space-between}
+.section-title small{background:var(--green);color:#fff;padding:3px 8px;border-radius:10px;font-size:10px}
+.filters{display:flex;gap:8px;overflow-x:auto;padding:10px 12px}.filters::-webkit-scrollbar{display:none}
+.filters button{padding:8px 16px;border-radius:20px;border:1px solid #ddd;background:#fff;font-size:12px;font-weight:600;white-space:nowrap}
+.filters button.active{background:var(--green);color:#fff;border-color:var(--green)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px 12px}
+.card{background:#fff;border-radius:16px;padding:8px;box-shadow:0 2px 6px rgba(0,0,0,.07);position:relative}
+.card img{width:100%;height:185px;object-fit:cover;border-radius:12px;background:#eee}
+.badge{position:absolute;top:14px;left:14px;background:var(--green);color:#fff;font-size:9px;padding:4px 7px;border-radius:6px;font-weight:800}
+.badge.hot{background:#FF3B30}
+.cat{font-size:9px;color:#888;margin-top:7px;font-weight:700;letter-spacing:1px}
+.name{font-size:13px;font-weight:700;margin:3px 0;min-height:32px}
+.price{font-weight:900;font-size:14px}.price.hot{color:var(--green)}
+.btn{width:100%;background:#111;color:#fff;border:none;padding:10px;border-radius:10px;font-size:11px;font-weight:800;margin-top:6px}
+.btn-green{width:100%;background:var(--green);color:#fff;border:none;padding:9px;border-radius:10px;font-size:11px;font-weight:800;margin-top:6px;display:block;text-align:center;text-decoration:none}
+.mobile-box{background:#fff;margin:12px;border-radius:16px;padding:14px;box-shadow:0 2px 6px rgba(0,0,0,.07);border-left:4px solid var(--green)}
+footer{background:#111;color:#fff;padding:22px;text-align:center}
+.wa-big{display:inline-block;background:var(--green);color:#fff;padding:14px 26px;border-radius:30px;text-decoration:none;font-weight:900;margin:8px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee}
 </style>
 </head>
 <body>
-
-<div class="moving-bar"><span>🔥 THE THRIFT SHOP UG - BAGS | SHOES | CAPS | GLASSES - UP TO 60% OFF - WhatsApp +256749253155 - KAMPALA DELIVERY 🔥</span></div>
-
+<div class="top-move"><span>🔥 THE THRIFT SHOP UG - AIRTEL MONEY 0749253155 - WHATSAPP 256749253155 - HOT DEALS ABOVE 60K - KIRA DELIVERY 🔥</span></div>
 <header>
-<div class="logo-area"><div class="logo">The Thrift Shop UG</div><div>🛒 <span id="cartCount">0</span></div></div>
-<input id="search" placeholder="Search bags, shoes, caps, glasses..." oninput="searchProducts(this.value)">
+<div class="hdr"><div class="logo">The Thrift <span>Shop UG</span></div><a href="#" onclick="showAccount()" class="acct">👋 Greeting! Create Account</a></div>
+<input id="search" placeholder="Search bags, shoes, crocs..." oninput="searchNow(this.value)">
 </header>
-
-<!-- YOUR 2 BANNERS SCROLLABLE -->
-<div class="banner-wrap">
-  <img src="IMG_2639.jpeg" alt="Banner 1" onerror="this.src='https://via.placeholder.com/800x300?text=The+Thrift+Shop+UG'">
-  <img src="IMG_2640.jpeg" alt="Banner 2" onerror="this.src='https://via.placeholder.com/800x300?text=Explosion+Weekend'">
+<div class="banners">
+<img src="IMG_2639.jpeg" onerror="this.src='IMG_2599.jpeg'">
+<img src="IMG_2640.jpeg" onerror="this.src='IMG_2598.jpeg'">
 </div>
-
-<div class="filters" id="filterBar">
-  <button class="active" onclick="filterCat('all',this)">All</button>
-  <button onclick="filterCat('bags',this)">Bags</button>
-  <button onclick="filterCat('shoes',this)">Shoes</button>
-  <button onclick="filterCat('caps',this)">Caps</button>
-  <button onclick="filterCat('glasses',this)">Glasses</button>
-  <button onclick="filterCat('accessories',this)">Accessories</button>
+<div class="section-title">🔥 Hot Deals <small>Above 60K</small></div>
+<div class="grid" id="hotGrid"></div>
+<div class="section-title">All Items <small>29 Items</small></div>
+<div class="filters" id="filters">
+<button class="active" onclick="filterCat('all',this)">All 29</button>
+<button onclick="filterCat('bags',this)">Bags</button>
+<button onclick="filterCat('shoes',this)">Shoes</button>
+<button onclick="filterCat('slides',this)">Slides/Crocs</button>
+<button onclick="filterCat('clothes',this)">Clothes</button>
 </div>
-
 <div class="grid" id="grid"></div>
 
-<footer>
-<p>📍 UG KAMPALA - Delivery Available</p>
-<p style="margin:8px 0">📱 WhatsApp: +256 749 253 155</p>
-<a href="https://wa.me/256749253155?text=Hello%20The%20Thrift%20Shop%20UG%20I%20want%20to%20order" class="whatsapp-big">💬 Chat on WhatsApp</a>
-<p style="margin-top:15px;font-size:12px;color:#aaa">© 2026 The Thrift Shop UG - All items in UGX</p>
-</footer>
-
-<div class="bottom-nav">
-<div>🏠<br>Home</div>
-<div><a href="https://wa.me/256749253155" style="text-decoration:none;color:#111">💬<br>WhatsApp</a></div>
-<div>🛒<br>Bag</div>
+<div class="mobile-box">
+<h4>💳 Airtel Money Payment Only</h4>
+<p style="font-size:13px;margin:6px 0;line-height:1.6">
+<b>Airtel:</b> 0749 253 155<br>
+<b>Name:</b> The Thrift Shop UG<br>
+Send money then WhatsApp proof to <b>256749253155</b>
+</p>
+<button onclick="payMM()" style="background:var(--green);color:#fff;border:none;padding:10px 16px;border-radius:10px;font-weight:800;margin-top:6px">Pay with Airtel Money</button>
 </div>
 
+<footer>
+<p>📍 KIRA, WAKISO - KAMPALA DELIVERY</p>
+<p>📱 WhatsApp: 256749253155 | Airtel Money: 0749253155</p>
+<a class="wa-big" href="https://wa.me/256749253155?text=Hello%20Thrift%20Shop%20UG%20I%20want%20to%20order">💬 Chat 256749253155</a><br>
+<a class="wa-big" style="background:#111;border:1px solid #333" href="https://wa.me/256749253155?text=I%20paid%20via%20Airtel%20Money%20Proof">📲 Send Airtel Money Proof</a>
+<p style="margin-top:12px;font-size:11px;color:#aaa">© The Thrift Shop UG - Prices in UGX - Green Theme</p>
+</footer>
+<div class="bottom-nav">
+<div style="text-align:center;font-size:11px">🏠<br>Home</div>
+<div style="text-align:center;font-size:11px"><a href="https://wa.me/256749253155" style="text-decoration:none;color:#111">💬<br>WhatsApp</a></div>
+<div style="text-align:center;font-size:11px">🔥<br>Hot</div>
+<div style="text-align:center;font-size:11px">🛒<br><span id="cartC">0</span> Bag</div>
+</div>
 <script>
-const WHATSAPP = "256749253155";
-let cartCount = 0;
-
-let products = [
-  { name: "Casual Shoulder Bag", price: 30000, cat: "bags", img: "IMG_2639.jpeg", subcat: "BAGS" },
-  { name: "Everyday Trainers", price: 55000, cat: "shoes", img: "IMG_2640.jpeg", subcat: "SHOES" },
-  { name: "Patterned Shoulder Bag", price: 25000, cat: "bags", img: "IMG_2639.jpeg", subcat: "BAGS" },
-  { name: "Lacoste Cap", price: 6000, cat: "caps", img: "cap.jpg", subcat: "ACCESSORIES" },
-  { name: "Balenciaga Shoes", price: 50000, cat: "shoes", img: "shoe1.jpg", subcat: "SHOES" },
-  { name: "Spider-Man Crocs", price: 90000, cat: "shoes", img: "crocs.jpg", subcat: "SHOES" },
-  { name: "Gucci Casual Bag", price: 35000, cat: "bags", img: "IMG_2639.jpeg", subcat: "BAGS" },
-  { name: "Designer Glasses", price: 15000, cat: "glasses", img: "glasses.jpg", subcat: "GLASSES" },
-  { name: "Trendy Cap", price: 10000, cat: "caps", img: "cap2.jpg", subcat: "CAPS" }
+const WA="256749253155";
+let cart=0;
+let products=[
+{id:1,name:"Beige Outdoor Hiking Backpack",price:65000,cat:"bags",img:"IMG_2599.jpeg"},
+{id:2,name:"North Face Grey Backpack",price:70000,cat:"bags",img:"IMG_2598.jpeg"},
+{id:3,name:"Nike Grey School Backpack",price:55000,cat:"bags",img:"IMG_2597.jpeg"},
+{id:4,name:"Black Tactical Backpack",price:45000,cat:"bags",img:"IMG_2596.jpeg"},
+{id:5,name:"Black Red Hiking Backpack",price:60000,cat:"bags",img:"IMG_2595.jpeg"},
+{id:6,name:"Adidas Black School Backpack",price:50000,cat:"bags",img:"IMG_2594.jpeg"},
+{id:7,name:"Military Black Multi-Pocket Backpack",price:48000,cat:"bags",img:"IMG_2593.jpeg"},
+{id:8,name:"Red School Backpack",price:40000,cat:"bags",img:"IMG_2592.jpeg"},
+{id:9,name:"Orange Foam Crocs",price:45000,cat:"slides",img:"IMG_2591.jpeg"},
+{id:10,name:"Ghost Face Black T-Shirt",price:25000,cat:"clothes",img:"IMG_2590.jpeg"},
+{id:11,name:"Beige Double-Strap Slides",price:35000,cat:"slides",img:"IMG_2589.jpeg"},
+{id:12,name:"Chanel Black Loafers",price:80000,cat:"shoes",img:"IMG_2588.jpeg"},
+{id:13,name:"Black Street Sneakers",price:55000,cat:"shoes",img:"IMG_2587.jpeg"},
+{id:14,name:"Thrift Shoes Market Pile",price:40000,cat:"shoes",img:"IMG_2586.jpeg"},
+{id:15,name:"Yeezy Beige Slides",price:35000,cat:"slides",img:"IMG_2585.jpeg"},
+{id:16,name:"Black Yeezy Slides",price:35000,cat:"slides",img:"IMG_2584.jpeg"},
+{id:17,name:"White Classic Hoodie",price:45000,cat:"clothes",img:"IMG_2573.png"},
+{id:18,name:"Grey Zip Hoodie",price:50000,cat:"clothes",img:"IMG_2547.jpeg"},
+{id:19,name:"White Foam Runner Sneakers",price:65000,cat:"shoes",img:"IMG_2546.jpeg"},
+{id:20,name:"Nike White Red Sneakers",price:70000,cat:"shoes",img:"IMG_2545.jpeg"},
+{id:21,name:"Black Formal Loafers",price:60000,cat:"shoes",img:"IMG_2544.jpeg"},
+{id:22,name:"Black Crocodile Crocs",price:45000,cat:"slides",img:"IMG_2543.jpeg"},
+{id:23,name:"White Classic Crocs",price:40000,cat:"slides",img:"IMG_2490.jpeg"},
+{id:24,name:"Grey North Face Backpack",price:55000,cat:"bags",img:"IMG_2487.jpeg"},
+{id:25,name:"Dior Pattern Saddle Bag",price:35000,cat:"bags",img:"IMG_2488.jpeg"},
+{id:26,name:"Black Bear Graphic T-Shirt",price:25000,cat:"clothes",img:"IMG_2486.png"},
+{id:27,name:"Givenchy Black T-Shirt",price:30000,cat:"clothes",img:"IMG_2484.jpeg"},
+{id:28,name:"Red Black Tote Bag",price:25000,cat:"bags",img:"IMG_2485.png"},
+{id:29,name:"Blue Canvas Shoes",price:35000,cat:"shoes",img:"IMG_2481.jpeg"},
 ];
-
-function render(list){
-  const grid = document.getElementById('grid');
-  grid.innerHTML = list.map(p => `
-    <div class="card">
-      <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400?text=${encodeURIComponent(p.name)}'" alt="${p.name}">
-      <div class="cat">${p.subcat || p.cat.toUpperCase()}</div>
-      <div class="name">${p.name}</div>
-      <div class="price">UGX ${p.price.toLocaleString()}</div>
-      <button class="add-btn" onclick="addToBag('${p.name}',${p.price})">+ ADD TO BAG</button>
-      <a class="wa-btn" href="https://wa.me/${WHATSAPP}?text=Hi%20I%20want%20${encodeURIComponent(p.name)}%20UGX%20${p.price}%20from%20Thrift%20Shop%20UG" target="_blank">WhatsApp ${WHATSAPP}</a>
-    </div>
-  `).join('');
-}
-
-function addToBag(name, price){
-  cartCount++;
-  document.getElementById('cartCount').innerText = cartCount;
-  window.open(`https://wa.me/${WHATSAPP}?text=Hello%20I%20want%20to%20order%20${encodeURIComponent(name)}%20UGX%20${price}`, '_blank');
-}
-
-function filterCat(cat, el){
-  document.querySelectorAll('#filterBar button').forEach(b=>b.classList.remove('active'));
-  if(el) el.classList.add('active');
-  if(cat==='all') render(products);
-  else render(products.filter(p=>p.cat===cat || p.subcat.toLowerCase()===cat));
-}
-
-function searchProducts(v){
-  let s = v.toLowerCase();
-  render(products.filter(p=>p.name.toLowerCase().includes(s)));
-}
-
-// Initial render
-render(products);
+function render(list,targetId){let g=document.getElementById(targetId);g.innerHTML=list.map(p=>`<div class="card">${p.price>=60000?'<div class="badge hot">HOT DEAL</div>':'<div class="badge">NEW</div>'}<img src="${p.img}" onerror="this.src='https://via.placeholder.com/400?text=${encodeURIComponent(p.name)}'"><div class="cat">${p.cat.toUpperCase()}</div><div class="name">${p.id}. ${p.name}</div><div class="price ${p.price>=60000?'hot':''}">UGX ${p.price.toLocaleString()}</div><button class="btn" onclick="addBag('${p.name}',${p.price})">+ ADD TO BAG</button><a class="btn-green" href="https://wa.me/${WA}?text=Hi%20I%20want%20${encodeURIComponent(p.name)}%20No${p.id}%20UGX%20${p.price}" target="_blank">WhatsApp ${WA}</a></div>`).join('')}
+function addBag(n,p){cart++;document.getElementById('cartC').innerText=cart;window.open(`https://wa.me/${WA}?text=I%20want%20${encodeURIComponent(n)}%20UGX%20${p}%20Pay%20via%20Airtel%20Money%200749253155`,'_blank')}
+function filterCat(c,el){document.querySelectorAll('#filters button').forEach(b=>b.classList.remove('active'));el.classList.add('active');if(c=='all')render(products,'grid');else render(products.filter(x=>x.cat==c),'grid')}
+function searchNow(v){let s=v.toLowerCase();render(products.filter(p=>p.name.toLowerCase().includes(s)||p.cat.includes(s)),'grid')}
+function showAccount(){let n=prompt("Greeting! Enter your Name - Thrift Shop UG:");if(n){alert("Welcome "+n+"! Account created. Shop now!")}}
+function payMM(){window.open(`https://wa.me/${WA}?text=I%20paid%20via%20Airtel%20Money%200749253155%20Send%20proof`,'_blank')}
+render(products.filter(p=>p.price>=60000),'hotGrid');
+render(products,'grid');
 </script>
 </body>
 </html>
