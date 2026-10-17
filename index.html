@@ -3,223 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Thrift Shop UG</title>
+<title>The Thrift Shop UG - Kampala</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{padding-bottom:75px;background:#f1f1f1}
-.moving-bar{background:#00A651;color:white;padding:9px 0;overflow:hidden;white-space:nowrap;font-weight:bold;font-size:13px}
-.moving-bar span{display:inline-block;animation:move 25s linear infinite}
+body{background:#f5f5f5}
+.moving-bar{background:#00A651;color:white;padding:8px;overflow:hidden;white-space:nowrap}
+.moving-bar span{display:inline-block;animation:move 15s linear infinite}
 @keyframes move{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
-header{background:#000;color:white;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px}
-.logo-area{display:flex;align-items:center;gap:8px}.logo-img{width:40px;height:40px;background:#00A651;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:18px}
-.logo-text b{color:#00A651;font-size:17px;display:block}.logo-text small{color:white;font-size:10px;letter-spacing:1px}
-#search{padding:9px 12px;width:44%;border-radius:20px;border:none;font-size:13px}
-.filters{display:flex;gap:8px;padding:12px;overflow-x:auto;background:white;position:sticky;top:0;z-index:5}
-.filter-btn{padding:8px 16px;border:1px solid #ddd;border-radius:20px;background:white;white-space:nowrap;font-size:13px;cursor:pointer}
-.filter-btn.active{background:#00A651;color:white;border-color:#00A651}
-.filter-btn.hot{background:#ff3b30;color:white;border-color:#ff3b30}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:8px}
-@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
-.card{background:white;border-radius:8px;overflow:hidden;position:relative;border:1px solid #eee}
-.badge{position:absolute;top:6px;left:6px;color:white;padding:2px 6px;font-size:11px;border-radius:3px;font-weight:bold}
-.badge-disc{background:#ff3b30}.badge-hot{background:#00A651}
-.card img{width:100%;height:160px;object-fit:cover;background:#eee}
-.info{padding:8px}.name{font-size:12px;height:32px;overflow:hidden;font-weight:600}.price{color:#00A651;font-weight:900;font-size:14px}.old{color:#999;text-decoration:line-through;font-size:11px;margin-left:4px}
-.add{width:100%;background:#00A651;color:white;border:none;padding:8px;border-radius:4px;font-weight:bold;margin-top:5px;cursor:pointer}
-.wish{position:absolute;top:6px;right:6px;background:white;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 2px rgba(0,0,0,0.2);cursor:pointer}
-#cartDrawer{position:fixed;right:-100%;top:0;width:95%;max-width:400px;height:100%;background:white;z-index:200;transition:0.3s;padding:15px;overflow-y:auto}
-#cartDrawer.open{right:0}
-.payment-box{background:#f9f9f9;padding:10px;border-radius:8px;margin:10px 0;border:1px solid #eee}
-.payment-box label{display:block;padding:8px;background:white;margin:5px 0;border-radius:6px;border:1px solid #ddd;cursor:pointer;font-size:13px}
-.payment-box label.active{border-color:#00A651;background:#e8f5e9}
-#accountPage{position:fixed;top:0;left:0;right:0;bottom:0;background:#f1f1f1;z-index:300;display:none;overflow-y:auto;padding-bottom:75px}
-#accountPage.open{display:block}
-.acc-top{background:white;padding:12px 15px}.acc-welcome b{font-size:18px}.acc-welcome small{color:#00A651;font-weight:bold}
-.acc-balance{display:flex;align-items:center;gap:8px;color:#00A651;font-weight:bold;margin:10px 0}
-.acc-buttons{display:flex;gap:10px;margin:15px 0}.btn-live{flex:1;background:#00A651;color:white;border:none;padding:12px;border-radius:6px;font-weight:bold;cursor:pointer}
-.btn-wa{flex:1;background:white;color:#00A651;border:1.5px solid #00A651;padding:11px;border-radius:6px;font-weight:bold;cursor:pointer}
-.acc-section{background:white;margin-top:10px;padding:0 15px}.acc-section-title{padding:14px 0 8px 0;font-weight:bold;color:#333;font-size:14px;border-bottom:1px solid #f1f1f1}
-.acc-item{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid #f5f5f5;cursor:pointer}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:8px 0 12px 0;z-index:400}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;color:#777;font-size:12px;cursor:pointer}.nav-item.active{color:#00A651;font-weight:bold}
-.nav-icon{position:relative;font-size:22px}.cart-badge{position:absolute;top:-8px;right:-10px;background:#00A651;color:white;font-size:10px;padding:2px 6px;border-radius:50%}
-.login-box{background:white;margin:20px;padding:20px;border-radius:10px}.login-box input{width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:6px}
-.login-box button{width:100%;padding:12px;background:#00A651;color:white;border:none;border-radius:6px;font-weight:bold;margin-top:10px}
+header{background:white;padding:10px;position:sticky;top:0;z-index:100;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
+.logo-area{display:flex;justify-content:space-between;align-items:center}
+.logo-img{font-weight:bold;font-size:18px;color:#00A651}
+#search{width:100%;margin:10px 0;padding:12px;border-radius:8px;border:1px solid #ddd}
+.banner-wrap{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px;-webkit-overflow-scrolling:touch}
+.banner-wrap::-webkit-scrollbar{display:none}
+.banner-wrap img{min-width:100%;scroll-snap-align:start;border-radius:12px;display:block;height:auto}
+.filters{display:flex;gap:8px;overflow-x:auto;padding:10px}
+.filters button{padding:8px 14px;border:1px solid #00A651;border-radius:20px;background:white;color:#00A651;white-space:nowrap}
+.filters button.active{background:#00A651;color:white}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.card{background:white;border-radius:12px;padding:10px;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+.card img{width:100%;border-radius:8px;height:150px;object-fit:cover}
+.card h3{font-size:14px;margin:6px 0}
+.price{color:#00A651;font-weight:bold}
+.card button{width:100%;padding:8px;background:#00A651;color:white;border:none;border-radius:6px;margin-top:6px}
+footer{background:black;color:white;padding:20px;text-align:center;margin-top:20px}
+.whatsapp-btn{display:inline-block;background:#25D366;color:white;padding:12px 20px;border-radius:25px;text-decoration:none;margin:10px;font-weight:bold}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:200}
+.bottom-nav div{text-align:center;font-size:12px}
 </style>
 </head>
 <body>
 
-<div class="moving-bar"><span>🔥 THE THRIFT SHOP UG - NEW BAGS 25K ONLY 🔥 SHOES FROM 30K 🔥 HOT DEALS ABOVE 50K 🔥 MTN & AIRTEL MONEY ACCEPTED 🔥 WHATSAPP 256749253155 🔥</span></div>
+<div class="moving-bar"><span>🔥 THE THRIFT SHOP UG - Explosion Weekend | UP TO 60% OFF | BAGS 25K ONLY | SHOES FROM 30K | KAMPALA - Delivery Available | WhatsApp +256749253155 🔥</span></div>
 
 <header>
-<div class="logo-area"><div class="logo-img">T</div><div class="logo-text"><b>THRIFT SHOP</b><small>UG • KAMPALA</small></div></div>
-<input id="search" placeholder="Search bags, shoes..." oninput="renderProducts()">
-<div style="background:#00A651;color:white;padding:6px 10px;border-radius:50%;cursor:pointer" onclick="openAccount()">👤</div>
+<div class="logo-area"><div class="logo-img">The Thrift Shop UG</div><div>🛒 <span id="cartCount">0</span></div></div>
+<input id="search" placeholder="Search bags, shoes...">
+</header>
 
 <!-- SCROLLABLE BANNERS -->
-<div style="display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px">
-  <img src="IMG_2639.jpeg" style="min-width:100%;scroll-snap-align:start;border-radius:12px;display:block">
-  <img src="IMG_2640.jpeg" style="min-width:100%;scroll-snap-align:start;border-radius:12px;display:block">
+<div class="banner-wrap">
+  <img src="IMG_2639.jpeg" alt="Banner Boy">
+  <img src="IMG_2640.jpeg" alt="Banner Products">
 </div>
 
-
-<div class="filters" id="filters"></div>
-<div class="grid" id="productGrid"></div>
-
-<div id="cartDrawer">
-<h3>Cart <span style="float:right;cursor:pointer" onclick="toggleCart()">✕</span></h3>
-<div id="cartItems" style="margin-top:10px"></div>
-
-<div class="payment-box">
-<b>Delivery Location:</b>
-<select id="delivery" onchange="updateCart()" style="width:100%;padding:8px;margin:6px 0;border-radius:6px;border:1px solid #ddd">
-<option value="5000">Kampala - UGX 5,000</option>
-<option value="10000">Wakiso / Mukono - UGX 10,000</option>
-<option value="15000">Outside Central - UGX 15,000</option>
-</select>
-<b>Payment Method:</b>
-<label class="active" onclick="setPay(this,'Cash on Delivery')"><input type="radio" name="pay" checked> 💵 Cash on Delivery</label>
-<label onclick="setPay(this,'MTN Mobile Money')"><input type="radio" name="pay"> 📱 MTN Mobile Money - 256749253155</label>
-<label onclick="setPay(this,'Airtel Money')"><input type="radio" name="pay"> 📱 Airtel Money - 256749253155</label>
-<div id="momoInfo" style="font-size:11px;color:#00A651;margin-top:6px;display:none">Send to: 256749253155 - Name: The Thrift Shop UG. Send screenshot after payment.</div>
+<div class="filters" id="filters">
+  <button class="active" onclick="filterP('all')">All</button>
+  <button onclick="filterP('bags')">Bags</button>
+  <button onclick="filterP('shoes')">Shoes</button>
+  <button onclick="filterP('hot')">Hot Deals</button>
 </div>
 
-<div style="font-weight:bold">Subtotal: <span id="subTotal">UGX 0</span><br>Delivery: <span id="delFee">UGX 5,000</span><br><span style="font-size:18px">Total: <span id="cartTotal">UGX 0</span></span></div>
-<button onclick="checkout()" style="width:100%;margin-top:12px;background:#00A651;color:white;border:none;padding:13px;border-radius:8px;font-weight:bold;font-size:16px">Order Now on WhatsApp</button>
+<div class="grid" id="productGrid">
+  <div class="card" data-cat="bags"><img src="https://via.placeholder.com/300x300?text=Bag+25K"><h3>Quality Thrift Bag</h3><div class="price">25,000 UGX</div><button onclick="addCart('Bag')">Add to Cart</button><br><a href="https://wa.me/256749253155?text=Hi%20I%20want%20this%20Bag%2025K" class="whatsapp-btn" style="padding:6px 10px;font-size:12px">WhatsApp Order</a></div>
+  <div class="card" data-cat="shoes"><img src="https://via.placeholder.com/300x300?text=Shoe+30K"><h3>Stylish Thrift Shoe</h3><div class="price">30,000 UGX</div><button onclick="addCart('Shoe')">Add to Cart</button><br><a href="https://wa.me/256749253155?text=Hi%20I%20want%20this%20Shoe%2030K" class="whatsapp-btn" style="padding:6px 10px;font-size:12px">WhatsApp Order</a></div>
 </div>
 
-<div id="accountPage">
-<div class="acc-top"><div style="background:#f1f1f1;border-radius:20px;padding:10px 14px;color:#888">🔍 Search on Thrift Shop</div><div id="accLoggedOut"></div><div id="accLoggedIn" style="display:none"><div style="padding:12px 0"><b id="welcomeName">Welcome!</b><br><small id="welcomeEmail" style="color:#00A651"></small></div><div class="acc-balance"><span style="background:#e8f5e9;padding:6px;border-radius:4px">₵</span> Balance UGX 0</div><div class="acc-buttons"><button class="btn-live" onclick="liveChat()">💬 Live Chat</button><button class="btn-wa" onclick="openWhatsApp()">WhatsApp</button></div></div></div>
-<div id="accMenuLoggedOut"></div>
-<div id="accMenuLoggedIn" style="display:none">
-<div class="acc-section"><div class="acc-section-title">My Thrift Account</div><div class="acc-item" onclick="showOrders()"><span>📦 Orders</span><span>›</span></div><div class="acc-item" onclick="toggleCart();closeAccount()"><span>♡ Wishlist (<span id="wishCount2">0</span>)</span><span>›</span></div><div class="acc-item" onclick="showVouchers()"><span>🎟️ Vouchers</span><span>›</span></div></div>
-<div class="acc-section"><div class="acc-section-title">Settings</div><div class="acc-item" onclick="logout()" style="color:#ff3b30"><span>Logout</span><span>›</span></div></div>
-</div>
-</div>
+<div style="height:80px"></div>
 
 <div class="bottom-nav">
-<div class="nav-item" onclick="goHome()"><div class="nav-icon">🏠</div><span>Home</span></div>
-<div class="nav-item" onclick="goCategories()"><div class="nav-icon">🗂️</div><span>Categories</span></div>
-<div class="nav-item hot-filter" onclick="setCat('Hot Deals')"><div class="nav-icon">🔥</div><span>Hot Deals</span></div>
-<div class="nav-item" onclick="toggleCart()"><div class="nav-icon">🛒<span class="cart-badge" id="cartBadge">0</span></div><span>Cart</span></div>
-<div class="nav-item active" onclick="openAccount()"><div class="nav-icon">👤</div><span>Account</span></div>
+  <div>🏠<br>Home</div>
+  <div>🗂️<br>Categories</div>
+  <div><a href="https://wa.me/256749253155" style="text-decoration:none;color:inherit">💬<br>WhatsApp</a></div>
+  <div>🛒<br>Cart</div>
+  <div>👤<br>Account</div>
 </div>
 
+<footer>
+  <p>📍 UG KAMPALA - Delivery Available</p>
+  <p>📱 WhatsApp: +256749253155</p>
+  <a href="https://wa.me/256749253155?text=Hello%20The%20Thrift%20Shop%20UG" class="whatsapp-btn">💬 Chat on WhatsApp: +256749253155</a>
+  <p style="margin-top:15px">© The Thrift Shop UG 2026</p>
+</footer>
+
 <script>
-const whatsappNumber="256749253155";
-let paymentMethod="Cash on Delivery";
-const products=[
-// OLD WITH DISCOUNTS
-{id:1,name:"Everyday Crossbody Bag",category:"Bags",price:15000,oldPrice:25000,discount:"-40%",image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"},
-{id:2,name:"Street Cap",category:"Accessories",price:15000,oldPrice:20000,discount:"-25%",image:"https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80"},
-{id:3,name:"Everyday Sunglasses",category:"Accessories",price:10000,oldPrice:15000,discount:"-33%",image:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80"},
-{id:6,name:"Patterned Shoulder Bag",category:"Bags",price:25000,oldPrice:40000,discount:"-37%",image:"IMG_2487.jpeg"},
-{id:7,name:"Lacoste Cap",category:"Accessories",price:6000,oldPrice:10000,discount:"-40%",image:"IMG_0732.jpeg"},
-{id:8,name:"Balenciaga Shoes",category:"Shoes",price:50000,oldPrice:75000,discount:"-33%",image:"IMG_0788.jpeg"},
-{id:9,name:"Spider-Man Crocs",category:"Shoes",price:90000,oldPrice:120000,discount:"-25%",image:"IMG_1905.jpeg"},
-
-// NEW BAGS - 25K EACH - NO DISCOUNT - CORRECT ORDER
-{id:15,name:"Carhartt Bag",category:"Bags",price:25000,image:"IMG_2599.jpeg"},
-{id:16,name:"The Northface Bag",category:"Bags",price:25000,image:"IMG_2598.jpeg"},
-{id:17,name:"Yale Bag",category:"Bags",price:25000,image:"IMG_2597.jpeg"},
-{id:18,name:"Columbia Bag",category:"Bags",price:25000,image:"IMG_2596.jpeg"},
-{id:19,name:"Airjordan Bag",category:"Bags",price:25000,image:"IMG_2595.jpeg"},
-{id:20,name:"Adidas Bag",category:"Bags",price:25000,image:"IMG_2594.jpeg"},
-{id:21,name:"StarWars Bag",category:"Bags",price:25000,image:"IMG_2593.jpeg"},
-{id:22,name:"Dickies Bag",category:"Bags",price:25000,image:"IMG_2592.jpeg"},
-
-// NEW SHOES - NO DISCOUNT
-{id:23,name:"Miu Miu Shoes",category:"Shoes",price:30000,image:"IMG_2589.jpeg"},
-{id:24,name:"Gucci Shoe",category:"Shoes",price:45000,image:"IMG_2588.jpeg"},
-{id:25,name:"Rick Owens Shoe",category:"Shoes",price:80000,image:"IMG_2587.jpeg"},
-{id:26,name:"Dior Shoes",category:"Shoes",price:40000,image:"IMG_2585.jpeg"},
-{id:27,name:"Dior Shoes",category:"Shoes",price:40000,image:"IMG_2584.jpeg"}
-];
-let activeCategory="All";const cart={};let wishlist={};
-const money=a=>"UGX "+a.toLocaleString("en-UG");
-const categories=["All","Bags","Shoes","Accessories","Hot Deals"];
-function getUsers(){return JSON.parse(localStorage.getItem("thrift_users")||"[]")}
-function saveUsers(u){localStorage.setItem("thrift_users",JSON.stringify(u))}
-function getCurrentUser(){return JSON.parse(localStorage.getItem("thrift_current")||"null")}
-function setCurrentUser(u){localStorage.setItem("thrift_current",JSON.stringify(u))}
-function openAccount(){document.getElementById("accountPage").classList.add("open");renderAccountPage()}
-function closeAccount(){document.getElementById("accountPage").classList.remove("open")}
-function renderAccountPage(){
-const user=getCurrentUser();
-if(user){
-document.getElementById("accLoggedOut").style.display="none";document.getElementById("accMenuLoggedOut").style.display="none";
-document.getElementById("accLoggedIn").style.display="block";document.getElementById("accMenuLoggedIn").style.display="block";
-document.getElementById("welcomeName").innerText="Welcome "+user.name.split(" ")[0]+"!";
-document.getElementById("welcomeEmail").innerText=user.email;
-}else{
-document.getElementById("accLoggedIn").style.display="none";document.getElementById("accMenuLoggedIn").style.display="none";
-document.getElementById("accLoggedOut").style.display="block";document.getElementById("accMenuLoggedOut").style.display="block";
-document.getElementById("accLoggedOut").innerHTML=`<div class="login-box"><h3 style="text-align:center">Login to Thrift Shop UG</h3><input id="loginEmail" placeholder="Email"><input id="loginPass" type="password" placeholder="Password"><button onclick="login()">Login</button><p style="text-align:center;margin-top:12px;color:#00A651;font-weight:bold;cursor:pointer" onclick="showRegisterBox()">Create Account</p><div id="regBox" style="display:none;margin-top:15px;border-top:1px solid #eee;padding-top:15px"><h3 style="text-align:center">Create Account</h3><input id="regName" placeholder="Full Name"><input id="regEmail" placeholder="Email"><input id="regPass" type="password" placeholder="Password"><button onclick="register()">Create Account</button></div></div>`;
+let cart=0;
+function addCart(item){cart++;document.getElementById('cartCount').innerText=cart;window.open('https://wa.me/256749253155?text=Hi%20I%20want%20to%20order%20'+item,'_blank');}
+function filterP(cat){
+  document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.card').forEach(c=>{
+    if(cat==='all' || c.dataset.cat===cat || cat==='hot'){c.style.display='block'}else{c.style.display='none'}
+  });
 }
-}
-function showRegisterBox(){document.getElementById("regBox").style.display="block"}
-function register(){
-const name=document.getElementById("regName").value.trim();const email=document.getElementById("regEmail").value.trim().toLowerCase();const pass=document.getElementById("regPass").value;
-if(!name||!email||!pass){alert("Fill all fields");return}
-let users=getUsers();if(users.find(u=>u.email===email)){alert("Email exists");return}
-users.push({name,email,pass});saveUsers(users);setCurrentUser({name,email});alert("Account created! Welcome "+name);renderAccountPage()
-}
-function login(){
-const email=document.getElementById("loginEmail").value.trim().toLowerCase();const pass=document.getElementById("loginPass").value;
-let users=getUsers();const f=users.find(u=>u.email===email&&u.pass===pass);if(!f){alert("Wrong password");return}
-setCurrentUser({name:f.name,email:f.email});renderAccountPage()
-}
-function logout(){localStorage.removeItem("thrift_current");renderAccountPage()}
-function setPay(el,method){document.querySelectorAll(".payment-box label").forEach(l=>l.classList.remove("active"));el.classList.add("active");paymentMethod=method;document.getElementById("momoInfo").style.display=method.includes("Money")?"block":"none"}
-function liveChat(){window.open(`https://wa.me/${whatsappNumber}?text=Hello Thrift Shop`,"_blank")}
-function openWhatsApp(){window.open(`https://wa.me/${whatsappNumber}`,"_blank")}
-function helpSupport(){alert("Support: "+whatsappNumber)}
-function showOrders(){alert("No orders yet")}
-function showVouchers(){alert("THRIFT10 - 10% off")}
-function renderFilters(){document.getElementById("filters").innerHTML=categories.map(c=>`<button class="filter-btn ${c===activeCategory?'active':''} ${c==='Hot Deals'?'hot':''}" onclick="setCat('${c}')">${c==='Hot Deals'?'🔥 '+c:c}</button>`).join("")}
-function setCat(c){activeCategory=c;renderFilters();renderProducts();closeAccount()}
-function renderProducts(){
-const s=document.getElementById("search").value.toLowerCase();
-const g=document.getElementById("productGrid");
-let f=products.filter(p=>{
-if(activeCategory==="Hot Deals") return p.price>50000;
-if(activeCategory==="All") return true;
-return p.category===activeCategory;
+document.getElementById('search').addEventListener('input',function(e){
+  let v=e.target.value.toLowerCase();
+  document.querySelectorAll('.card').forEach(c=>{
+    c.style.display=c.innerHTML.toLowerCase().includes(v)?'block':'none';
+  });
 });
-if(s) f=f.filter(p=>p.name.toLowerCase().includes(s));
-g.innerHTML=f.map(p=>{
-let badge="";
-if(p.discount) badge=`<div class="badge badge-disc">${p.discount}</div>`;
-else if(p.price>50000) badge=`<div class="badge badge-hot">🔥 HOT DEALS</div>`;
-return `<div class="card">${badge}<div class="wish" onclick="toggleWish(${p.id})">${wishlist[p.id]?'❤️':'♡'}</div><img src="${p.image}" onerror="this.src='https://via.placeholder.com/300?text=Thrift'"><div class="info"><div class="name">${p.name}</div><div><span class="price">${money(p.price)}</span>${p.oldPrice?`<span class="old">${money(p.oldPrice)}</span>`:''}</div><button class="add" onclick="addCart(${p.id})">Add to Cart</button></div></div>`
-}).join("");
-}
-function addCart(id){cart[id]=(cart[id]||0)+1;updateCart();toggleCart()}
-function updateCart(){
-let c=0,sub=0,h="";for(const id in cart){const p=products.find(x=>x.id==id);c+=cart[id];sub+=p.price*cart[id];h+=`<div style="display:flex;justify-content:space-between;margin:6px 0;font-size:13px"><span>${p.name} x${cart[id]}</span><span>${money(p.price*cart[id])}</span></div>`}
-const del=parseInt(document.getElementById("delivery").value);
-document.getElementById("cartBadge").innerText=c;
-document.getElementById("subTotal").innerText=money(sub);
-document.getElementById("delFee").innerText=money(del);
-document.getElementById("cartTotal").innerText=money(sub+del);
-document.getElementById("cartItems").innerHTML=h||"Cart empty";
-}
-function toggleCart(){document.getElementById("cartDrawer").classList.toggle("open")}
-function toggleWish(id){if(wishlist[id])delete wishlist[id];else wishlist[id]=true;renderProducts();document.getElementById("wishCount2").innerText=Object.keys(wishlist).length}
-function goHome(){closeAccount();window.scrollTo({top:0,behavior:"smooth"})}
-function goCategories(){closeAccount();document.getElementById("filters").scrollIntoView({behavior:"smooth"})}
-function checkout(){
-const del=parseInt(document.getElementById("delivery").value);
-const sub=Object.keys(cart).reduce((s,id)=>{const p=products.find(x=>x.id==id);return s+p.price*cart[id]},0);
-const total=sub+del;
-let m=`Hello The Thrift Shop UG, I want to order:%0A%0A`;
-for(const id in cart){const p=products.find(x=>x.id==id);m+=`-${p.name} x${cart[id]} = ${money(p.price*cart[id])}%0A`}
-m+=`%0ASubtotal: ${money(sub)}%0ADelivery: ${money(del)}%0ATOTAL: ${money(total)}%0A%0APayment: ${paymentMethod}%0A`;
-const u=getCurrentUser();if(u)m+=`Name: ${u.name}%0AEmail: ${u.email}%0A`;
-if(paymentMethod.includes("Money")) m+=`%0AI will send Mobile Money to ${whatsappNumber}%0A`;
-window.open(`https://wa.me/${whatsappNumber}?text=${m}`,"_blank")
-}
-renderFilters();renderProducts();updateCart();
 </script>
+
 </body>
 </html>
