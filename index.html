@@ -16,7 +16,191 @@
 
   <title>The Thrift Shop UG | Streetwear & Accessories</title>
 
-  <style>
+
+
+/* THRIFT SHOP UG - SHOPPING APP UPGRADE */
+
+body {
+
+  padding-bottom: 85px;
+
+}
+
+.shop-search {
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 100;
+
+  padding: 12px 16px;
+
+  background: #101010;
+
+}
+
+.shop-search input {
+
+  width: 100%;
+
+  padding: 14px 18px;
+
+  border: 1px solid #444;
+
+  border-radius: 30px;
+
+  background: #1c1c1c;
+
+  color: #fff;
+
+  font-size: 16px;
+
+}
+
+.shop-categories {
+
+  display: flex;
+
+  gap: 10px;
+
+  overflow-x: auto;
+
+  padding: 12px 0;
+
+}
+
+.shop-categories button {
+
+  flex-shrink: 0;
+
+  padding: 11px 18px;
+
+  border: 1px solid #d7ff38;
+
+  border-radius: 25px;
+
+  background: #1c1c1c;
+
+  color: #fff;
+
+}
+
+.shop-categories button.active {
+
+  background: #d7ff38;
+
+  color: #101010;
+
+}
+
+.hot-deals {
+
+  padding: 18px 0;
+
+}
+
+.hot-deals h2 {
+
+  color: #d7ff38;
+
+  font-size: 25px;
+
+}
+
+.hot-deals-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+
+}
+
+.hot-deals-grid img {
+
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+
+  border-radius: 12px;
+
+}
+
+.bottom-nav {
+
+  position: fixed;
+
+  bottom: 0;
+
+  left: 0;
+
+  right: 0;
+
+  z-index: 200;
+
+  display: flex;
+
+  justify-content: space-around;
+
+  align-items: center;
+
+  padding: 10px 2px calc(10px + env(safe-area-inset-bottom));
+
+  background: #101010;
+
+  border-top: 1px solid #333;
+
+}
+
+.bottom-nav a {
+
+  flex: 1;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  color: #fff;
+
+  font-size: 11px;
+
+}
+
+.bottom-nav a span {
+
+  display: block;
+
+  font-size: 21px;
+
+  margin-bottom: 4px;
+
+}
+
+.bottom-nav a.active {
+
+  color: #d7ff38;
+
+}
+
+@media (max-width: 380px) {
+
+  .hot-deals-grid {
+
+    gap: 8px;
+
+  }
+
+  .shop-categories button {
+
+    padding: 10px 13px;
+
+  }
+
+}  <style>
 
     :root {
 
