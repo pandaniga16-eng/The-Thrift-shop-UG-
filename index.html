@@ -1,169 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Thrift Shop UG - Second Hand</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Thrift Shop UG</title>
 <style>
-:root{--green:#00A651}
+:root{--g:#00A651}
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#f5f5f5;padding-bottom:90px}
-.top-move{background:var(--green);color:#fff;padding:8px;overflow:hidden;white-space:nowrap;font-weight:800;font-size:13px}
-.top-move span{display:inline-block;animation:move 22s linear infinite}
-@keyframes move{0%{transform:translateX(100%)}100%{transform:translateX(-120%)}}
-header{background:#fff;padding:12px;position:sticky;top:0;z-index:100;box-shadow:0 1px 5px rgba(0,0,0,.08)}
-.hdr{display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:900;font-size:19px}.logo span{color:var(--green)}
-#search{width:100%;margin-top:10px;padding:12px;border-radius:12px;border:1.5px solid #e5e5e5;background:#fff}
-.banners{display:flex;gap:10px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory}.banners::-webkit-scrollbar{display:none}
-.banners img{min-width:100%;height:185px;object-fit:cover;border-radius:14px;scroll-snap-align:start}
-.section-title{padding:12px 12px 2px;font-weight:900;font-size:15px;display:flex;justify-content:space-between}
-.section-title small{background:var(--green);color:#fff;padding:3px 8px;border-radius:10px;font-size:10px}
-.filters{display:flex;gap:8px;overflow-x:auto;padding:10px 12px}.filters::-webkit-scrollbar{display:none}
-.filters button{padding:8px 16px;border-radius:20px;border:1px solid #ddd;background:#fff;font-size:12px;font-weight:700}
-.filters button.active{background:var(--green);color:#fff;border-color:var(--green)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px 12px}
-.card{background:#fff;border-radius:16px;padding:8px;box-shadow:0 2px 6px rgba(0,0,0,.07);position:relative}
-.card img{width:100%;height:175px;object-fit:cover;border-radius:12px;background:#eee}
-.badge{position:absolute;top:12px;left:12px;background:var(--green);color:#fff;font-size:8px;padding:4px 6px;border-radius:6px;font-weight:800}
-.badge.hot{background:#FF3B30}
-.badge.thrift{background:#111}
-.cat{font-size:8px;color:#888;margin-top:6px;font-weight:700;letter-spacing:1px}
-.name{font-size:12px;font-weight:700;min-height:30px;line-height:1.2}
-.price{font-weight:900;font-size:13px;color:var(--green)}.old-price{font-size:10px;color:#999;text-decoration:line-through;margin-left:4px}
+.top{background:var(--g);color:#fff;padding:8px;overflow:hidden;white-space:nowrap;font-weight:800;font-size:13px}
+.top span{display:inline-block;animation:m 22s linear infinite}
+@keyframes m{0%{transform:translateX(100%)}100%{transform:translateX(-120%)}}
+header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:0 1px 5px rgba(0,0,0,.1)}
+.logo{font-weight:900;font-size:18px}.logo span{color:var(--g)}
+#search{width:100%;margin-top:10px;padding:12px;border-radius:12px;border:1px solid #ddd}
+.banners{display:flex;gap:10px;overflow-x:auto;padding:12px}
+.banners::-webkit-scrollbar{display:none}
+.banners img{min-width:100%;height:180px;object-fit:cover;border-radius:14px;background:#ddd}
+.title{padding:12px 12px 2px;font-weight:900;font-size:15px;display:flex;justify-content:space-between}
+.title small{background:var(--g);color:#fff;padding:3px 8px;border-radius:10px;font-size:10px}
+.filt{display:flex;gap:8px;overflow-x:auto;padding:10px 12px}
+.filt::-webkit-scrollbar{display:none}
+.filt button{padding:8px 16px;border-radius:20px;border:1px solid #ddd;background:#fff;font-size:12px;font-weight:700}
+.filt button.active{background:var(--g);color:#fff;border-color:var(--g)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.card{background:#fff;border-radius:16px;padding:8px;position:relative;box-shadow:0 2px 6px rgba(0,0,0,.07)}
+.card img{width:100%;height:170px;object-fit:cover;border-radius:12px;background:#eee}
+.badge{position:absolute;top:12px;left:12px;background:var(--g);color:#fff;font-size:8px;padding:4px 6px;border-radius:6px;font-weight:800}
+.cat{font-size:8px;color:#888;margin-top:6px;font-weight:700}
+.name{font-size:12px;font-weight:700;min-height:30px}
+.price{font-weight:900;color:var(--g);font-size:13px}
+.old{font-size:10px;color:#999;text-decoration:line-through;margin-left:4px}
 .btn{width:100%;background:#111;color:#fff;border:none;padding:9px;border-radius:10px;font-size:11px;font-weight:800;margin-top:5px}
-.btn-green{width:100%;background:var(--green);color:#fff;border:none;padding:8px;border-radius:10px;font-size:11px;font-weight:800;margin-top:5px;display:block;text-align:center;text-decoration:none}
-.account-page{background:#fff;margin:12px;border-radius:16px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.07)}
-.acc-header{padding:16px}.acc-header b{font-size:16px}.acc-header p{color:var(--green);font-size:13px}
-.acc-balance{padding:0 16px 12px;display:flex;gap:6px;color:#0080FF;font-weight:700;font-size:14px}
-.acc-actions{display:flex;gap:10px;padding:0 16px 16px}
-.acc-actions button{flex:1;padding:12px;border-radius:8px;border:none;font-weight:800;font-size:13px}
-.acc-live{background:#FF8A00;color:#fff}.acc-wa{background:#fff;border:1.5px solid var(--green)!important;color:var(--green)}
-.acc-title{padding:12px 16px;background:#f9f9f9;font-weight:800;font-size:13px;border-top:1px solid #eee}
-.acc-item{display:flex;justify-content:space-between;padding:13px 16px;border-top:1px solid #f0f0f0;font-size:14px}
-.mobile-box{background:#fff;margin:12px;border-radius:16px;padding:14px;border-left:4px solid var(--green);box-shadow:0 2px 6px rgba(0,0,0,.07)}
+.btn2{width:100%;background:var(--g);color:#fff;display:block;text-align:center;text-decoration:none;padding:8px;border-radius:10px;font-size:11px;font-weight:800;margin-top:5px}
+.account{background:#fff;margin:12px;border-radius:16px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.07)}
+.acc-h{padding:16px}
+.acc-h b{font-size:16px}
+.acc-h p{color:var(--g);font-size:13px}
+.acc-b{padding:0 16px 12px;color:#0080FF;font-weight:700;font-size:14px}
+.acc-a{display:flex;gap:10px;padding:0 16px 16px}
+.acc-a button{flex:1;padding:12px;border-radius:8px;border:none;font-weight:800}
+.live{background:#FF8A00;color:#fff}
+.wa{background:#fff;border:1.5px solid var(--g)!important;color:var(--g)}
+.acc-t{padding:12px 16px;background:#f9f9f9;font-weight:800;font-size:13px;border-top:1px solid #eee}
+.acc-i{display:flex;justify-content:space-between;padding:13px 16px;border-top:1px solid #f0f0f0;font-size:14px}
+.mbox{background:#fff;margin:12px;border-radius:16px;padding:14px;border-left:4px solid var(--g);box-shadow:0 2px 6px rgba(0,0,0,.07)}
 footer{background:#111;color:#fff;padding:20px;text-align:center}
-.wa-big{display:inline-block;background:var(--green);color:#fff;padding:12px 24px;border-radius:30px;text-decoration:none;font-weight:900;margin:6px}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0 6px;border-top:1px solid #eee;z-index:200}
-.bottom-nav .nav-item{text-align:center;font-size:10px;color:#888;text-decoration:none}
-.bottom-nav .nav-item.active{color:var(--green);font-weight:800}
-.bottom-nav .nav-item b{font-size:18px;display:block}
+.wa-big{display:inline-block;background:var(--g);color:#fff;padding:12px 24px;border-radius:30px;text-decoration:none;font-weight:900;margin:6px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #eee;z-index:999}
+.nav{text-align:center;font-size:10px;color:#888;text-decoration:none}
+.nav.active{color:var(--g);font-weight:800}
+.nav b{font-size:18px;display:block}
 </style>
 </head>
 <body>
-<div class="top-move"><span>♻️ SECOND HAND THRIFT - CHEAP PRICES - AIRTEL MONEY 0749253155 - WHATSAPP 256749253155 - KIRA DELIVERY ♻️</span></div>
+<div class="top"><span>♻️ SECOND HAND THRIFT - CHEAP - AIRTEL MONEY 0749253155 - WHATSAPP 256749253155 ♻️</span></div>
 <header>
-<div class="hdr"><div class="logo">The Thrift <span>Shop UG</span></div><div style="font-size:12px">🛒 <span id="cartC">0</span></div></div>
-<input id="search" placeholder="Search on Thrift Shop UG - second hand..." oninput="searchNow(this.value)">
+<div style="display:flex;justify-content:space-between"><div class="logo">The Thrift <span>Shop UG</span></div><div>🛒 <span id="c1">0</span></div></div>
+<input id="search" placeholder="Search on Thrift Shop UG..." oninput="s(this.value)">
 </header>
 <div class="banners">
 <img src="IMG_2639.jpeg" onerror="this.src='IMG_2599.jpeg'">
 <img src="IMG_2640.jpeg" onerror="this.src='IMG_2598.jpeg'">
 </div>
 
-<div class="account-page" id="account">
-<div class="acc-header"><b id="welcomeName">Welcome Panda!</b><p id="welcomeEmail">pandaniga16@gmail.com</p></div>
-<div class="acc-balance">🅱️ Thrift Balance UGX 0</div>
-<div class="acc-actions">
-<button class="acc-live" onclick="window.open('https://wa.me/256749253155','_blank')">💬 Live Chat</button>
-<button class="acc-wa" onclick="window.open('https://wa.me/256749253155','_blank')">WhatsApp</button>
+<div class="account">
+<div class="acc-h"><b id="wN">Welcome Panda!</b><p id="wE">pandaniga16@gmail.com</p></div>
+<div class="acc-b">🅱️ Thrift Balance UGX 0</div>
+<div class="acc-a">
+<button class="live" onclick="window.open('https://wa.me/256749253155','_blank')">💬 Live Chat</button>
+<button class="wa" onclick="window.open('https://wa.me/256749253155','_blank')">WhatsApp</button>
 </div>
-<div class="acc-title">Need Assistance?</div>
-<div class="acc-item" onclick="alert('Help: WhatsApp 256749253155')"><span>🛈 Help & Support</span><span>›</span></div>
-<div class="acc-title">My Jumia Account</div>
-<div class="acc-item"><span>📦 Orders</span><span>›</span></div>
-<div class="acc-item"><span>✉️ Inbox</span><span>›</span></div>
-<div class="acc-item"><span>📝 Ratings & Reviews</span><span>›</span></div>
-<div class="acc-item" onclick="showVouchers()"><span>🎟️ Vouchers</span><span>›</span></div>
-<div class="acc-item"><span>❤️ Wishlist</span><span>›</span></div>
-<div class="acc-item"><span>🏪 Followed Sellers</span><span>›</span></div>
-<div class="acc-item"><span>👁️ Recently Viewed</span><span>›</span></div>
-<div class="acc-title">My Settings</div>
-<div class="acc-item" onclick="changeName()"><span style="color:var(--green);font-weight:800">✏️ Change Name - Greeting Account</span><span>›</span></div>
-<div class="acc-item"><span>Address Book</span><span>›</span></div>
+<div class="acc-t">Need Assistance?</div>
+<div class="acc-i"><span>🛈 Help & Support</span><span>›</span></div>
+<div class="acc-t">My Jumia Account</div>
+<div class="acc-i"><span>📦 Orders</span><span>›</span></div>
+<div class="acc-i"><span>✉️ Inbox</span><span>›</span></div>
+<div class="acc-i"><span>📝 Ratings & Reviews</span><span>›</span></div>
+<div class="acc-i"><span>🎟️ Vouchers</span><span>›</span></div>
+<div class="acc-i"><span>❤️ Wishlist</span><span>›</span></div>
+<div class="acc-i"><span>🏪 Followed Sellers</span><span>›</span></div>
+<div class="acc-i"><span>👁️ Recently Viewed</span><span>›</span></div>
+<div class="acc-t">My Settings</div>
+<div class="acc-i" onclick="changeName()"><span style="color:var(--g);font-weight:800">✏️ Greeting Account - Change Name</span><span>›</span></div>
+<div class="acc-i"><span>Address Book</span><span>›</span></div>
 </div>
 
-<div class="section-title">🔥 Hot Deals <small>Thrift Price</small></div>
-<div class="grid" id="hotGrid"></div>
-
-<div class="section-title">All Second Hand - 29 Items <small>Cheap</small></div>
-<div class="filters" id="filters">
-<button class="active" onclick="filterCat('all',this)">All 29</button>
-<button onclick="filterCat('bags',this)">Bags</button>
-<button onclick="filterCat('shoes',this)">Shoes</button>
-<button onclick="filterCat('slides',this)">Slides/Crocs</button>
-<button onclick="filterCat('clothes',this)">Clothes</button>
+<div class="title">🔥 Hot Deals <small>Thrift</small></div>
+<div class="grid" id="hot"></div>
+<div class="title">All 29 Items - Second Hand <small>Cheap</small></div>
+<div class="filt" id="filt">
+<button class="active" onclick="f('all',this)">All 29</button>
+<button onclick="f('bags',this)">Bags</button>
+<button onclick="f('shoes',this)">Shoes</button>
+<button onclick="f('slides',this)">Slides</button>
+<button onclick="f('clothes',this)">Clothes</button>
 </div>
 <div class="grid" id="grid"></div>
 
-<div class="mobile-box">
-<h4>💳 Airtel Money Only - Thrift Payment</h4>
-<p style="font-size:13px;margin:6px 0;line-height:1.6">
-<b>Airtel:</b> 0749 253 155 - The Thrift Shop UG<br>
-Thrifted second hand, cheap prices! Send proof to WhatsApp <b>256749253155</b>
-</p>
-<button onclick="payMM()" style="background:var(--green);color:#fff;border:none;padding:10px 16px;border-radius:10px;font-weight:800">Pay Airtel Money</button>
+<div class="mbox">
+<h4>💳 Airtel Money Only</h4>
+<p style="font-size:13px;margin:6px 0">Airtel: 0749 253 155<br>Name: The Thrift Shop UG<br>Send proof to WhatsApp <b>256749253155</b></p>
+<button onclick="pay()" style="background:var(--g);color:#fff;border:none;padding:10px 16px;border-radius:10px;font-weight:800">Pay Airtel Money</button>
 </div>
 
 <footer>
-<p>📍 KIRA, WAKISO - Second Hand Thrift</p>
-<p>📱 256749253155 | Airtel Money 0749253155</p>
-<a class="wa-big" href="https://wa.me/256749253155?text=Hello%20Thrift%20Shop%20UG">💬 Chat</a>
-<p style="margin-top:10px;font-size:10px;color:#aaa">© Thrift Shop UG - Second Hand Prices - Green Theme</p>
+<p>📍 KIRA, WAKISO | Airtel 0749253155</p>
+<p>📱 WhatsApp 256749253155</p>
+<a class="wa-big" href="https://wa.me/256749253155?text=Hello%20Thrift%20Shop%20UG">💬 Chat 256749253155</a><br>
+<a class="wa-big" style="background:#111;border:1px solid #333" href="https://wa.me/256749253155?text=I%20paid%20Airtel%200749253155">📲 Send Proof</a>
+<p style="margin-top:10px;font-size:10px;color:#aaa">© Thrift Shop UG - Second Hand</p>
 </footer>
 
-<div class="bottom-nav">
-<a class="nav-item active" href="#"><b>🏠</b>Home</a>
-<a class="nav-item" href="#" onclick="showCategories()"><b>📦</b>Categories</a>
-<a class="nav-item" href="#" onclick="alert('Cart: '+cart+' items')"><b>🛒</b><span id="cartB">0</span> Cart</a>
-<a class="nav-item" href="#account"><b>👤</b>Account</a>
+<div class="bottom">
+<a class="nav active" href="#"><b>🏠</b>Home</a>
+<a class="nav" href="#" onclick="document.getElementById('filt').scrollIntoView()"><b>📦</b>Categories</a>
+<a class="nav" href="#" onclick="alert('Cart '+cart)"><b>🛒</b><span id="c2">0</span> Cart</a>
+<a class="nav" href="#account"><b>👤</b>Account</a>
 </div>
 
 <script>
 const WA="256749253155";
 let cart=0;
-// REDUCED PRICES FOR THRIFTED SECOND HAND
 let products=[
-{id:1,name:"Beige Outdoor Hiking Backpack - Thrift",price:28000,old:65000,cat:"bags",img:"IMG_2599.jpeg"},
-{id:2,name:"North Face Grey Backpack - Used",price:30000,old:70000,cat:"bags",img:"IMG_2598.jpeg"},
-{id:3,name:"Nike Grey School Backpack",price:22000,old:55000,cat:"bags",img:"IMG_2597.jpeg"},
-{id:4,name:"Black Tactical Backpack",price:18000,old:45000,cat:"bags",img:"IMG_2596.jpeg"},
-{id:5,name:"Black Red Hiking Backpack",price:25000,old:60000,cat:"bags",img:"IMG_2595.jpeg"},
-{id:6,name:"Adidas Black School Backpack",price:20000,old:50000,cat:"bags",img:"IMG_2594.jpeg"},
-{id:7,name:"Military Black Multi-Pocket",price:19000,old:48000,cat:"bags",img:"IMG_2593.jpeg"},
-{id:8,name:"Red School Backpack - Thrift",price:15000,old:40000,cat:"bags",img:"IMG_2592.jpeg"},
-{id:9,name:"Orange Foam Crocs - Second Hand",price:18000,old:45000,cat:"slides",img:"IMG_2591.jpeg"},
-{id:10,name:"Ghost Face Black T-Shirt",price:10000,old:25000,cat:"clothes",img:"IMG_2590.jpeg"},
-{id:11,name:"Beige Double-Strap Slides",price:12000,old:35000,cat:"slides",img:"IMG_2589.jpeg"},
-{id:12,name:"Chanel Black Loafers - Thrift",price:35000,old:80000,cat:"shoes",img:"IMG_2588.jpeg"},
-{id:13,name:"Black Street Sneakers - Used",price:22000,old:55000,cat:"shoes",img:"IMG_2587.jpeg"},
-{id:14,name:"Thrift Shoes Market - Second Hand",price:15000,old:40000,cat:"shoes",img:"IMG_2586.jpeg"},
-{id:15,name:"Yeezy Beige Slides",price:13000,old:35000,cat:"slides",img:"IMG_2585.jpeg"},
-{id:16,name:"Black Yeezy Slides",price:13000,old:35000,cat:"slides",img:"IMG_2584.jpeg"},
-{id:17,name:"White Classic Hoodie - Thrift",price:18000,old:45000,cat:"clothes",img:"IMG_2573.png"},
-{id:18,name:"Grey Zip Hoodie - Used",price:20000,old:50000,cat:"clothes",img:"IMG_2547.jpeg"},
-{id:19,name:"White Foam Runner Sneakers",price:28000,old:65000,cat:"shoes",img:"IMG_2546.jpeg"},
-{id:20,name:"Nike White Red Sneakers",price:30000,old:70000,cat:"shoes",img:"IMG_2545.jpeg"},
-{id:21,name:"Black Formal Loafers",price:25000,old:60000,cat:"shoes",img:"IMG_2544.jpeg"},
-{id:22,name:"Black Crocodile Crocs",price:18000,old:45000,cat:"slides",img:"IMG_2543.jpeg"},
-{id:23,name:"White Classic Crocs",price:15000,old:40000,cat:"slides",img:"IMG_2490.jpeg"},
-{id:24,name:"Grey North Face Backpack",price:22000,old:55000,cat:"bags",img:"IMG_2487.jpeg"},
-{id:25,name:"Dior Pattern Saddle Bag - Thrift",price:15000,old:35000,cat:"bags",img:"IMG_2488.jpeg"},
-{id:26,name:"Black Bear Graphic T-Shirt",price:10000,old:25000,cat:"clothes",img:"IMG_2486.png"},
-{id:27,name:"Givenchy Black T-Shirt - Used",price:12000,old:30000,cat:"clothes",img:"IMG_2484.jpeg"},
-{id:28,name:"Red Black Tote Bag",price:10000,old:25000,cat:"bags",img:"IMG_2485.png"},
-{id:29,name:"Blue Canvas Shoes - Second Hand",price:14000,old:35000,cat:"shoes",img:"IMG_2481.jpeg"},
+{id:1,name:"Beige Hiking Backpack Thrift",price:18000,old:35000,cat:"bags",img:"IMG_2599.jpeg"},
+{id:2,name:"North Face Grey Backpack Used",price:20000,old:40000,cat:"bags",img:"IMG_2598.jpeg"},
+{id:3,name:"Nike Grey School Backpack",price:16000,old:30000,cat:"bags",img:"IMG_2597.jpeg"},
+{id:4,name:"Black Tactical Backpack",price:14000,old:28000,cat:"bags",img:"IMG_2596.jpeg"},
+{id:5,name:"Black Red Hiking Backpack",price:18000,old:35000,cat:"bags",img:"IMG_2595.jpeg"},
+{id:6,name:"Adidas Black Backpack",price:15000,old:30000,cat:"bags",img:"IMG_2594.jpeg"},
+{id:7,name:"Military Multi-Pocket Backpack",price:14000,old:28000,cat:"bags",img:"IMG_2593.jpeg"},
+{id:8,name:"Red School Backpack Thrift",price:12000,old:22000,cat:"bags",img:"IMG_2592.jpeg"},
+{id:9,name:"Orange Foam Crocs Second Hand",price:12000,old:25000,cat:"slides",img:"IMG_2591.jpeg"},
+{id:10,name:"Ghost Face Black T-Shirt",price:7000,old:15000,cat:"clothes",img:"IMG_2590.jpeg"},
+{id:11,name:"Beige Double-Strap Slides",price:8000,old:18000,cat:"slides",img:"IMG_2589.jpeg"},
+{id:12,name:"Chanel Black Loafers Thrift",price:25000,old:50000,cat:"shoes",img:"IMG_2588.jpeg"},
+{id:13,name:"Black Street Sneakers Used",price:15000,old:30000,cat:"shoes",img:"IMG_2587.jpeg"},
+{id:14,name:"Thrift Shoes Market Pile",price:10000,old:20000,cat:"shoes",img:"IMG_2586.jpeg"},
+{id:15,name:"Yeezy Beige Slides",price:8000,old:18000,cat:"slides",img:"IMG_2585.jpeg"},
+{id:16,name:"Black Yeezy Slides",price:8000,old:18000,cat:"slides",img:"IMG_2584.jpeg"},
+{id:17,name:"White Classic Hoodie Thrift",price:12000,old:25000,cat:"clothes",img:"IMG_2573.png"},
+{id:18,name:"Grey Zip Hoodie Used",price:13000,old:26000,cat:"clothes",img:"IMG_2547.jpeg"},
+{id:19,name:"White Foam Runner",price:18000,old:35000,cat:"shoes",img:"IMG_2546.jpeg"},
+{id:20,name:"Nike White Red Sneakers",price:20000,old:40000,cat:"shoes",img:"IMG_2545.jpeg"},
+{id:21,name:"Black Formal Loafers",price:16000,old:32000,cat:"shoes",img:"IMG_2544.jpeg"},
+{id:22,name:"Black Crocodile Crocs",price:12000,old:24000,cat:"slides",img:"IMG_2543.jpeg"},
+{id:23,name:"White Classic Crocs",price:10000,old:20000,cat:"slides",img:"IMG_2490.jpeg"},
+{id:24,name:"Grey North Face Backpack",price:16000,old:32000,cat:"bags",img:"IMG_2487.jpeg"},
+{id:25,name:"Dior Saddle Bag Thrift",price:10000,old:20000,cat:"bags",img:"IMG_2488.jpeg"},
+{id:26,name:"Black Bear T-Shirt",price:7000,old:15000,cat:"clothes",img:"IMG_2486.png"},
+{id:27,name:"Givenchy Black T-Shirt Used",price:8000,old:16000,cat:"clothes",img:"IMG_2484.jpeg"},
+{id:28,name:"Red Black Tote Bag",price:7000,old:14000,cat:"bags",img:"IMG_2485.png"},
+{id:29,name:"Blue Canvas Shoes Second Hand",price:9000,old:18000,cat:"shoes",img:"IMG_2481.jpeg"}
 ];
-function render(list,id){document.getElementById(id).innerHTML=list.map(p=>`<div class="card"><div class="badge thrift">THRIFT</div><img src="${p.img}" onerror="this.src='https://via.placeholder.com/400?text=${encodeURIComponent(p.name)}'"><div class="cat">${p.cat.toUpperCase()} • SECOND HAND</div><div class="name">${p.id}. ${p.name}</div><div class="price">UGX ${p.price.toLocaleString()}<span class="old-price">${p.old.toLocaleString()}</span></div><button class="btn" onclick="addBag('${p.name}',${p.price})">+ ADD TO BAG</button><a class="btn-green" href="https://wa.me/${WA}?text=I%20want%20${encodeURIComponent(p.name)}%20No${p.id}%20UGX%20${p.price}" target="_blank">WhatsApp Order</a></div>`).join('')}
-function addBag(n,p){cart++;document.getElementById('cartC').innerText=cart;document.getElementById('cartB').innerText=cart;window.open(`https://wa.me/${WA}?text=I%20want%20${encodeURIComponent(n)}%20UGX%20${p}%20Airtel%200749253155`,'_blank')}
-function filterCat(c,el){document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));el.classList.add('active');if(c=='all')render(products,'grid');else render(products.filter(x=>x.cat==c),'grid')}
-function searchNow(v){let s=v.toLowerCase();render(products.filter(p=>p.name.toLowerCase().includes(s)||p.cat.includes(s)),'grid')}
-function changeName(){let n=prompt("Enter name:","Panda");let e=prompt("Email:","pandaniga16@gmail.com");if(n){document.getElementById('welcomeName').innerText="Welcome "+n+"!";document.getElementById('welcomeEmail').innerText=e}}
-function showVouchers(){alert("THRIFT VOUCHER: THRIFT10 - Extra 10% off - Pay Airtel 0749253155")}
-function showCategories(){let c=prompt("Categories: bags, shoes, slides, clothes - Type one:");if(c)filterCat(c.toLowerCase(),document.querySelector('.filters button'))}
-function payMM(){window.open(`https://wa.me/${WA}?text=I%20paid%20Airtel%20Money%200749253155%20Proof`,'_blank')}
-// Hot deals = above 25000 for thrift
-render(products.filter(p=>p.price>=25000).slice(0,6),'hotGrid');
+function render(list,id){
+document.getElementById(id).innerHTML=list.map(function(p){
+return '<div class="card"><div class="badge">THRIFT</div><img src="'+p.img+'" onerror="this.src=\'https://via.placeholder.com/400?text=No+Image\'"><div class="cat">'+p.cat.toUpperCase()+' • SECOND HAND</div><div class="name">'+p.id+'. '+p.name+'</div><div class="price">UGX '+p.price.toLocaleString()+'<span class="old">'+p.old.toLocaleString()+'</span></div><button class="btn" onclick="addBag(\''+p.name+'\','+p.price+')">+ ADD TO BAG</button><a class="btn2" href="https://wa.me/'+WA+'?text=I%20want%20'+encodeURIComponent(p.name)+'%20UGX%20'+p.price+'" target="_blank">WhatsApp Order</a></div>';
+}).join('');
+}
+function addBag(n,p){cart++;document.getElementById('c1').innerText=cart;document.getElementById('c2').innerText=cart;window.open('https://wa.me/'+WA+'?text=I%20want%20'+encodeURIComponent(n)+'%20UGX%20'+p,'_blank')}
+function f(c,el){document.querySelectorAll('.filt button').forEach(function(b){b.classList.remove('active')});el.classList.add('active');if(c=='all'){render(products,'grid')}else{render(products.filter(function(x){return x.cat==c}),'grid')}}
+function s(v){let a=v.toLowerCase();render(products.filter(function(p){return p.name.toLowerCase().includes(a)}),'grid')}
+function changeName(){let n=prompt('Enter name:','Panda');let e=prompt('Email:','pandaniga16@gmail.com');if(n){document.getElementById('wN').innerText='Welcome '+n+'!';document.getElementById('wE').innerText=e}}
+function pay(){window.open('https://wa.me/'+WA+'?text=I%20paid%20Airtel%200749253155','_blank')}
+render(products.filter(function(p){return p.price>=18000}).slice(0,6),'hot');
 render(products,'grid');
 </script>
 </body>
