@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The Thrift Shop UG</title>
 <style>
-:root{--g:#00A651}
+:root{--g:#00A651;--org:#FF8A00}
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#f5f5f5;padding-bottom:90px}
 .top{background:var(--g);color:#fff;padding:8px;overflow:hidden;white-space:nowrap;font-weight:800;font-size:13px}
@@ -31,43 +31,55 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 .name{font-size:12px;font-weight:700;min-height:30px}
 .price{font-weight:900;color:var(--g);font-size:13px}
 .old{font-size:10px;color:#999;text-decoration:line-through;margin-left:4px}
-.btn{width:100%;background:#111;color:#fff;border:none;padding:9px;border-radius:10px;font-size:11px;font-weight:800;margin-top:5px}
+.btn{width:100%;background:#111;color:#fff;border:none;padding:9px;border-radius:10px;font-size:11px;font-weight:800;margin-top:5px;cursor:pointer}
 .btn2{width:100%;background:var(--g);color:#fff;display:block;text-align:center;text-decoration:none;padding:8px;border-radius:10px;font-size:11px;font-weight:800;margin-top:5px}
 .page{display:none}.page.active{display:block}
-.account{background:#fff;margin:12px;border-radius:16px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.07)}
-.acc-h{padding:16px}.acc-h b{font-size:16px}.acc-h p{color:var(--g);font-size:13px}
-.acc-b{padding:0 16px 12px;color:#0080FF;font-weight:700;font-size:14px}
-.acc-a{display:flex;gap:10px;padding:0 16px 16px}
-.acc-a button{flex:1;padding:12px;border-radius:8px;border:none;font-weight:800}
-.live{background:#FF8A00;color:#fff}.wa{background:#fff;border:1.5px solid var(--g)!important;color:var(--g)}
-.acc-t{padding:12px 16px;background:#f9f9f9;font-weight:800;font-size:13px;border-top:1px solid #eee;display:flex;justify-content:space-between}
-.acc-i{display:flex;justify-content:space-between;padding:14px 16px;border-top:1px solid #f0f0f0;font-size:14px;background:#fff}
-.back{padding:12px;font-weight:800;background:#fff;display:flex;align-items:center;gap:8px;border-bottom:1px solid #eee}
-.mbox{background:#fff;margin:12px;border-radius:16px;padding:18px;border-left:4px solid var(--g);box-shadow:0 2px 8px rgba(0,0,0,.08)}
-footer{background:#111;color:#fff;padding:28px 20px;text-align:center}
-.wa-big{display:inline-block;background:var(--g);color:#fff;padding:14px 26px;border-radius:30px;text-decoration:none;font-weight:900;margin:8px}
+.jumia-acc{background:#fff}
+.j-search{background:#fff;padding:10px;border-bottom:1px solid #eee}
+.j-search input{width:100%;padding:14px 14px 14px 40px;border-radius:30px;border:none;background:#f1f1f1}
+.j-welcome{padding:16px;background:#fff}
+.j-welcome b{font-size:18px}
+.j-welcome p{color:#FF8A00;font-size:14px;margin-top:2px}
+.j-balance{padding:0 16px 12px;background:#fff;color:#0080FF;font-weight:700;font-size:15px;display:flex;align-items:center;gap:8px}
+.j-buttons{display:flex;gap:10px;padding:12px 16px;background:#f5f5f5}
+.j-live{flex:1;background:var(--org);color:#fff;border:none;padding:14px;border-radius:8px;font-weight:800;font-size:15px}
+.j-wa{flex:1;background:#fff;border:2px solid var(--g);color:var(--g);padding:12px;border-radius:8px;font-weight:800;font-size:15px}
+.j-section{background:#f5f5f5;padding:12px 16px;font-weight:800;font-size:14px;color:#333;margin-top:8px}
+.j-item{display:flex;justify-content:space-between;align-items:center;padding:16px;background:#fff;border-bottom:1px solid #f0f0f0}
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #eee;z-index:999}
 .nav{text-align:center;font-size:10px;color:#888;text-decoration:none}
 .nav.active{color:var(--g);font-weight:800}.nav b{font-size:18px;display:block}
+#locModal,#adminLoginModal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+#locModal.show,#adminLoginModal.show{display:flex}
+.locBox{background:#fff;width:100%;max-width:380px;border-radius:16px;padding:20px;max-height:90vh;overflow-y:auto}
+.locBox h3{margin-bottom:10px}
+.locBox input,.locBox select,.locBox textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin:8px 0}
+.locBox button{width:100%;padding:12px;border-radius:10px;border:none;background:var(--g);color:#fff;font-weight:800;margin-top:8px;cursor:pointer}
+.admin-stat{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:12px}
+.stat{background:#fff;padding:14px;border-radius:12px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.07)}
+.stat b{font-size:20px;display:block;color:var(--g)}
+.orderCard{background:#fff;margin:10px;border-radius:12px;padding:12px;box-shadow:0 2px 6px rgba(0,0,0,.07);font-size:13px;line-height:1.5}
+.admin-form{background:#fff;margin:10px;padding:14px;border-radius:12px}
+.admin-form input,.admin-form select{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #ddd}
 </style>
 </head>
 <body>
 <div class="top"><span>♻️ SECOND HAND THRIFT - AIRTEL 0749253155 - WHATSAPP 256749253155 ♻️</span></div>
 <header>
-<div style="display:flex;justify-content:space-between"><div class="logo">The Thrift <span>Shop UG</span></div><div>🛒 <span id="c1">0</span></div></div>
+<div style="display:flex;justify-content:space-between"><div class="logo">The Thrift <span>Shop UG</span></div><div>🛒 <span id="c1">0</span> | <span style="font-size:10px" onclick="openAdmin()" >ADMIN</span></div></div>
 <input id="search" placeholder="Search thrift shop UG..." oninput="s(this.value)">
 </header>
 
 <div id="homePage" class="page active">
 <div class="banners">
-<img src="IMG_2639.jpeg" onerror="this.src='https://via.placeholder.com/800x400?text=The+Thrift+Shop+UG'">
+<img src="IMG_2639.jpeg" onerror="this.src='https://via.placeholder.com/800x400?text=Thrift+Shop+UG'">
 <img src="IMG_2640.jpeg" onerror="this.src='https://via.placeholder.com/800x400?text=BAGS+25K+SHOES+30K'">
 </div>
 <div class="title">🔥 Hot Deals <small>Thrift Cheap</small></div>
 <div class="grid" id="hot"></div>
-<div class="title">All 29 Items - Second Hand <small>Cheap</small></div>
+<div class="title">All Items - Second Hand <small id="countAll">Cheap</small></div>
 <div class="filt" id="filt">
-<button class="active" onclick="f('all',this)">All 29</button>
+<button class="active" onclick="f('all',this)">All</button>
 <button onclick="f('bags',this)">Bags</button>
 <button onclick="f('shoes',this)">Shoes</button>
 <button onclick="f('slides',this)">Slides</button>
@@ -76,33 +88,88 @@ footer{background:#111;color:#fff;padding:28px 20px;text-align:center}
 <div class="grid" id="grid"></div>
 </div>
 
-<div id="paymentPage" class="page">
-<div class="back" onclick="showPage('home')">← Back to Home</div>
-<div class="mbox">
-<h4>💳 Airtel Money Only</h4>
-<p style="font-size:14px;line-height:1.6;margin:8px 0">Airtel: 0749 253 155<br>Name: The Thrift Shop UG<br>Send proof to WhatsApp <b>256749253155</b></p>
-<button onclick="pay()" style="background:var(--g);color:#fff;border:none;padding:12px 20px;border-radius:10px;font-weight:800;width:100%;margin-top:8px">Pay Airtel Money</button>
+<div id="accountPage" class="page">
+<div class="j-search"><input placeholder="Search on Jumia" disabled></div>
+<div class="jumia-acc">
+<div class="j-welcome"><b>Welcome Panda!</b><p>pandaniga16@gmail.com</p></div>
+<div class="j-balance">🅱️ Thrift balance UGX 0</div>
+<div class="j-buttons">
+<button class="j-live" onclick="window.open('https://wa.me/256749253155','_blank')">💬 Live Chat</button>
+<button class="j-wa" onclick="window.open('https://wa.me/256749253155','_blank')">WhatsApp</button>
 </div>
-<footer>
-<p style="font-size:15px">📍 KIRA, WAKISO | Airtel 0749253155</p>
-<p style="margin:8px 0">📱 WhatsApp 256749253155</p>
-<a class="wa-big" href="https://wa.me/256749253155?text=Hello%20Thrift%20Shop">💬 Chat 256749253155</a><br>
-<p style="margin-top:18px;font-size:11px;color:#888">© Thrift Shop UG - Second Hand</p>
-</footer>
+<div class="j-section">Need Assistance?</div>
+<div class="j-item"><span>🛈 Help & Support</span><span>›</span></div>
+<div class="j-section">My Jumia Account</div>
+<div class="j-item"><span>📦 Orders (<span id="orderCount">0</span>)</span><span>›</span></div>
+<div class="j-item"><span>✉️ Inbox</span><span>›</span></div>
+<div class="j-item"><span>❤️ Wishlist</span><span>›</span></div>
+<div class="j-section">My Settings</div>
+<div class="j-item"><span>📍 Address Book - Kira, Wakiso</span><span>›</span></div>
+<div class="j-item" onclick="openAdmin()" style="color:var(--g)"><span>🔐 Admin Panel</span><span>›</span></div>
+</div>
 </div>
 
-<div id="accountPage" class="page">
-<div class="back" onclick="showPage('home')">← Back to Home</div>
-<div class="account">
-<div class="acc-h"><b id="wN">Welcome Panda!</b><p id="wE">pandaniga16@gmail.com</p></div>
-<div class="acc-b">🅱️ Thrift Balance UGX 0</div>
-<div class="acc-a">
-<button class="live" onclick="window.open('https://wa.me/256749253155','_blank')">💬 Live Chat</button>
-<button class="wa" onclick="window.open('https://wa.me/256749253155','_blank')">WhatsApp</button>
+<div id="paymentPage" class="page">
+<div style="padding:12px;background:#fff;font-weight:800" onclick="showPage('home')">← Back to Home</div>
+<div style="background:#fff;margin:12px;border-radius:16px;padding:18px;border-left:4px solid var(--g)">
+<h4>💳 Airtel Money Only - 0749 253 155</h4>
+<p style="font-size:12px;margin-top:6px;color:#666">Delivery fee 5000 UGX around Kampala (Kira, Wakiso, Bweyogerere, Najjera, Ntinda, Kyanja, Central). Outside: 10k.</p>
 </div>
-<div class="acc-t">My Thrift Account</div>
-<div class="acc-i"><span>📦 Orders</span><span>›</span></div>
-<div class="acc-i"><span>❤️ Wishlist</span><span>›</span></div>
+<div id="cartList"></div>
+</div>
+
+<!-- ADMIN PAGE -->
+<div id="adminPage" class="page">
+<div style="padding:12px;background:#111;color:#fff;font-weight:800;display:flex;justify-content:space-between"><span onclick="showPage('home')">← Exit Admin</span><span onclick="logoutAdmin()">Logout</span></div>
+<div class="admin-stat">
+<div class="stat"><b id="statOrders">0</b>Orders</div>
+<div class="stat"><b id="statProducts">0</b>Products</div>
+<div class="stat"><b id="statRevenue">0</b>UGX Rev</div>
+</div>
+<div class="admin-form">
+<h4>➕ Add New Product</h4>
+<input id="adName" placeholder="Name e.g. Nike Thrift Bag">
+<input id="adPrice" type="number" placeholder="Price UGX e.g. 15000">
+<input id="adOld" type="number" placeholder="Old Price e.g. 30000">
+<select id="adCat"><option value="bags">bags</option><option value="shoes">shoes</option><option value="slides">slides</option><option value="clothes">clothes</option></select>
+<input id="adImg" placeholder="Image file name e.g. IMG_2600.jpeg">
+<button onclick="addProduct()" style="background:#111">Add Product</button>
+</div>
+<div style="padding:12px;font-weight:800">📦 All Orders (with Location + Delivery 5000)</div>
+<div id="adminOrders"></div>
+<div style="padding:12px;font-weight:800">📝 Manage Products</div>
+<div id="adminProducts"></div>
+</div>
+
+<div id="locModal">
+<div class="locBox">
+<h3>📍 Where to deliver?</h3>
+<p id="locItem" style="font-size:13px;color:#555;margin-bottom:6px"></p>
+<input id="locName" placeholder="Your Name *">
+<input id="locPhone" placeholder="Phone 07... *">
+<select id="locArea">
+<option value="">Select Area *</option>
+<option>Kira</option><option>Wakiso</option><option>Bweyogerere</option><option>Najjera</option><option>Ntinda</option><option>Kyanja</option><option>Kampala Central</option><option>Mukono</option><option>Entebbe</option><option>Other</option>
+</select>
+<input id="locDetail" placeholder="Village / Stage, e.g. Kira Town near... *">
+<div style="background:#f1fff4;padding:10px;border-radius:10px;font-size:13px;margin:8px 0">
+<div>Item: <b id="locPrice">UGX 0</b></div>
+<div>Delivery: <b id="locDel" style="color:var(--g)">UGX 5000</b></div>
+<div style="border-top:1px solid #ddd;margin-top:6px;padding-top:6px">Total: <b id="locTotal" style="font-size:16px">UGX 0</b></div>
+</div>
+<button onclick="confirmOrder()">Confirm & Order via WhatsApp</button>
+<button onclick="closeLoc()" style="background:#eee;color:#333">Cancel</button>
+</div>
+</div>
+
+<div id="adminLoginModal">
+<div class="locBox">
+<h3>🔐 Admin Login</h3>
+<p style="font-size:12px;color:#666">Enter password to manage shop</p>
+<input id="adminPass" type="password" placeholder="Password">
+<button onclick="checkAdmin()">Login</button>
+<button onclick="document.getElementById('adminLoginModal').classList.remove('show')" style="background:#eee;color:#333">Cancel</button>
+<p style="font-size:10px;margin-top:8px;color:#888">Default: thrift2026 - change in code line ADMIN_PASS</p>
 </div>
 </div>
 
@@ -115,8 +182,10 @@ footer{background:#111;color:#fff;padding:28px 20px;text-align:center}
 
 <script>
 const WA="256749253155";
+const ADMIN_PASS="thrift2026";
 let cart=0;
-let products=[
+let currentOrder=null;
+let defaultProducts=[
 {id:1,name:"Beige Hiking Backpack Thrift",price:18000,old:35000,cat:"bags",img:"IMG_2599.jpeg"},
 {id:2,name:"North Face Grey Backpack Used",price:20000,old:40000,cat:"bags",img:"IMG_2598.jpeg"},
 {id:3,name:"Nike Grey School Backpack",price:16000,old:30000,cat:"bags",img:"IMG_2597.jpeg"},
@@ -147,27 +216,135 @@ let products=[
 {id:28,name:"Red Black Tote Bag",price:10000,old:14000,cat:"bags",img:"IMG_2485.png"},
 {id:29,name:"Blue Canvas Shoes Second Hand",price:15000,old:18000,cat:"shoes",img:"IMG_2481.jpeg"}
 ];
+let products = JSON.parse(localStorage.getItem('thrift_products') || 'null') || defaultProducts;
 products.sort((a,b)=>a.price-b.price);
 
+function saveProducts(){localStorage.setItem('thrift_products',JSON.stringify(products));}
+function getOrders(){return JSON.parse(localStorage.getItem('thrift_orders')||'[]');}
+function saveOrders(o){localStorage.setItem('thrift_orders',JSON.stringify(o));}
+
 function render(list,id){
-document.getElementById(id).innerHTML=list.map(function(p){
-return '<div class="card"><div class="badge">THRIFT</div><img src="'+p.img+'" onerror="this.src=\'https://via.placeholder.com/400?text=No+Image\'"><div class="cat">'+p.cat.toUpperCase()+' • SECOND HAND</div><div class="name">'+p.id+'. '+p.name+'</div><div class="price">UGX '+p.price.toLocaleString()+'<span class="old">'+p.old.toLocaleString()+'</span></div><button class="btn" onclick="addBag(\''+p.name.replace(/'/g,'')+'\','+p.price+')">+ ADD TO BAG</button><a class="btn2" href="https://wa.me/'+WA+'?text=I%20want%20'+encodeURIComponent(p.name)+'" target="_blank">WhatsApp Order</a></div>';
-}).join('');
+let el=document.getElementById(id);
+if(!el) return;
+el.innerHTML=list.map(p=>`
+<div class="card"><div class="badge">THRIFT</div>
+<img src="${p.img}" onerror="this.src='https://via.placeholder.com/400?text=No+Image'">
+<div class="cat">${p.cat.toUpperCase()} • SECOND HAND</div>
+<div class="name">${p.id}. ${p.name}</div>
+<div class="price">UGX ${p.price.toLocaleString()}<span class="old">${p.old.toLocaleString()}</span></div>
+<button class="btn" onclick="openLoc(${p.id})">+ ADD TO BAG</button>
+<a class="btn2" href="#" onclick="openLoc(${p.id});return false">WhatsApp Order</a>
+</div>`).join('');
+document.getElementById('countAll').innerText=products.length+' Items';
 }
-function addBag(n,p){cart++;document.getElementById('c1').innerText=cart;document.getElementById('c2').innerText=cart;window.open('https://wa.me/'+WA+'?text=I%20want%20'+encodeURIComponent(n)+'%20UGX%20'+p,'_blank')}
-function f(c,el){document.querySelectorAll('.filt button').forEach(function(b){b.classList.remove('active')});el.classList.add('active');if(c=='all'){render(products,'grid')}else{render(products.filter(function(x){return x.cat==c}),'grid')}}
-function s(v){let a=v.toLowerCase();render(products.filter(function(p){return p.name.toLowerCase().includes(a)}),'grid')}
+function openLoc(id){
+currentOrder=products.find(x=>x.id===id);
+let areaVal=document.getElementById('locArea').value;
+let del = getDelivery(areaVal);
+document.getElementById('locItem').innerText=currentOrder.name;
+document.getElementById('locPrice').innerText='UGX '+currentOrder.price.toLocaleString();
+document.getElementById('locDel').innerText='UGX '+del.toLocaleString();
+document.getElementById('locTotal').innerText='UGX '+(currentOrder.price+del).toLocaleString();
+document.getElementById('locModal').classList.add('show');
+}
+function getDelivery(area){
+let far=['Mukono','Entebbe','Other'];
+if(far.includes(area)) return 10000;
+return 5000;
+}
+document.getElementById('locArea').addEventListener('change',function(){
+if(!currentOrder) return;
+let del=getDelivery(this.value);
+document.getElementById('locDel').innerText='UGX '+del.toLocaleString();
+document.getElementById('locTotal').innerText='UGX '+(currentOrder.price+del).toLocaleString();
+});
+function closeLoc(){document.getElementById('locModal').classList.remove('show');}
+function confirmOrder(){
+let name=document.getElementById('locName').value.trim();
+let phone=document.getElementById('locPhone').value.trim();
+let area=document.getElementById('locArea').value;
+let detail=document.getElementById('locDetail').value.trim();
+if(!name||!phone||!area||!detail){alert('Please fill all fields');return;}
+let del=getDelivery(area);
+let total=currentOrder.price+del;
+let orders=getOrders();
+let newOrder={id:Date.now(),item:currentOrder.name,price:currentOrder.price,delivery:del,total:total,name:name,phone:phone,area:area,detail:detail,time:new Date().toLocaleString(),status:'New'};
+orders.unshift(newOrder);
+saveOrders(orders);
+cart++;document.getElementById('c1').innerText=cart;document.getElementById('c2').innerText=cart;document.getElementById('orderCount').innerText=orders.length;
+let msg=`Hello Thrift Shop UG\nI want: ${currentOrder.name}\nPrice: UGX ${currentOrder.price}\nDelivery (${area}): UGX ${del}\nTotal: UGX ${total}\nName: ${name}\nPhone: ${phone}\nArea: ${area}\nLocation: ${detail}\nAirtel: 0749253155`;
+window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');
+closeLoc();
+}
+function f(c,el){document.querySelectorAll('.filt button').forEach(b=>b.classList.remove('active'));el.classList.add('active');if(c=='all'){render(products,'grid')}else{render(products.filter(x=>x.cat==c),'grid')}}
+function s(v){let a=v.toLowerCase();render(products.filter(p=>p.name.toLowerCase().includes(a)),'grid')}
 function showPage(p){
-document.querySelectorAll('.page').forEach(function(x){x.classList.remove('active')});
-let target = p=='payment' ? 'paymentPage' : p+'Page';
-let el = document.getElementById(target) || document.getElementById('homePage');
-el.classList.add('active');
+document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+let target=p=='payment'?'paymentPage':p+'Page';
+document.getElementById(target).classList.add('active');
+if(p=='admin'){renderAdmin();}
 window.scrollTo(0,0);
 }
-function pay(){window.open('https://wa.me/'+WA+'?text=I%20paid%20Airtel%200749253155','_blank')}
-
-render(products.filter(function(p){return p.price>=18000}).slice(0,6),'hot');
+function openAdmin(){
+if(localStorage.getItem('thrift_admin')=='yes'){showPage('admin');return;}
+document.getElementById('adminLoginModal').classList.add('show');
+}
+function checkAdmin(){
+let pass=document.getElementById('adminPass').value;
+if(pass===ADMIN_PASS){localStorage.setItem('thrift_admin','yes');document.getElementById('adminLoginModal').classList.remove('show');showPage('admin');}
+else{alert('Wrong password');}
+}
+function logoutAdmin(){localStorage.removeItem('thrift_admin');showPage('home');}
+function renderAdmin(){
+let orders=getOrders();
+document.getElementById('statOrders').innerText=orders.length;
+document.getElementById('statProducts').innerText=products.length;
+document.getElementById('statRevenue').innerText=orders.reduce((s,o)=>s+o.total,0).toLocaleString();
+document.getElementById('adminOrders').innerHTML=orders.length==0?'<div style="padding:12px;background:#fff;margin:10px;border-radius:12px">No orders yet</div>':orders.map(o=>`
+<div class="orderCard">
+<b>${o.item}</b> - UGX ${o.total.toLocaleString()} (Item ${o.price}+Del ${o.delivery})<br>
+👤 ${o.name} | 📞 ${o.phone}<br>
+📍 ${o.area} - ${o.detail}<br>
+⏰ ${o.time} - <span style="color:${o.status=='Delivered'?'green':'orange'}">${o.status}</span>
+<div style="margin-top:8px;display:flex;gap:6px">
+<button onclick="markDelivered(${o.id})" style="padding:6px 10px;border:none;background:#00A651;color:#fff;border-radius:6px">Delivered</button>
+<button onclick="deleteOrder(${o.id})" style="padding:6px 10px;border:none;background:#eee;border-radius:6px">Delete</button>
+<button onclick="window.open('https://wa.me/${o.phone.replace(/[^0-9]/g,'')||WA}?text=Hello ${encodeURIComponent(o.name)} your order ${encodeURIComponent(o.item)}','_blank')" style="padding:6px 10px;border:none;background:#111;color:#fff;border-radius:6px">WhatsApp</button>
+</div>
+</div>`).join('');
+document.getElementById('adminProducts').innerHTML=products.map(p=>`
+<div class="orderCard" style="display:flex;gap:10px;align-items:center">
+<img src="${p.img}" style="width:50px;height:50px;object-fit:cover;border-radius:8px">
+<div style="flex:1"><b>${p.name}</b><br>UGX ${p.price} - ${p.cat}</div>
+<button onclick="deleteProduct(${p.id})" style="padding:6px 10px;border:none;background:#ff4444;color:#fff;border-radius:6px">X</button>
+</div>`).join('');
+}
+function addProduct(){
+let name=document.getElementById('adName').value.trim();
+let price=parseInt(document.getElementById('adPrice').value);
+let oldP=parseInt(document.getElementById('adOld').value)||price;
+let cat=document.getElementById('adCat').value;
+let img=document.getElementById('adImg').value.trim()||'https://via.placeholder.com/400?text=No+Image';
+if(!name||!price){alert('Name and price required');return;}
+let newId=products.length?Math.max(...products.map(p=>p.id))+1:1;
+products.push({id:newId,name:name,price:price,old:oldP,cat:cat,img:img});
+products.sort((a,b)=>a.price-b.price);
+saveProducts();
+render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
 render(products,'grid');
+renderAdmin();
+document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';
+alert('Product added');
+}
+function deleteProduct(id){if(!confirm('Delete product?'))return;products=products.filter(p=>p.id!==id);saveProducts();render(products.filter(p=>p.price>=18000).slice(0,6),'hot');render(products,'grid');renderAdmin();}
+function deleteOrder(id){let orders=getOrders().filter(o=>o.id!==id);saveOrders(orders);renderAdmin();document.getElementById('orderCount').innerText=orders.length;document.getElementById('c2').innerText=orders.length;}
+function markDelivered(id){let orders=getOrders();let o=orders.find(x=>x.id===id);if(o){o.status='Delivered';saveOrders(orders);renderAdmin();}}
+
+render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
+render(products,'grid');
+document.getElementById('orderCount').innerText=getOrders().length;
+document.getElementById('c1').innerText=getOrders().length;
+document.getElementById('c2').innerText=getOrders().length;
 </script>
 </body>
 </html>
