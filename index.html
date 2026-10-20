@@ -67,7 +67,6 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 .btnSave,.saveBadge{display:none !important}
 .airtelBox{background:#fff;margin:12px;border-radius:16px;padding:18px;border-left:4px solid var(--g);cursor:pointer}
 .airtelNum{color:#0000FF;text-decoration:underline;font-weight:900;font-size:18px}
-/* --- ONLY NEW ADDITIONS --- */
 .stockBadge{position:absolute;top:12px;right:12px;background:#FF0000;color:#fff;font-size:9px;padding:4px 6px;border-radius:6px;font-weight:900;animation:pulse 1.5s infinite;z-index:3}
 .stockOk{position:absolute;top:12px;right:12px;background:#111;color:#fff;font-size:8px;padding:4px 6px;border-radius:6px;font-weight:800;z-index:3}
 .wa-float{position:fixed;bottom:95px;right:16px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 12px rgba(0,0,0,.3);z-index:999;animation:waPulse 2s infinite;text-decoration:none}
@@ -83,7 +82,6 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <div style="display:flex;justify-content:space-between"><div class="logo">The Thrift <span>Shop UG</span></div><div>🛒 <span id="c1">0</span> | <span style="font-size:10px" onclick="openAdmin()">ADMIN</span></div></div>
 <input id="search" placeholder="Search thrift shop UG..." oninput="s(this.value)">
 </header>
-
 <div id="homePage" class="page active">
 <div class="banners" id="bannerBox">
 <img src="IMG_2639.jpeg" onerror="smartImgFallback(this, 'IMG_2639.jpeg')">
@@ -101,7 +99,6 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 </div>
 <div class="grid" id="grid"></div>
 </div>
-
 <div id="accountPage" class="page">
 <div class="jumia-acc">
 <div class="j-welcome"><b>Welcome Panda!</b><p>pandaniga16@gmail.com</p></div>
@@ -114,7 +111,6 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <div class="j-item" onclick="openAdmin()" style="color:var(--g)"><span>🔐 Admin Panel</span><span>›</span></div>
 </div>
 </div>
-
 <div id="paymentPage" class="page">
 <div style="padding:12px;background:#fff;font-weight:800" onclick="showPage('home')">← Back to Home</div>
 <div class="airtelBox" onclick="payDirect(0)">
@@ -124,7 +120,6 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <div id="payInfo" style="background:#f0fff4;padding:10px;border-radius:8px;margin-top:10px;font-size:12px;display:none"></div>
 </div>
 </div>
-
 <div id="adminPage" class="page">
 <div style="padding:12px;background:#111;color:#fff;font-weight:800;display:flex;justify-content:space-between"><span onclick="showPage('home')">← Exit Admin</span><span onclick="logoutAdmin()">Logout</span></div>
 <div class="admin-stat">
@@ -139,6 +134,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <input id="adOld" type="number" placeholder="Old Price">
 <select id="adCat"><option value="bags">bags</option><option value="shoes">shoes</option><option value="slides">slides</option><option value="clothes">clothes</option></select>
 <input id="adImg" placeholder="Image e.g. IMG_2600.jpeg">
+<input id="adStock" type="number" placeholder="Quantity left e.g. 5">
 <button onclick="addProduct()" style="background:#111"><span id="addBtnText">Add Product</span></button>
 <button id="cancelEditBtn" onclick="cancelEdit()" style="background:#eee;color:#333;display:none">Cancel Edit</button>
 <div style="font-size:11px;color:#666;margin-top:8px;text-align:center">✅ Products auto-saved - <span id="saveStatus" style="color:var(--g);font-weight:800">Saved</span></div>
@@ -148,7 +144,6 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <div style="padding:12px;font-weight:800">📝 Manage Products - TAP EDIT OR X BELOW</div>
 <div id="adminProducts"></div>
 </div>
-
 <div id="locModal">
 <div class="locBox">
 <h3>📍 Where to deliver?</h3>
@@ -170,7 +165,6 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <button onclick="closeLoc()" style="background:#eee;color:#333">Cancel</button>
 </div>
 </div>
-
 <div id="imgModal">
 <div class="locBox" style="text-align:center">
 <h3 id="imgTitle">Product Photo</h3>
@@ -179,7 +173,6 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <button onclick="document.getElementById('imgModal').classList.remove('show')" style="background:#eee;color:#333">Close</button>
 </div>
 </div>
-
 <div id="payModal">
 <div class="locBox" style="text-align:center">
 <h3>💳 Airtel Money Payment</h3>
@@ -194,7 +187,6 @@ Item: <span id="payItem"></span>
 <button onclick="document.getElementById('payModal').classList.remove('show')" style="background:#eee;color:#333">Close</button>
 </div>
 </div>
-
 <div id="adminLoginModal">
 <div class="locBox">
 <h3>🔐 Admin Login</h3>
@@ -205,16 +197,13 @@ Item: <span id="payItem"></span>
 <p id="loginError" style="font-size:12px;color:red;margin-top:6px;display:none"></p>
 </div>
 </div>
-
 <a href="https://wa.me/256749253155?text=Hello%20Thrift%20Shop%20UG%2C%20I%20want%20to%20order" class="wa-float" target="_blank">💬</a>
-
 <div class="bottom">
 <a class="nav active" href="#" onclick="showPage('home');return false"><b>🏠</b>Home</a>
 <a class="nav" href="#" onclick="showPage('home');document.getElementById('filt').scrollIntoView();return false"><b>📦</b>Categories</a>
 <a class="nav" href="#" onclick="showPage('payment');return false"><b>🛒</b><span id="c2">0</span> Cart</a>
 <a class="nav" href="#" onclick="showPage('account');return false"><b>👤</b>Account</a>
 </div>
-
 <script>
 const WA="256749253155";
 const ADMIN_PASS="thrift2026";
@@ -256,7 +245,6 @@ let defaultProducts=[
 {id:29,name:"Blue Canvas Shoes Second Hand",price:15000,old:18000,cat:"shoes",img:"IMG_2481.jpeg",stock:2}
 ];
 let products = JSON.parse(localStorage.getItem('thrift_products') || 'null') || defaultProducts;
-// ensure stock exists for old saved products
 products = products.map(p=>{ if(p.stock===undefined) p.stock=2; return p; });
 products.sort((a,b)=>a.price-b.price);
 function saveProducts(){
@@ -270,7 +258,6 @@ if(!localStorage.getItem('thrift_products')){ saveProducts(); }
 function getOrders(){return JSON.parse(localStorage.getItem('thrift_orders')||'[]');}
 function saveOrders(o){localStorage.setItem('thrift_orders',JSON.stringify(o));}
 function sanitize(t){ let d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
-
 function smartImgFallback(img, original){
   if(img.dataset.done){ img.src='https://via.placeholder.com/400?text=No+Image'; return; }
   let base = original.split('.')[0];
@@ -283,7 +270,6 @@ function smartImgFallback(img, original){
   }
   next();
 }
-
 function render(list,id){
 let el=document.getElementById(id);
 if(!el) return;
@@ -301,7 +287,6 @@ ${p.stock<=2?`<div class="stockBadge">Only ${p.stock} left!</div>`:`<div class="
 </div>`).join('');
 document.getElementById('countAll').innerText=products.length+' Items';
 }
-
 function openImageSave(id){
   let p=products.find(x=>x.id===id);
   if(!p) return;
@@ -329,7 +314,6 @@ async function savePhoto(id){
     window.open(p.img, '_blank');
   }
 }
-
 function payDirect(amount){
   let total=amount;
   if(!total || total==0){
@@ -361,7 +345,6 @@ function payDirectCurrent(){
 function dial185(){ window.location.href='tel:*185%23'; }
 function copyText(t){navigator.clipboard.writeText(t);alert('Copied: '+t);}
 function copyAmount(){navigator.clipboard.writeText(lastAmount.toString());alert('Amount copied: '+lastAmount);}
-
 function openLoc(id){
 currentOrder=products.find(x=>x.id===id);
 let del=getDelivery(document.getElementById('locArea').value);
@@ -388,7 +371,6 @@ let orders=getOrders();
 orders.unshift({id:Date.now(),item:currentOrder.name,price:currentOrder.price,delivery:del,total:total,name:name,phone:phone,area:area,detail:detail,time:new Date().toLocaleString(),status:'New'});
 saveOrders(orders);
 cart++;document.getElementById('c1').innerText=cart;document.getElementById('c2').innerText=cart;document.getElementById('orderCount').innerText=orders.length;
-// BETTER WHATSAPP ORDER
 let msg=`*NEW THRIFT ORDER* 🛒\n\n📦 *Item:* ${currentOrder.name}\n💰 *Price:* UGX ${currentOrder.price.toLocaleString()}\n🚚 *Delivery (${area}):* UGX ${del.toLocaleString()}\n💳 *Total:* UGX ${total.toLocaleString()}\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n📍 *Area:* ${area}\n🏠 *Location:* ${detail}\n\n⏰ Stock left: ${currentOrder.stock} - Please confirm`;
 window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');
 closeLoc();
@@ -437,24 +419,26 @@ let price=parseInt(document.getElementById('adPrice').value);
 let oldP=parseInt(document.getElementById('adOld').value)||price+10000;
 let cat=document.getElementById('adCat').value;
 let img=document.getElementById('adImg').value.trim()||'https://via.placeholder.com/400?text=Thrift';
+let stockVal=parseInt(document.getElementById('adStock').value);
 if(!name||!price){alert('Name and price required');return;}
+if(isNaN(stockVal)){ stockVal=2; }
 if(editingId){
  let p=products.find(x=>x.id===editingId);
- p.name=name; p.price=price; p.old=oldP; p.cat=cat; p.img=img;
+ p.name=name; p.price=price; p.old=oldP; p.cat=cat; p.img=img; p.stock=stockVal;
  editingId=null;
  document.getElementById('addBtnText').innerText='Add Product';
  document.getElementById('cancelEditBtn').style.display='none';
 } else {
  let newId=products.length?Math.max(...products.map(p=>p.id))+1:1;
- products.push({id:newId,name:name,price:price,old:oldP,cat:cat,img:img,stock:2});
+ products.push({id:newId,name:name,price:price,old:oldP,cat:cat,img:img,stock:stockVal});
 }
 products.sort((a,b)=>a.price-b.price);
 saveProducts();
 render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
 render(products,'grid');
 renderAdmin();
-document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';
-alert('Saved!');
+document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';document.getElementById('adStock').value='';
+alert('Saved! Quantity is now '+stockVal);
 }
 function editProduct(id){
 let p=products.find(x=>x.id===id);
@@ -464,17 +448,17 @@ document.getElementById('adPrice').value=p.price;
 document.getElementById('adOld').value=p.old;
 document.getElementById('adCat').value=p.cat;
 document.getElementById('adImg').value=p.img;
+document.getElementById('adStock').value=p.stock;
 editingId=id;
 document.getElementById('addBtnText').innerText='Update Product';
 document.getElementById('cancelEditBtn').style.display='block';
 window.scrollTo(0,0);
 document.querySelector('.admin-form').scrollIntoView({behavior:'smooth'});
 }
-function cancelEdit(){editingId=null;document.getElementById('addBtnText').innerText='Add Product';document.getElementById('cancelEditBtn').style.display='none';document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';}
+function cancelEdit(){editingId=null;document.getElementById('addBtnText').innerText='Add Product';document.getElementById('cancelEditBtn').style.display='none';document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';document.getElementById('adStock').value='';}
 function deleteProduct(id){if(!confirm('Delete this product?'))return;products=products.filter(p=>p.id!==id);saveProducts();render(products.filter(p=>p.price>=18000).slice(0,6),'hot');render(products,'grid');renderAdmin();}
 function deleteOrder(id){let orders=getOrders().filter(o=>o.id!==id);saveOrders(orders);renderAdmin();document.getElementById('orderCount').innerText=orders.length;}
 function markDelivered(id){let orders=getOrders();let o=orders.find(x=>x.id===id);if(o){o.status='Delivered';saveOrders(orders);renderAdmin();}}
-// banner auto slide
 let bannerIndex=0;
 setInterval(()=>{ let box=document.getElementById('bannerBox'); if(!box||box.children.length==0) return; bannerIndex=(bannerIndex+1)%box.children.length; box.children[bannerIndex].scrollIntoView({behavior:'smooth',inline:'center'}); },4000);
 render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
