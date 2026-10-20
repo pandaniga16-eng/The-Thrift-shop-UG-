@@ -27,18 +27,16 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 .card{background:#fff;border-radius:16px;padding:8px;position:relative;box-shadow:0 2px 6px rgba(0,0,0,.07)}
 .card img{width:100%;height:170px;object-fit:cover;border-radius:12px;background:#eee}
 .badge{position:absolute;top:12px;left:12px;background:var(--g);color:#fff;font-size:8px;padding:4px 6px;border-radius:6px;font-weight:800}
-.saveBadge{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.6);color:#fff;font-size:10px;padding:5px 7px;border-radius:8px;font-weight:800;cursor:pointer}
 .cat{font-size:8px;color:#888;margin-top:6px;font-weight:700}
 .name{font-size:12px;font-weight:700;min-height:30px}
 .price{font-weight:900;color:var(--g);font-size:13px}
 .old{font-size:10px;color:#999;text-decoration:line-through;margin-left:4px}
 .btn{width:100%;background:#111;color:#fff;border:none;padding:9px;border-radius:10px;font-size:11px;font-weight:800;margin-top:5px;cursor:pointer}
 .btn2{width:100%;background:var(--g);color:#fff;display:block;text-align:center;text-decoration:none;padding:8px;border-radius:10px;font-size:11px;font-weight:800;margin-top:5px}
-.btnSave{width:100%;background:#fff;border:1px solid #ddd;color:#111;display:block;text-align:center;text-decoration:none;padding:8px;border-radius:10px;font-size:11px;font-weight:800;margin-top:5px;cursor:pointer}
+/* HIDDEN SAVE BUTTONS */
+.btnSave,.saveBadge{display:none !important}
 .page{display:none}.page.active{display:block}
 .jumia-acc{background:#fff}
-.j-search{background:#fff;padding:10px;border-bottom:1px solid #eee}
-.j-search input{width:100%;padding:14px 14px 14px 40px;border-radius:30px;border:none;background:#f1f1f1}
 .j-welcome{padding:16px;background:#fff}
 .j-welcome b{font-size:18px}
 .j-welcome p{color:#FF8A00;font-size:14px;margin-top:2px}
@@ -46,7 +44,6 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 .j-buttons{display:flex;gap:10px;padding:12px 16px;background:#f5f5f5}
 .j-live{flex:1;background:var(--org);color:#fff;border:none;padding:14px;border-radius:8px;font-weight:800;font-size:15px}
 .j-wa{flex:1;background:#fff;border:2px solid var(--g);color:var(--g);padding:12px;border-radius:8px;font-weight:800;font-size:15px}
-.j-section{background:#f5f5f5;padding:12px 16px;font-weight:800;font-size:14px;color:#333;margin-top:8px}
 .j-item{display:flex;justify-content:space-between;align-items:center;padding:16px;background:#fff;border-bottom:1px solid #f0f0f0}
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #eee;z-index:999}
 .nav{text-align:center;font-size:10px;color:#888;text-decoration:none}
@@ -63,6 +60,8 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 .orderCard{background:#fff;margin:10px;border-radius:12px;padding:12px;box-shadow:0 2px 6px rgba(0,0,0,.07);font-size:13px;line-height:1.5}
 .admin-form{background:#fff;margin:10px;padding:14px;border-radius:12px}
 .admin-form input,.admin-form select{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #ddd}
+.airtelBox{background:#fff;margin:12px;border-radius:16px;padding:18px;border-left:4px solid var(--g);cursor:pointer}
+.airtelNum{color:#0000FF;text-decoration:underline;font-weight:900;font-size:18px}
 </style>
 </head>
 <body>
@@ -105,9 +104,11 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 
 <div id="paymentPage" class="page">
 <div style="padding:12px;background:#fff;font-weight:800" onclick="showPage('home')">← Back to Home</div>
-<div style="background:#fff;margin:12px;border-radius:16px;padding:18px;border-left:4px solid var(--g)">
-<h4>💳 Airtel Money Only - 0749 253 155</h4>
+<div class="airtelBox" onclick="payDirect(0)">
+<h4>💳 Airtel Money Only - <span class="airtelNum" id="airtelLink">0749 253 155</span></h4>
+<p style="font-size:12px;margin-top:6px;color:#666">Tap number to pay directly via Mobile Money</p>
 <p style="font-size:12px;margin-top:6px;color:#666">Delivery fee 5000 UGX around Kampala. Outside: 10k.</p>
+<div id="payInfo" style="background:#f0fff4;padding:10px;border-radius:8px;margin-top:10px;font-size:12px;display:none"></div>
 </div>
 </div>
 
@@ -151,17 +152,9 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <div>Delivery: <b id="locDel">UGX 5000</b></div>
 <div>Total: <b id="locTotal">UGX 0</b></div>
 </div>
+<button onclick="payDirectCurrent()" style="background:#FF0000">💳 PAY WITH AIRTEL MONEY - <span id="payBtnTotal">0</span></button>
 <button onclick="confirmOrder()">Confirm & Order via WhatsApp</button>
 <button onclick="closeLoc()" style="background:#eee;color:#333">Cancel</button>
-</div>
-</div>
-
-<div id="imgModal">
-<div class="locBox" style="text-align:center">
-<h3 id="imgTitle">Product Photo</h3>
-<img id="imgPreview" src="" style="width:100%;border-radius:12px;margin:10px 0;max-height:60vh;object-fit:contain;background:#f5f5f5">
-<button id="imgDownloadBtn" style="background:#111">📥 Download / Save to Gallery</button>
-<button onclick="document.getElementById('imgModal').classList.remove('show')" style="background:#eee;color:#333">Close</button>
 </div>
 </div>
 
@@ -188,7 +181,6 @@ const ADMIN_PASS="thrift2026";
 let cart=0;
 let currentOrder=null;
 let editingId=null;
-let currentSaveProduct=null;
 let defaultProducts=[
 {id:1,name:"Beige Hiking Backpack Thrift",price:18000,old:35000,cat:"bags",img:"IMG_2599.jpeg"},
 {id:2,name:"North Face Grey Backpack Used",price:20000,old:40000,cat:"bags",img:"IMG_2598.jpeg"},
@@ -224,67 +216,62 @@ let products = JSON.parse(localStorage.getItem('thrift_products') || 'null') || 
 products.sort((a,b)=>a.price-b.price);
 function saveProducts(){
   localStorage.setItem('thrift_products',JSON.stringify(products));
-  localStorage.setItem('thrift_products_backup',JSON.stringify(products));
-  localStorage.setItem('thrift_products_last_save', new Date().toISOString());
   let st=document.getElementById('saveStatus');
-  if(st){st.innerText='Saved ✓ '+new Date().toLocaleTimeString(); setTimeout(()=>{st.innerText='Saved';},2000);}
+  if(st){st.innerText='Saved ✓';}
 }
 if(!localStorage.getItem('thrift_products')){ saveProducts(); }
 function getOrders(){return JSON.parse(localStorage.getItem('thrift_orders')||'[]');}
 function saveOrders(o){localStorage.setItem('thrift_orders',JSON.stringify(o));}
+
+// DIRECT MOBILE MONEY PAY
+function payDirect(amount){
+  // If amount is 0, just call number. If amount >0, include amount in USSD
+  if(!amount || amount==0){
+    if(currentOrder){
+      let del=getDelivery(document.getElementById('locArea').value);
+      amount=currentOrder.price+del;
+    } else {
+      // from payment page without order, just dial number
+      window.location.href="tel:0749253155";
+      return;
+    }
+  }
+  // Airtel Uganda: *185*1*1*Phone*Amount#
+  let ussd = "*185*1*1*256749253155*"+amount+"%23";
+  // For phones that block USSD with amount, fallback to simple dial
+  try{
+    window.location.href="tel:"+ussd;
+  }catch(e){
+    window.location.href="tel:0749253155";
+  }
+  // Show info
+  let info=document.getElementById('payInfo');
+  if(info){
+    info.style.display='block';
+    info.innerHTML="Opening Airtel Money...<br>Number: <b>0749253155</b><br>Amount: <b>UGX "+amount.toLocaleString()+"</b><br>If dialer didn't open, dial manually: <b>*185*1*1*0749253155*"+amount+"#</b>";
+  }
+}
+function payDirectCurrent(){
+  if(!currentOrder) return;
+  let del=getDelivery(document.getElementById('locArea').value);
+  let total=currentOrder.price+del;
+  payDirect(total);
+}
+
 function render(list,id){
 let el=document.getElementById(id);
 if(!el) return;
 el.innerHTML=list.map(p=>`
 <div class="card"><div class="badge">THRIFT</div>
-<div class="saveBadge" onclick="openImageSave(${p.id})">📸</div>
-<img src="${p.img}" onclick="openImageSave(${p.id})" onerror="this.src='https://via.placeholder.com/400?text=No+Image'">
+<img src="${p.img}" onerror="this.src='https://via.placeholder.com/400?text=No+Image'">
 <div class="cat">${p.cat.toUpperCase()}</div>
 <div class="name">${p.id}. ${p.name}</div>
 <div class="price">UGX ${p.price.toLocaleString()}<span class="old">${p.old.toLocaleString()}</span></div>
 <button class="btn" onclick="openLoc(${p.id})">+ ADD TO BAG</button>
 <a class="btn2" href="#" onclick="openLoc(${p.id});return false">WhatsApp Order</a>
-<button class="btnSave" onclick="openImageSave(${p.id})">📸 Save Photo</button>
 </div>`).join('');
 document.getElementById('countAll').innerText=products.length+' Items';
 }
-
-// --- CUSTOMER SAVE PHOTO FEATURE ---
-function openImageSave(id){
-  let p=products.find(x=>x.id===id);
-  if(!p) return;
-  currentSaveProduct=p;
-  document.getElementById('imgTitle').innerText=p.name;
-  document.getElementById('imgPreview').src=p.img;
-  document.getElementById('imgModal').classList.add('show');
-  // Set download button
-  document.getElementById('imgDownloadBtn').onclick = function(){ savePhoto(p.id); };
-}
-async function savePhoto(id){
-  let p=products.find(x=>x.id===id) || currentSaveProduct;
-  if(!p) return;
-  try{
-    // Try to fetch and download properly
-    const response = await fetch(p.img);
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = p.name.replace(/[^a-z0-9]/gi,'_') + '.jpg';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }catch(e){
-    // Fallback: open image in new tab so user can long-press save
-    window.open(p.img, '_blank');
-  }
-  // Also try native share if available
-  if(navigator.share && currentSaveProduct){
-    // optional: user can share photo link
-  }
-}
-
 function openLoc(id){
 currentOrder=products.find(x=>x.id===id);
 let del=getDelivery(document.getElementById('locArea').value);
@@ -292,10 +279,11 @@ document.getElementById('locItem').innerText=currentOrder.name;
 document.getElementById('locPrice').innerText='UGX '+currentOrder.price.toLocaleString();
 document.getElementById('locDel').innerText='UGX '+del.toLocaleString();
 document.getElementById('locTotal').innerText='UGX '+(currentOrder.price+del).toLocaleString();
+document.getElementById('payBtnTotal').innerText='UGX '+(currentOrder.price+del).toLocaleString();
 document.getElementById('locModal').classList.add('show');
 }
 function getDelivery(area){let far=['Mukono','Entebbe','Other'];if(far.includes(area)) return 10000;return 5000;}
-document.getElementById('locArea').addEventListener('change',function(){if(!currentOrder) return;let del=getDelivery(this.value);document.getElementById('locDel').innerText='UGX '+del.toLocaleString();document.getElementById('locTotal').innerText='UGX '+(currentOrder.price+del).toLocaleString();});
+document.getElementById('locArea').addEventListener('change',function(){if(!currentOrder) return;let del=getDelivery(this.value);document.getElementById('locDel').innerText='UGX '+del.toLocaleString();document.getElementById('locTotal').innerText='UGX '+(currentOrder.price+del).toLocaleString();document.getElementById('payBtnTotal').innerText='UGX '+(currentOrder.price+del).toLocaleString();});
 function closeLoc(){document.getElementById('locModal').classList.remove('show');}
 function confirmOrder(){
 let name=document.getElementById('locName').value.trim();
@@ -368,7 +356,7 @@ render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
 render(products,'grid');
 renderAdmin();
 document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';
-alert('Saved! Product list updated and saved.');
+alert('Saved!');
 }
 function editProduct(id){
 let p=products.find(x=>x.id===id);
@@ -385,7 +373,7 @@ window.scrollTo(0,0);
 document.querySelector('.admin-form').scrollIntoView({behavior:'smooth'});
 }
 function cancelEdit(){editingId=null;document.getElementById('addBtnText').innerText='Add Product';document.getElementById('cancelEditBtn').style.display='none';document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';}
-function deleteProduct(id){if(!confirm('Delete this product? This cannot be undone.'))return;products=products.filter(p=>p.id!==id);saveProducts();render(products.filter(p=>p.price>=18000).slice(0,6),'hot');render(products,'grid');renderAdmin();}
+function deleteProduct(id){if(!confirm('Delete this product?'))return;products=products.filter(p=>p.id!==id);saveProducts();render(products.filter(p=>p.price>=18000).slice(0,6),'hot');render(products,'grid');renderAdmin();}
 function deleteOrder(id){let orders=getOrders().filter(o=>o.id!==id);saveOrders(orders);renderAdmin();document.getElementById('orderCount').innerText=orders.length;}
 function markDelivered(id){let orders=getOrders();let o=orders.find(x=>x.id===id);if(o){o.status='Delivered';saveOrders(orders);renderAdmin();}}
 render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
