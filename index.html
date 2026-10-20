@@ -460,7 +460,13 @@ function deleteProduct(id){if(!confirm('Delete this product?'))return;products=p
 function deleteOrder(id){let orders=getOrders().filter(o=>o.id!==id);saveOrders(orders);renderAdmin();document.getElementById('orderCount').innerText=orders.length;}
 function markDelivered(id){let orders=getOrders();let o=orders.find(x=>x.id===id);if(o){o.status='Delivered';saveOrders(orders);renderAdmin();}}
 let bannerIndex=0;
-setInterval(()=>{ let box=document.getElementById('bannerBox'); if(!box||box.children.length==0) return; bannerIndex=(bannerIndex+1)%box.children.length; box.children[bannerIndex].scrollIntoView({behavior:'smooth',inline:'center'}); },4000);
+setInterval(()=>{ 
+  let box=document.getElementById('bannerBox'); 
+  if(!box||box.children.length==0) return; 
+  bannerIndex=(bannerIndex+1)%box.children.length; 
+  let child = box.children[bannerIndex];
+  box.scrollTo({left: child.offsetLeft - 12, behavior:'smooth'}); 
+},4000);
 render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
 render(products,'grid');
 document.getElementById('orderCount').innerText=getOrders().length;
