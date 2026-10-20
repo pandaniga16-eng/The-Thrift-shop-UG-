@@ -14,9 +14,9 @@ body{background:#f5f5f5;padding-bottom:90px}
 header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:0 1px 5px rgba(0,0,0,.1)}
 .logo{font-weight:900;font-size:18px}.logo span{color:var(--g)}
 #search{width:100%;margin-top:10px;padding:12px;border-radius:12px;border:1px solid #ddd}
-.banners{display:flex;gap:10px;overflow-x:auto;padding:12px}
+.banners{display:flex;gap:10px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory}
 .banners::-webkit-scrollbar{display:none}
-.banners img{min-width:100%;height:180px;object-fit:cover;border-radius:14px;background:#ddd}
+.banners img{min-width:100%;height:180px;object-fit:cover;border-radius:14px;background:#ddd;scroll-snap-align:center}
 .title{padding:12px 12px 2px;font-weight:900;font-size:15px;display:flex;justify-content:space-between}
 .title small{background:var(--g);color:#fff;padding:3px 8px;border-radius:10px;font-size:10px}
 .filt{display:flex;gap:8px;overflow-x:auto;padding:10px 12px}
@@ -24,9 +24,10 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 .filt button{padding:8px 16px;border-radius:20px;border:1px solid #ddd;background:#fff;font-size:12px;font-weight:700}
 .filt button.active{background:var(--g);color:#fff;border-color:var(--g)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.card{background:#fff;border-radius:16px;padding:8px;position:relative;box-shadow:0 2px 6px rgba(0,0,0,.07)}
+.card{background:#fff;border-radius:16px;padding:8px;position:relative;box-shadow:0 2px 6px rgba(0,0,0,.07);animation:fadeUp 0.5s ease both}
+.card:active{transform:scale(0.97)}
 .card img{width:100%;height:170px;object-fit:cover;border-radius:12px;background:#eee}
-.badge{position:absolute;top:12px;left:12px;background:var(--g);color:#fff;font-size:8px;padding:4px 6px;border-radius:6px;font-weight:800}
+.badge{position:absolute;top:12px;left:12px;background:var(--g);color:#fff;font-size:8px;padding:4px 6px;border-radius:6px;font-weight:800;z-index:2}
 .saveBadge{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.6);color:#fff;font-size:10px;padding:5px 7px;border-radius:8px;font-weight:800;cursor:pointer}
 .cat{font-size:8px;color:#888;margin-top:6px;font-weight:700}
 .name{font-size:12px;font-weight:700;min-height:30px}
@@ -48,12 +49,12 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 .j-wa{flex:1;background:#fff;border:2px solid var(--g);color:var(--g);padding:12px;border-radius:8px;font-weight:800;font-size:15px}
 .j-section{background:#f5f5f5;padding:12px 16px;font-weight:800;font-size:14px;color:#333;margin-top:8px}
 .j-item{display:flex;justify-content:space-between;align-items:center;padding:16px;background:#fff;border-bottom:1px solid #f0f0f0}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #eee;z-index:999}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #eee;z-index:998}
 .nav{text-align:center;font-size:10px;color:#888;text-decoration:none}
 .nav.active{color:var(--g);font-weight:800}.nav b{font-size:18px;display:block}
 #locModal,#adminLoginModal,#imgModal,#payModal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
 #locModal.show,#adminLoginModal.show,#imgModal.show,#payModal.show{display:flex}
-.locBox{background:#fff;width:100%;max-width:380px;border-radius:16px;padding:20px;max-height:90vh;overflow-y:auto}
+.locBox{background:#fff;width:100%;max-width:380px;border-radius:16px;padding:20px;max-height:90vh;overflow-y:auto;animation:popUp 0.3s}
 .locBox h3{margin-bottom:10px}
 .locBox input,.locBox select{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin:8px 0}
 .locBox button{width:100%;padding:12px;border-radius:10px;border:none;background:var(--g);color:#fff;font-weight:800;margin-top:8px;cursor:pointer}
@@ -66,6 +67,14 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 .btnSave,.saveBadge{display:none !important}
 .airtelBox{background:#fff;margin:12px;border-radius:16px;padding:18px;border-left:4px solid var(--g);cursor:pointer}
 .airtelNum{color:#0000FF;text-decoration:underline;font-weight:900;font-size:18px}
+/* --- ONLY NEW ADDITIONS --- */
+.stockBadge{position:absolute;top:12px;right:12px;background:#FF0000;color:#fff;font-size:9px;padding:4px 6px;border-radius:6px;font-weight:900;animation:pulse 1.5s infinite;z-index:3}
+.stockOk{position:absolute;top:12px;right:12px;background:#111;color:#fff;font-size:8px;padding:4px 6px;border-radius:6px;font-weight:800;z-index:3}
+.wa-float{position:fixed;bottom:95px;right:16px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 12px rgba(0,0,0,.3);z-index:999;animation:waPulse 2s infinite;text-decoration:none}
+@keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.7)}70%{box-shadow:0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popUp{from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 </style>
 </head>
 <body>
@@ -76,7 +85,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 </header>
 
 <div id="homePage" class="page active">
-<div class="banners">
+<div class="banners" id="bannerBox">
 <img src="IMG_2639.jpeg" onerror="smartImgFallback(this, 'IMG_2639.jpeg')">
 <img src="IMG_2640.jpeg" onerror="smartImgFallback(this, 'IMG_2640.jpeg')">
 </div>
@@ -193,8 +202,11 @@ Item: <span id="payItem"></span>
 <input id="adminPass" type="password" placeholder="Password">
 <button onclick="checkAdmin()">Login</button>
 <button onclick="document.getElementById('adminLoginModal').classList.remove('show')" style="background:#eee;color:#333">Cancel</button>
+<p id="loginError" style="font-size:12px;color:red;margin-top:6px;display:none"></p>
 </div>
 </div>
+
+<a href="https://wa.me/256749253155?text=Hello%20Thrift%20Shop%20UG%2C%20I%20want%20to%20order" class="wa-float" target="_blank">💬</a>
 
 <div class="bottom">
 <a class="nav active" href="#" onclick="showPage('home');return false"><b>🏠</b>Home</a>
@@ -211,38 +223,41 @@ let currentOrder=null;
 let editingId=null;
 let currentSaveProduct=null;
 let lastAmount=0;
+let loginAttempts=0;
 let defaultProducts=[
-{id:1,name:"Beige Hiking Backpack Thrift",price:18000,old:35000,cat:"bags",img:"IMG_2599.jpeg"},
-{id:2,name:"North Face Grey Backpack Used",price:20000,old:40000,cat:"bags",img:"IMG_2598.jpeg"},
-{id:3,name:"Nike Grey School Backpack",price:16000,old:30000,cat:"bags",img:"IMG_2597.jpeg"},
-{id:4,name:"Black Tactical Backpack",price:14000,old:28000,cat:"bags",img:"IMG_2596.jpeg"},
-{id:5,name:"Black Red Hiking Backpack",price:18000,old:35000,cat:"bags",img:"IMG_2595.jpeg"},
-{id:6,name:"Adidas Black Backpack",price:15000,old:30000,cat:"bags",img:"IMG_2594.jpeg"},
-{id:7,name:"Military Multi-Pocket Backpack",price:14000,old:28000,cat:"bags",img:"IMG_2593.jpeg"},
-{id:8,name:"Red School Backpack Thrift",price:12000,old:22000,cat:"bags",img:"IMG_2592.jpeg"},
-{id:9,name:"Orange Foam Crocs Second Hand",price:12000,old:25000,cat:"slides",img:"IMG_2591.jpeg"},
-{id:10,name:"Ghost Face Black T-Shirt",price:7000,old:15000,cat:"clothes",img:"IMG_2590.jpeg"},
-{id:11,name:"Beige Double-Strap Slides",price:8000,old:18000,cat:"slides",img:"IMG_2589.jpeg"},
-{id:12,name:"Chanel Black Loafers Thrift",price:25000,old:50000,cat:"shoes",img:"IMG_2588.jpeg"},
-{id:13,name:"Black Street Sneakers Used",price:30000,old:50000,cat:"shoes",img:"IMG_2587.jpeg"},
-{id:14,name:"Thrift Shoes Market Pile",price:40000,old:50000,cat:"shoes",img:"IMG_2586.jpeg"},
-{id:15,name:"Yeezy Beige Slides",price:15000,old:18000,cat:"slides",img:"IMG_2585.jpeg"},
-{id:16,name:"Black Yeezy Slides",price:8000,old:18000,cat:"slides",img:"IMG_2584.jpeg"},
-{id:17,name:"White Classic Hoodie Thrift",price:15000,old:25000,cat:"clothes",img:"IMG_2573.png"},
-{id:18,name:"Grey Zip Hoodie Used",price:13000,old:26000,cat:"clothes",img:"IMG_2547.jpeg"},
-{id:19,name:"White Foam Runner",price:15000,old:35000,cat:"shoes",img:"IMG_2546.jpeg"},
-{id:20,name:"Nike White Red Sneakers",price:35000,old:40000,cat:"shoes",img:"IMG_2545.jpeg"},
-{id:21,name:"Black Formal Loafers",price:16000,old:32000,cat:"shoes",img:"IMG_2544.jpeg"},
-{id:22,name:"Black Crocodile Crocs",price:80000,old:120000,cat:"slides",img:"IMG_2543.jpeg"},
-{id:23,name:"White Classic Crocs",price:40000,old:50000,cat:"slides",img:"IMG_2490.jpeg"},
-{id:24,name:"Grey North Face Backpack",price:16000,old:32000,cat:"bags",img:"IMG_2487.jpeg"},
-{id:25,name:"Dior Saddle Bag Thrift",price:16000,old:20000,cat:"bags",img:"IMG_2488.jpeg"},
-{id:26,name:"Black Bear T-Shirt",price:7000,old:15000,cat:"clothes",img:"IMG_2486.png"},
-{id:27,name:"Givenchy Black T-Shirt Used",price:10000,old:16000,cat:"clothes",img:"IMG_2484.jpeg"},
-{id:28,name:"Red Black Tote Bag",price:10000,old:14000,cat:"bags",img:"IMG_2485.png"},
-{id:29,name:"Blue Canvas Shoes Second Hand",price:15000,old:18000,cat:"shoes",img:"IMG_2481.jpeg"}
+{id:1,name:"Beige Hiking Backpack Thrift",price:18000,old:35000,cat:"bags",img:"IMG_2599.jpeg",stock:2},
+{id:2,name:"North Face Grey Backpack Used",price:20000,old:40000,cat:"bags",img:"IMG_2598.jpeg",stock:5},
+{id:3,name:"Nike Grey School Backpack",price:16000,old:30000,cat:"bags",img:"IMG_2597.jpeg",stock:3},
+{id:4,name:"Black Tactical Backpack",price:14000,old:28000,cat:"bags",img:"IMG_2596.jpeg",stock:1},
+{id:5,name:"Black Red Hiking Backpack",price:18000,old:35000,cat:"bags",img:"IMG_2595.jpeg",stock:4},
+{id:6,name:"Adidas Black Backpack",price:15000,old:30000,cat:"bags",img:"IMG_2594.jpeg",stock:2},
+{id:7,name:"Military Multi-Pocket Backpack",price:14000,old:28000,cat:"bags",img:"IMG_2593.jpeg",stock:3},
+{id:8,name:"Red School Backpack Thrift",price:12000,old:22000,cat:"bags",img:"IMG_2592.jpeg",stock:2},
+{id:9,name:"Orange Foam Crocs Second Hand",price:12000,old:25000,cat:"slides",img:"IMG_2591.jpeg",stock:5},
+{id:10,name:"Ghost Face Black T-Shirt",price:7000,old:15000,cat:"clothes",img:"IMG_2590.jpeg",stock:1},
+{id:11,name:"Beige Double-Strap Slides",price:8000,old:18000,cat:"slides",img:"IMG_2589.jpeg",stock:4},
+{id:12,name:"Chanel Black Loafers Thrift",price:25000,old:50000,cat:"shoes",img:"IMG_2588.jpeg",stock:2},
+{id:13,name:"Black Street Sneakers Used",price:30000,old:50000,cat:"shoes",img:"IMG_2587.jpeg",stock:3},
+{id:14,name:"Thrift Shoes Market Pile",price:40000,old:50000,cat:"shoes",img:"IMG_2586.jpeg",stock:6},
+{id:15,name:"Yeezy Beige Slides",price:15000,old:18000,cat:"slides",img:"IMG_2585.jpeg",stock:2},
+{id:16,name:"Black Yeezy Slides",price:8000,old:18000,cat:"slides",img:"IMG_2584.jpeg",stock:3},
+{id:17,name:"White Classic Hoodie Thrift",price:15000,old:25000,cat:"clothes",img:"IMG_2573.png",stock:1},
+{id:18,name:"Grey Zip Hoodie Used",price:13000,old:26000,cat:"clothes",img:"IMG_2547.jpeg",stock:2},
+{id:19,name:"White Foam Runner",price:15000,old:35000,cat:"shoes",img:"IMG_2546.jpeg",stock:4},
+{id:20,name:"Nike White Red Sneakers",price:35000,old:40000,cat:"shoes",img:"IMG_2545.jpeg",stock:2},
+{id:21,name:"Black Formal Loafers",price:16000,old:32000,cat:"shoes",img:"IMG_2544.jpeg",stock:3},
+{id:22,name:"Black Crocodile Crocs",price:80000,old:120000,cat:"slides",img:"IMG_2543.jpeg",stock:1},
+{id:23,name:"White Classic Crocs",price:40000,old:50000,cat:"slides",img:"IMG_2490.jpeg",stock:5},
+{id:24,name:"Grey North Face Backpack",price:16000,old:32000,cat:"bags",img:"IMG_2487.jpeg",stock:2},
+{id:25,name:"Dior Saddle Bag Thrift",price:16000,old:20000,cat:"bags",img:"IMG_2488.jpeg",stock:1},
+{id:26,name:"Black Bear T-Shirt",price:7000,old:15000,cat:"clothes",img:"IMG_2486.png",stock:3},
+{id:27,name:"Givenchy Black T-Shirt Used",price:10000,old:16000,cat:"clothes",img:"IMG_2484.jpeg",stock:2},
+{id:28,name:"Red Black Tote Bag",price:10000,old:14000,cat:"bags",img:"IMG_2485.png",stock:4},
+{id:29,name:"Blue Canvas Shoes Second Hand",price:15000,old:18000,cat:"shoes",img:"IMG_2481.jpeg",stock:2}
 ];
 let products = JSON.parse(localStorage.getItem('thrift_products') || 'null') || defaultProducts;
+// ensure stock exists for old saved products
+products = products.map(p=>{ if(p.stock===undefined) p.stock=2; return p; });
 products.sort((a,b)=>a.price-b.price);
 function saveProducts(){
   localStorage.setItem('thrift_products',JSON.stringify(products));
@@ -254,8 +269,8 @@ function saveProducts(){
 if(!localStorage.getItem('thrift_products')){ saveProducts(); }
 function getOrders(){return JSON.parse(localStorage.getItem('thrift_orders')||'[]');}
 function saveOrders(o){localStorage.setItem('thrift_orders',JSON.stringify(o));}
+function sanitize(t){ let d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
 
-// SMART IMAGE FIX - fixes No Image
 function smartImgFallback(img, original){
   if(img.dataset.done){ img.src='https://via.placeholder.com/400?text=No+Image'; return; }
   let base = original.split('.')[0];
@@ -263,12 +278,8 @@ function smartImgFallback(img, original){
   let i=0;
   function next(){
     if(i>=list.length){ img.dataset.done=1; img.src='https://via.placeholder.com/400?text=No+Image'; return; }
-    let t=list[i++];
-    if(t===original){ next(); return; }
-    let test=new Image();
-    test.onload=function(){ img.src=t; };
-    test.onerror=next;
-    test.src=t;
+    let t=list[i++]; if(t===original){ next(); return; }
+    let test=new Image(); test.onload=function(){ img.src=t; }; test.onerror=next; test.src=t;
   }
   next();
 }
@@ -276,12 +287,13 @@ function smartImgFallback(img, original){
 function render(list,id){
 let el=document.getElementById(id);
 if(!el) return;
-el.innerHTML=list.map(p=>`
-<div class="card"><div class="badge">THRIFT</div>
+el.innerHTML=list.map((p,idx)=>`
+<div class="card" style="animation-delay:${idx*0.04}s"><div class="badge">THRIFT</div>
+${p.stock<=2?`<div class="stockBadge">Only ${p.stock} left!</div>`:`<div class="stockOk">${p.stock} in stock</div>`}
 <div class="saveBadge" onclick="openImageSave(${p.id})">📸</div>
 <img src="${p.img}" onclick="openImageSave(${p.id})" onerror="smartImgFallback(this, '${p.img}')">
 <div class="cat">${p.cat.toUpperCase()}</div>
-<div class="name">${p.id}. ${p.name}</div>
+<div class="name">${p.id}. ${sanitize(p.name)}</div>
 <div class="price">UGX ${p.price.toLocaleString()}<span class="old">${p.old.toLocaleString()}</span></div>
 <button class="btn" onclick="openLoc(${p.id})">+ ADD TO BAG</button>
 <a class="btn2" href="#" onclick="openLoc(${p.id});return false">WhatsApp Order</a>
@@ -318,7 +330,6 @@ async function savePhoto(id){
   }
 }
 
-// FIXED MOBILE MONEY - ONLY *185# - NO ERROR
 function payDirect(amount){
   let total=amount;
   if(!total || total==0){
@@ -365,26 +376,33 @@ function getDelivery(area){let far=['Mukono','Entebbe','Other'];if(far.includes(
 document.getElementById('locArea').addEventListener('change',function(){if(!currentOrder) return;let del=getDelivery(this.value);document.getElementById('locDel').innerText='UGX '+del.toLocaleString();document.getElementById('locTotal').innerText='UGX '+(currentOrder.price+del).toLocaleString();document.getElementById('payBtnTotal').innerText='UGX '+(currentOrder.price+del).toLocaleString();});
 function closeLoc(){document.getElementById('locModal').classList.remove('show');}
 function confirmOrder(){
-let name=document.getElementById('locName').value.trim();
-let phone=document.getElementById('locPhone').value.trim();
+let name=sanitize(document.getElementById('locName').value.trim());
+let phone=sanitize(document.getElementById('locPhone').value.trim());
 let area=document.getElementById('locArea').value;
-let detail=document.getElementById('locDetail').value.trim();
+let detail=sanitize(document.getElementById('locDetail').value.trim());
 if(!name||!phone||!area||!detail){alert('Please fill all fields');return;}
+if(phone.length<10){alert('Enter valid phone 07...');return;}
 let del=getDelivery(area);
 let total=currentOrder.price+del;
 let orders=getOrders();
 orders.unshift({id:Date.now(),item:currentOrder.name,price:currentOrder.price,delivery:del,total:total,name:name,phone:phone,area:area,detail:detail,time:new Date().toLocaleString(),status:'New'});
 saveOrders(orders);
 cart++;document.getElementById('c1').innerText=cart;document.getElementById('c2').innerText=cart;document.getElementById('orderCount').innerText=orders.length;
-let msg=`Hello Thrift Shop UG\nI want: ${currentOrder.name}\nPrice: UGX ${currentOrder.price}\nDelivery (${area}): UGX ${del}\nTotal: UGX ${total}\nName: ${name}\nPhone: ${phone}\nArea: ${area}\nLocation: ${detail}`;
+// BETTER WHATSAPP ORDER
+let msg=`*NEW THRIFT ORDER* 🛒\n\n📦 *Item:* ${currentOrder.name}\n💰 *Price:* UGX ${currentOrder.price.toLocaleString()}\n🚚 *Delivery (${area}):* UGX ${del.toLocaleString()}\n💳 *Total:* UGX ${total.toLocaleString()}\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n📍 *Area:* ${area}\n🏠 *Location:* ${detail}\n\n⏰ Stock left: ${currentOrder.stock} - Please confirm`;
 window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');
 closeLoc();
+currentOrder.stock=Math.max(0,currentOrder.stock-1);
+saveProducts();
+render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
+render(products,'grid');
 }
 function f(c,el){document.querySelectorAll('.filt button').forEach(b=>b.classList.remove('active'));el.classList.add('active');if(c=='all'){render(products,'grid')}else{render(products.filter(x=>x.cat==c),'grid')}}
-function s(v){let a=v.toLowerCase();render(products.filter(p=>p.name.toLowerCase().includes(a)),'grid')}
+function s(v){let a=v.toLowerCase();render(products.filter(p=>sanitize(p.name).toLowerCase().includes(a)),'grid')}
 function showPage(p){
 document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
 let target=p=='payment'?'paymentPage':p+'Page';
+if(target==='adminPage' && localStorage.getItem('thrift_admin')!=='yes'){ openAdmin(); return; }
 document.getElementById(target).classList.add('active');
 if(p=='admin'){renderAdmin();}
 window.scrollTo(0,0);
@@ -394,8 +412,9 @@ if(localStorage.getItem('thrift_admin')=='yes'){showPage('admin');return;}
 document.getElementById('adminLoginModal').classList.add('show');
 }
 function checkAdmin(){
-if(document.getElementById('adminPass').value===ADMIN_PASS){localStorage.setItem('thrift_admin','yes');document.getElementById('adminLoginModal').classList.remove('show');showPage('admin');}
-else{alert('Wrong password');}
+if(loginAttempts>=3){ document.getElementById('loginError').style.display='block'; document.getElementById('loginError').innerText='Too many tries - wait 1 min'; setTimeout(()=>{loginAttempts=0; document.getElementById('loginError').style.display='none';},60000); return; }
+if(document.getElementById('adminPass').value===ADMIN_PASS){localStorage.setItem('thrift_admin','yes');loginAttempts=0;document.getElementById('adminLoginModal').classList.remove('show');showPage('admin');}
+else{loginAttempts++; document.getElementById('loginError').style.display='block'; document.getElementById('loginError').innerText='Wrong password - '+loginAttempts+'/3';}
 }
 function logoutAdmin(){localStorage.removeItem('thrift_admin');showPage('home');}
 function renderAdmin(){
@@ -403,17 +422,17 @@ let orders=getOrders();
 document.getElementById('statOrders').innerText=orders.length;
 document.getElementById('statProducts').innerText=products.length;
 document.getElementById('statRevenue').innerText=orders.reduce((s,o)=>s+o.total,0).toLocaleString();
-document.getElementById('adminOrders').innerHTML=orders.length==0?'<div style="padding:12px;background:#fff;margin:10px;border-radius:12px">No orders yet</div>':orders.map(o=>`<div class="orderCard"><b>${o.item}</b> - UGX ${o.total.toLocaleString()}<br>👤 ${o.name} | 📞 ${o.phone}<br>📍 ${o.area} - ${o.detail}<br>⏰ ${o.time} - ${o.status}<br><div style="margin-top:6px"><button onclick="markDelivered(${o.id})" style="padding:6px 10px;border:none;background:#00A651;color:#fff;border-radius:6px">Delivered</button> <button onclick="deleteOrder(${o.id})" style="padding:6px 10px;border:none;background:#eee;border-radius:6px">Delete</button></div></div>`).join('');
+document.getElementById('adminOrders').innerHTML=orders.length==0?'<div style="padding:12px;background:#fff;margin:10px;border-radius:12px">No orders yet</div>':orders.map(o=>`<div class="orderCard"><b>${sanitize(o.item)}</b> - UGX ${o.total.toLocaleString()}<br>👤 ${sanitize(o.name)} | 📞 ${sanitize(o.phone)}<br>📍 ${sanitize(o.area)} - ${sanitize(o.detail)}<br>⏰ ${o.time} - ${o.status}<br><div style="margin-top:6px"><button onclick="markDelivered(${o.id})" style="padding:6px 10px;border:none;background:#00A651;color:#fff;border-radius:6px">Delivered</button> <button onclick="deleteOrder(${o.id})" style="padding:6px 10px;border:none;background:#eee;border-radius:6px">Delete</button></div></div>`).join('');
 document.getElementById('adminProducts').innerHTML=products.map(p=>`
 <div class="orderCard" style="display:flex;gap:10px;align-items:center">
 <img src="${p.img}" style="width:50px;height:50px;object-fit:cover;border-radius:8px" onerror="smartImgFallback(this, '${p.img}')">
-<div style="flex:1"><b>${p.name}</b><br>UGX ${p.price.toLocaleString()} - ${p.cat}</div>
+<div style="flex:1"><b>${sanitize(p.name)}</b><br>UGX ${p.price.toLocaleString()} - ${p.cat} - Stock: ${p.stock||2}</div>
 <button onclick="editProduct(${p.id})" style="padding:8px 12px;border:none;background:#0080FF;color:#fff;border-radius:8px;font-weight:800">Edit</button>
 <button onclick="deleteProduct(${p.id})" style="padding:8px 12px;border:none;background:#ff4444;color:#fff;border-radius:8px;font-weight:800">X</button>
 </div>`).join('');
 }
 function addProduct(){
-let name=document.getElementById('adName').value.trim();
+let name=sanitize(document.getElementById('adName').value.trim());
 let price=parseInt(document.getElementById('adPrice').value);
 let oldP=parseInt(document.getElementById('adOld').value)||price+10000;
 let cat=document.getElementById('adCat').value;
@@ -427,7 +446,7 @@ if(editingId){
  document.getElementById('cancelEditBtn').style.display='none';
 } else {
  let newId=products.length?Math.max(...products.map(p=>p.id))+1:1;
- products.push({id:newId,name:name,price:price,old:oldP,cat:cat,img:img});
+ products.push({id:newId,name:name,price:price,old:oldP,cat:cat,img:img,stock:2});
 }
 products.sort((a,b)=>a.price-b.price);
 saveProducts();
@@ -435,7 +454,7 @@ render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
 render(products,'grid');
 renderAdmin();
 document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';
-alert('Saved! Product list updated and saved.');
+alert('Saved!');
 }
 function editProduct(id){
 let p=products.find(x=>x.id===id);
@@ -452,9 +471,12 @@ window.scrollTo(0,0);
 document.querySelector('.admin-form').scrollIntoView({behavior:'smooth'});
 }
 function cancelEdit(){editingId=null;document.getElementById('addBtnText').innerText='Add Product';document.getElementById('cancelEditBtn').style.display='none';document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';}
-function deleteProduct(id){if(!confirm('Delete this product? This cannot be undone.'))return;products=products.filter(p=>p.id!==id);saveProducts();render(products.filter(p=>p.price>=18000).slice(0,6),'hot');render(products,'grid');renderAdmin();}
+function deleteProduct(id){if(!confirm('Delete this product?'))return;products=products.filter(p=>p.id!==id);saveProducts();render(products.filter(p=>p.price>=18000).slice(0,6),'hot');render(products,'grid');renderAdmin();}
 function deleteOrder(id){let orders=getOrders().filter(o=>o.id!==id);saveOrders(orders);renderAdmin();document.getElementById('orderCount').innerText=orders.length;}
 function markDelivered(id){let orders=getOrders();let o=orders.find(x=>x.id===id);if(o){o.status='Delivered';saveOrders(orders);renderAdmin();}}
+// banner auto slide
+let bannerIndex=0;
+setInterval(()=>{ let box=document.getElementById('bannerBox'); if(!box||box.children.length==0) return; bannerIndex=(bannerIndex+1)%box.children.length; box.children[bannerIndex].scrollIntoView({behavior:'smooth',inline:'center'}); },4000);
 render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
 render(products,'grid');
 document.getElementById('orderCount').innerText=getOrders().length;
