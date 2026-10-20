@@ -63,7 +63,6 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 .orderCard{background:#fff;margin:10px;border-radius:12px;padding:12px;box-shadow:0 2px 6px rgba(0,0,0,.07);font-size:13px;line-height:1.5}
 .admin-form{background:#fff;margin:10px;padding:14px;border-radius:12px}
 .admin-form input,.admin-form select{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #ddd}
-/* FIXES ONLY - NOT REMOVING */
 .btnSave,.saveBadge{display:none !important}
 .airtelBox{background:#fff;margin:12px;border-radius:16px;padding:18px;border-left:4px solid var(--g);cursor:pointer}
 .airtelNum{color:#0000FF;text-decoration:underline;font-weight:900;font-size:18px}
@@ -78,8 +77,8 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 
 <div id="homePage" class="page active">
 <div class="banners">
-<img src="IMG_2639.jpeg" onerror="this.src='https://via.placeholder.com/800x400?text=Thrift+Shop+UG'">
-<img src="IMG_2640.jpeg" onerror="this.src='https://via.placeholder.com/800x400?text=BAGS+25K+SHOES+30K'">
+<img src="IMG_2639.jpeg" onerror="smartImgFallback(this, 'IMG_2639.jpeg')">
+<img src="IMG_2640.jpeg" onerror="smartImgFallback(this, 'IMG_2640.jpeg')">
 </div>
 <div class="title">🔥 Hot Deals <small>Thrift Cheap</small></div>
 <div class="grid" id="hot"></div>
@@ -110,9 +109,10 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <div id="paymentPage" class="page">
 <div style="padding:12px;background:#fff;font-weight:800" onclick="showPage('home')">← Back to Home</div>
 <div class="airtelBox" onclick="payDirect(0)">
-<h4>💳 Airtel Money Only - <span class="airtelNum">0749 253 155</span></h4>
-<p style="font-size:12px;margin-top:6px;color:#666">Tap to pay directly - Dial *185#</p>
+<h4>💳 Airtel Money Only - <span class="airtelNum" id="airtelLink">0749 253 155</span></h4>
+<p style="font-size:12px;margin-top:6px;color:#666">Tap number to pay directly via Mobile Money - Dials *185#</p>
 <p style="font-size:12px;margin-top:6px;color:#666">Delivery fee 5000 UGX around Kampala. Outside: 10k.</p>
+<div id="payInfo" style="background:#f0fff4;padding:10px;border-radius:8px;margin-top:10px;font-size:12px;display:none"></div>
 </div>
 </div>
 
@@ -156,7 +156,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <div>Delivery: <b id="locDel">UGX 5000</b></div>
 <div>Total: <b id="locTotal">UGX 0</b></div>
 </div>
-<button onclick="payDirectCurrent()" style="background:#E40000">💳 PAY WITH AIRTEL MONEY - <span id="payBtnTotal">0</span></button>
+<button onclick="payDirectCurrent()" style="background:#FF0000">💳 PAY WITH AIRTEL MONEY - <span id="payBtnTotal">0</span></button>
 <button onclick="confirmOrder()">Confirm & Order via WhatsApp</button>
 <button onclick="closeLoc()" style="background:#eee;color:#333">Cancel</button>
 </div>
@@ -179,7 +179,7 @@ Number: <b style="color:var(--g)">0749 253 155</b> <button onclick="copyText('07
 Amount: <b id="payAmount" style="color:#E40000">UGX 0</b> <button onclick="copyAmount()" style="padding:4px 8px;font-size:10px;display:inline;width:auto;margin-left:6px">Copy</button><br>
 Item: <span id="payItem"></span>
 </div>
-<p style="font-size:12px;color:#666">Step 1: Tap Dial *185# below<br>Step 2: Select Send Money<br>Step 3: Paste number & amount (already copied)</p>
+<p style="font-size:12px;color:#666">Tap Dial *185# below - number & amount already copied</p>
 <button onclick="dial185()" style="background:#111">📞 Dial *185# Now</button>
 <button onclick="window.open('https://wa.me/256749253155?text='+encodeURIComponent('I have paid for '+ (currentOrder?currentOrder.name:'' ) + ' Amount: ' + document.getElementById('payAmount').innerText),'_blank')" style="background:var(--g)">✅ I Have Paid - Send WhatsApp</button>
 <button onclick="document.getElementById('payModal').classList.remove('show')" style="background:#eee;color:#333">Close</button>
@@ -254,13 +254,32 @@ function saveProducts(){
 if(!localStorage.getItem('thrift_products')){ saveProducts(); }
 function getOrders(){return JSON.parse(localStorage.getItem('thrift_orders')||'[]');}
 function saveOrders(o){localStorage.setItem('thrift_orders',JSON.stringify(o));}
+
+// SMART IMAGE FIX - fixes No Image
+function smartImgFallback(img, original){
+  if(img.dataset.done){ img.src='https://via.placeholder.com/400?text=No+Image'; return; }
+  let base = original.split('.')[0];
+  let list = [base+'.jpeg', base+'.jpg', base+'.JPG', base+'.png', base+'.PNG'];
+  let i=0;
+  function next(){
+    if(i>=list.length){ img.dataset.done=1; img.src='https://via.placeholder.com/400?text=No+Image'; return; }
+    let t=list[i++];
+    if(t===original){ next(); return; }
+    let test=new Image();
+    test.onload=function(){ img.src=t; };
+    test.onerror=next;
+    test.src=t;
+  }
+  next();
+}
+
 function render(list,id){
 let el=document.getElementById(id);
 if(!el) return;
 el.innerHTML=list.map(p=>`
 <div class="card"><div class="badge">THRIFT</div>
 <div class="saveBadge" onclick="openImageSave(${p.id})">📸</div>
-<img src="${p.img}" onclick="openImageSave(${p.id})" onerror="this.src='https://via.placeholder.com/400?text=No+Image'">
+<img src="${p.img}" onclick="openImageSave(${p.id})" onerror="smartImgFallback(this, '${p.img}')">
 <div class="cat">${p.cat.toUpperCase()}</div>
 <div class="name">${p.id}. ${p.name}</div>
 <div class="price">UGX ${p.price.toLocaleString()}<span class="old">${p.old.toLocaleString()}</span></div>
@@ -271,7 +290,6 @@ el.innerHTML=list.map(p=>`
 document.getElementById('countAll').innerText=products.length+' Items';
 }
 
-// CUSTOMER SAVE PHOTO FEATURE - KEPT BUT HIDDEN
 function openImageSave(id){
   let p=products.find(x=>x.id===id);
   if(!p) return;
@@ -300,7 +318,7 @@ async function savePhoto(id){
   }
 }
 
-// FIXED MOBILE MONEY - ONLY *185# - NO LONG CODE
+// FIXED MOBILE MONEY - ONLY *185# - NO ERROR
 function payDirect(amount){
   let total=amount;
   if(!total || total==0){
@@ -308,7 +326,8 @@ function payDirect(amount){
       let del=getDelivery(document.getElementById('locArea').value);
       total=currentOrder.price+del;
     } else {
-      total=0;
+      window.location.href="tel:0749253155";
+      return;
     }
   }
   lastAmount=total;
@@ -316,11 +335,19 @@ function payDirect(amount){
   document.getElementById('payItem').innerText=currentOrder?currentOrder.name:'Thrift Shop Order';
   document.getElementById('payModal').classList.add('show');
   try{navigator.clipboard.writeText(total.toString());}catch(e){}
+  let info=document.getElementById('payInfo');
+  if(info){
+    info.style.display='block';
+    info.innerHTML="Amount copied: <b>UGX "+total.toLocaleString()+"</b><br>Number: <b>0749253155</b><br>Now dial *185# and paste";
+  }
 }
-function payDirectCurrent(){payDirect(0);}
-function dial185(){
-  window.location.href='tel:*185%23';
+function payDirectCurrent(){
+  if(!currentOrder) return;
+  let del=getDelivery(document.getElementById('locArea').value);
+  let total=currentOrder.price+del;
+  payDirect(total);
 }
+function dial185(){ window.location.href='tel:*185%23'; }
 function copyText(t){navigator.clipboard.writeText(t);alert('Copied: '+t);}
 function copyAmount(){navigator.clipboard.writeText(lastAmount.toString());alert('Amount copied: '+lastAmount);}
 
@@ -379,7 +406,7 @@ document.getElementById('statRevenue').innerText=orders.reduce((s,o)=>s+o.total,
 document.getElementById('adminOrders').innerHTML=orders.length==0?'<div style="padding:12px;background:#fff;margin:10px;border-radius:12px">No orders yet</div>':orders.map(o=>`<div class="orderCard"><b>${o.item}</b> - UGX ${o.total.toLocaleString()}<br>👤 ${o.name} | 📞 ${o.phone}<br>📍 ${o.area} - ${o.detail}<br>⏰ ${o.time} - ${o.status}<br><div style="margin-top:6px"><button onclick="markDelivered(${o.id})" style="padding:6px 10px;border:none;background:#00A651;color:#fff;border-radius:6px">Delivered</button> <button onclick="deleteOrder(${o.id})" style="padding:6px 10px;border:none;background:#eee;border-radius:6px">Delete</button></div></div>`).join('');
 document.getElementById('adminProducts').innerHTML=products.map(p=>`
 <div class="orderCard" style="display:flex;gap:10px;align-items:center">
-<img src="${p.img}" style="width:50px;height:50px;object-fit:cover;border-radius:8px" onerror="this.src='https://via.placeholder.com/50'">
+<img src="${p.img}" style="width:50px;height:50px;object-fit:cover;border-radius:8px" onerror="smartImgFallback(this, '${p.img}')">
 <div style="flex:1"><b>${p.name}</b><br>UGX ${p.price.toLocaleString()} - ${p.cat}</div>
 <button onclick="editProduct(${p.id})" style="padding:8px 12px;border:none;background:#0080FF;color:#fff;border-radius:8px;font-weight:800">Edit</button>
 <button onclick="deleteProduct(${p.id})" style="padding:8px 12px;border:none;background:#ff4444;color:#fff;border-radius:8px;font-weight:800">X</button>
