@@ -40,7 +40,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 .j-welcome{padding:16px;background:#fff}
 .j-welcome b{font-size:18px}
 .j-welcome p{color:#FF8A00;font-size:14px;margin-top:2px}
-.j-balance{padding:0 16px 12px;background:#fff;color:#0080FF;font-weight:700;font-size:15px;display:flex;align-items:center;gap:8px}
+.j-balance{padding:0 16px 12px;background:#fff;color:#0080FF;font-weight:700;font-size:15px}
 .j-buttons{display:flex;gap:10px;padding:12px 16px;background:#f5f5f5}
 .j-live{flex:1;background:var(--org);color:#fff;border:none;padding:14px;border-radius:8px;font-weight:800;font-size:15px}
 .j-wa{flex:1;background:#fff;border:2px solid var(--g);color:var(--g);padding:12px;border-radius:8px;font-weight:800;font-size:15px}
@@ -125,17 +125,18 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <div class="stat"><b id="statRevenue">0</b>UGX Rev</div>
 </div>
 <div class="admin-form">
-<h4>➕ Add New Product</h4>
+<h4>➕ Add / Edit Product</h4>
 <input id="adName" placeholder="Name e.g. Nike Thrift Bag">
 <input id="adPrice" type="number" placeholder="Price UGX e.g. 15000">
 <input id="adOld" type="number" placeholder="Old Price e.g. 30000">
 <select id="adCat"><option value="bags">bags</option><option value="shoes">shoes</option><option value="slides">slides</option><option value="clothes">clothes</option></select>
 <input id="adImg" placeholder="Image file name e.g. IMG_2600.jpeg">
-<button onclick="addProduct()" style="background:#111">Add Product</button>
+<button onclick="addProduct()" style="background:#111"><span id="addBtnText">Add Product</span></button>
+<button id="cancelEditBtn" onclick="cancelEdit()" style="background:#eee;color:#333;display:none">Cancel Edit</button>
 </div>
-<div style="padding:12px;font-weight:800">📦 All Orders (with Location + Delivery 5000)</div>
+<div style="padding:12px;font-weight:800">📦 All Orders (Location + 5000)</div>
 <div id="adminOrders"></div>
-<div style="padding:12px;font-weight:800">📝 Manage Products</div>
+<div style="padding:12px;font-weight:800">📝 Manage Products - Click Edit to change</div>
 <div id="adminProducts"></div>
 </div>
 
@@ -149,7 +150,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <option value="">Select Area *</option>
 <option>Kira</option><option>Wakiso</option><option>Bweyogerere</option><option>Najjera</option><option>Ntinda</option><option>Kyanja</option><option>Kampala Central</option><option>Mukono</option><option>Entebbe</option><option>Other</option>
 </select>
-<input id="locDetail" placeholder="Village / Stage, e.g. Kira Town near... *">
+<input id="locDetail" placeholder="Village / Stage *">
 <div style="background:#f1fff4;padding:10px;border-radius:10px;font-size:13px;margin:8px 0">
 <div>Item: <b id="locPrice">UGX 0</b></div>
 <div>Delivery: <b id="locDel" style="color:var(--g)">UGX 5000</b></div>
@@ -171,10 +172,10 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 </div>
 
 <div class="bottom">
-<a class="nav active" id="nav-home" href="#" onclick="showPage('home');return false"><b>🏠</b>Home</a>
-<a class="nav" id="nav-cat" href="#" onclick="showPage('home');document.getElementById('filt').scrollIntoView();return false"><b>📦</b>Categories</a>
-<a class="nav" id="nav-cart" href="#" onclick="showPage('payment');return false"><b>🛒</b><span id="c2">0</span> Cart</a>
-<a class="nav" id="nav-acc" href="#" onclick="showPage('account');return false"><b>👤</b>Account</a>
+<a class="nav active" href="#" onclick="showPage('home');return false"><b>🏠</b>Home</a>
+<a class="nav" href="#" onclick="showPage('home');document.getElementById('filt').scrollIntoView();return false"><b>📦</b>Categories</a>
+<a class="nav" href="#" onclick="showPage('payment');return false"><b>🛒</b><span id="c2">0</span> Cart</a>
+<a class="nav" href="#" onclick="showPage('account');return false"><b>👤</b>Account</a>
 </div>
 
 <script>
@@ -182,6 +183,7 @@ const WA="256749253155";
 const ADMIN_PASS="thrift2026";
 let cart=0;
 let currentOrder=null;
+let editingId=null;
 let defaultProducts=[
 {id:1,name:"Beige Hiking Backpack Thrift",price:18000,old:35000,cat:"bags",img:"IMG_2599.jpeg"},
 {id:2,name:"North Face Grey Backpack Used",price:20000,old:40000,cat:"bags",img:"IMG_2598.jpeg"},
@@ -215,11 +217,9 @@ let defaultProducts=[
 ];
 let products = JSON.parse(localStorage.getItem('thrift_products') || 'null') || defaultProducts;
 products.sort((a,b)=>a.price-b.price);
-
 function saveProducts(){localStorage.setItem('thrift_products',JSON.stringify(products));}
 function getOrders(){return JSON.parse(localStorage.getItem('thrift_orders')||'[]');}
 function saveOrders(o){localStorage.setItem('thrift_orders',JSON.stringify(o));}
-
 function render(list,id){
 let el=document.getElementById(id);
 if(!el) return;
@@ -237,7 +237,7 @@ document.getElementById('countAll').innerText=products.length+' Items';
 function openLoc(id){
 currentOrder=products.find(x=>x.id===id);
 let areaVal=document.getElementById('locArea').value;
-let del = getDelivery(areaVal);
+let del=getDelivery(areaVal);
 document.getElementById('locItem').innerText=currentOrder.name;
 document.getElementById('locPrice').innerText='UGX '+currentOrder.price.toLocaleString();
 document.getElementById('locDel').innerText='UGX '+del.toLocaleString();
@@ -303,38 +303,66 @@ document.getElementById('adminOrders').innerHTML=orders.length==0?'<div style="p
 👤 ${o.name} | 📞 ${o.phone}<br>
 📍 ${o.area} - ${o.detail}<br>
 ⏰ ${o.time} - <span style="color:${o.status=='Delivered'?'green':'orange'}">${o.status}</span>
-<div style="margin-top:8px;display:flex;gap:6px">
+<div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
 <button onclick="markDelivered(${o.id})" style="padding:6px 10px;border:none;background:#00A651;color:#fff;border-radius:6px">Delivered</button>
 <button onclick="deleteOrder(${o.id})" style="padding:6px 10px;border:none;background:#eee;border-radius:6px">Delete</button>
-<button onclick="window.open('https://wa.me/${o.phone.replace(/[^0-9]/g,'')||WA}?text=Hello ${encodeURIComponent(o.name)} your order ${encodeURIComponent(o.item)}','_blank')" style="padding:6px 10px;border:none;background:#111;color:#fff;border-radius:6px">WhatsApp</button>
+<button onclick="window.open('https://wa.me/256${o.phone.slice(-9)}?text=Hello','_blank')" style="padding:6px 10px;border:none;background:#111;color:#fff;border-radius:6px">WhatsApp</button>
 </div>
 </div>`).join('');
 document.getElementById('adminProducts').innerHTML=products.map(p=>`
 <div class="orderCard" style="display:flex;gap:10px;align-items:center">
-<img src="${p.img}" style="width:50px;height:50px;object-fit:cover;border-radius:8px">
-<div style="flex:1"><b>${p.name}</b><br>UGX ${p.price} - ${p.cat}</div>
+<img src="${p.img}" style="width:50px;height:50px;object-fit:cover;border-radius:8px" onerror="this.src='https://via.placeholder.com/50'">
+<div style="flex:1"><b>${p.name}</b><br>UGX ${p.price.toLocaleString()} - ${p.cat}</div>
+<button onclick="editProduct(${p.id})" style="padding:6px 10px;border:none;background:#0080FF;color:#fff;border-radius:6px">Edit</button>
 <button onclick="deleteProduct(${p.id})" style="padding:6px 10px;border:none;background:#ff4444;color:#fff;border-radius:6px">X</button>
 </div>`).join('');
 }
 function addProduct(){
 let name=document.getElementById('adName').value.trim();
 let price=parseInt(document.getElementById('adPrice').value);
-let oldP=parseInt(document.getElementById('adOld').value)||price;
+let oldP=parseInt(document.getElementById('adOld').value)||price+10000;
 let cat=document.getElementById('adCat').value;
-let img=document.getElementById('adImg').value.trim()||'https://via.placeholder.com/400?text=No+Image';
+let img=document.getElementById('adImg').value.trim()||'https://via.placeholder.com/400?text=Thrift';
 if(!name||!price){alert('Name and price required');return;}
-let newId=products.length?Math.max(...products.map(p=>p.id))+1:1;
-products.push({id:newId,name:name,price:price,old:oldP,cat:cat,img:img});
+
+if(editingId){
+ let p=products.find(x=>x.id===editingId);
+ p.name=name; p.price=price; p.old=oldP; p.cat=cat; p.img=img;
+ editingId=null;
+ document.getElementById('addBtnText').innerText='Add Product';
+ document.getElementById('cancelEditBtn').style.display='none';
+} else {
+ let newId=products.length?Math.max(...products.map(p=>p.id))+1:1;
+ products.push({id:newId,name:name,price:price,old:oldP,cat:cat,img:img});
+}
 products.sort((a,b)=>a.price-b.price);
 saveProducts();
 render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
 render(products,'grid');
 renderAdmin();
 document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';
-alert('Product added');
+alert('Saved! Check home page - product updated.');
+}
+function editProduct(id){
+let p=products.find(x=>x.id===id);
+document.getElementById('adName').value=p.name;
+document.getElementById('adPrice').value=p.price;
+document.getElementById('adOld').value=p.old;
+document.getElementById('adCat').value=p.cat;
+document.getElementById('adImg').value=p.img;
+editingId=id;
+document.getElementById('addBtnText').innerText='Update Product';
+document.getElementById('cancelEditBtn').style.display='block';
+window.scrollTo(0,0);
+}
+function cancelEdit(){
+editingId=null;
+document.getElementById('addBtnText').innerText='Add Product';
+document.getElementById('cancelEditBtn').style.display='none';
+document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';
 }
 function deleteProduct(id){if(!confirm('Delete product?'))return;products=products.filter(p=>p.id!==id);saveProducts();render(products.filter(p=>p.price>=18000).slice(0,6),'hot');render(products,'grid');renderAdmin();}
-function deleteOrder(id){let orders=getOrders().filter(o=>o.id!==id);saveOrders(orders);renderAdmin();document.getElementById('orderCount').innerText=orders.length;document.getElementById('c2').innerText=orders.length;}
+function deleteOrder(id){let orders=getOrders().filter(o=>o.id!==id);saveOrders(orders);renderAdmin();document.getElementById('orderCount').innerText=orders.length;}
 function markDelivered(id){let orders=getOrders();let o=orders.find(x=>x.id===id);if(o){o.status='Delivered';saveOrders(orders);renderAdmin();}}
 
 render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
