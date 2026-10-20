@@ -89,7 +89,6 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 </div>
 
 <div id="accountPage" class="page">
-<div class="j-search"><input placeholder="Search on Jumia" disabled></div>
 <div class="jumia-acc">
 <div class="j-welcome"><b>Welcome Panda!</b><p>pandaniga16@gmail.com</p></div>
 <div class="j-balance">🅱️ Thrift balance UGX 0</div>
@@ -97,14 +96,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <button class="j-live" onclick="window.open('https://wa.me/256749253155','_blank')">💬 Live Chat</button>
 <button class="j-wa" onclick="window.open('https://wa.me/256749253155','_blank')">WhatsApp</button>
 </div>
-<div class="j-section">Need Assistance?</div>
-<div class="j-item"><span>🛈 Help & Support</span><span>›</span></div>
-<div class="j-section">My Jumia Account</div>
 <div class="j-item"><span>📦 Orders (<span id="orderCount">0</span>)</span><span>›</span></div>
-<div class="j-item"><span>✉️ Inbox</span><span>›</span></div>
-<div class="j-item"><span>❤️ Wishlist</span><span>›</span></div>
-<div class="j-section">My Settings</div>
-<div class="j-item"><span>📍 Address Book - Kira, Wakiso</span><span>›</span></div>
 <div class="j-item" onclick="openAdmin()" style="color:var(--g)"><span>🔐 Admin Panel</span><span>›</span></div>
 </div>
 </div>
@@ -113,7 +105,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <div style="padding:12px;background:#fff;font-weight:800" onclick="showPage('home')">← Back to Home</div>
 <div style="background:#fff;margin:12px;border-radius:16px;padding:18px;border-left:4px solid var(--g)">
 <h4>💳 Airtel Money Only - 0749 253 155</h4>
-<p style="font-size:12px;margin-top:6px;color:#666">Delivery fee 5000 UGX around Kampala (Kira, Wakiso, Bweyogerere, Najjera, Ntinda, Kyanja, Central). Outside: 10k.</p>
+<p style="font-size:12px;margin-top:6px;color:#666">Delivery fee 5000 UGX around Kampala. Outside: 10k.</p>
 </div>
 </div>
 
@@ -126,17 +118,17 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 </div>
 <div class="admin-form">
 <h4>➕ Add / Edit Product</h4>
-<input id="adName" placeholder="Name e.g. Nike Thrift Bag">
-<input id="adPrice" type="number" placeholder="Price UGX e.g. 15000">
-<input id="adOld" type="number" placeholder="Old Price e.g. 30000">
+<input id="adName" placeholder="Name">
+<input id="adPrice" type="number" placeholder="Price UGX">
+<input id="adOld" type="number" placeholder="Old Price">
 <select id="adCat"><option value="bags">bags</option><option value="shoes">shoes</option><option value="slides">slides</option><option value="clothes">clothes</option></select>
-<input id="adImg" placeholder="Image file name e.g. IMG_2600.jpeg">
+<input id="adImg" placeholder="Image e.g. IMG_2600.jpeg">
 <button onclick="addProduct()" style="background:#111"><span id="addBtnText">Add Product</span></button>
 <button id="cancelEditBtn" onclick="cancelEdit()" style="background:#eee;color:#333;display:none">Cancel Edit</button>
 </div>
-<div style="padding:12px;font-weight:800">📦 All Orders (Location + 5000)</div>
+<div style="padding:12px;font-weight:800">📦 Orders</div>
 <div id="adminOrders"></div>
-<div style="padding:12px;font-weight:800">📝 Manage Products - Click Edit to change</div>
+<div style="padding:12px;font-weight:800">📝 Manage Products - TAP EDIT OR X BELOW</div>
 <div id="adminProducts"></div>
 </div>
 
@@ -153,8 +145,8 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <input id="locDetail" placeholder="Village / Stage *">
 <div style="background:#f1fff4;padding:10px;border-radius:10px;font-size:13px;margin:8px 0">
 <div>Item: <b id="locPrice">UGX 0</b></div>
-<div>Delivery: <b id="locDel" style="color:var(--g)">UGX 5000</b></div>
-<div style="border-top:1px solid #ddd;margin-top:6px;padding-top:6px">Total: <b id="locTotal" style="font-size:16px">UGX 0</b></div>
+<div>Delivery: <b id="locDel">UGX 5000</b></div>
+<div>Total: <b id="locTotal">UGX 0</b></div>
 </div>
 <button onclick="confirmOrder()">Confirm & Order via WhatsApp</button>
 <button onclick="closeLoc()" style="background:#eee;color:#333">Cancel</button>
@@ -164,7 +156,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <div id="adminLoginModal">
 <div class="locBox">
 <h3>🔐 Admin Login</h3>
-<p style="font-size:12px;color:#666">Enter password to manage shop</p>
+<p style="font-size:12px;color:#666">Enter password</p>
 <input id="adminPass" type="password" placeholder="Password">
 <button onclick="checkAdmin()">Login</button>
 <button onclick="document.getElementById('adminLoginModal').classList.remove('show')" style="background:#eee;color:#333">Cancel</button>
@@ -226,7 +218,7 @@ if(!el) return;
 el.innerHTML=list.map(p=>`
 <div class="card"><div class="badge">THRIFT</div>
 <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400?text=No+Image'">
-<div class="cat">${p.cat.toUpperCase()} • SECOND HAND</div>
+<div class="cat">${p.cat.toUpperCase()}</div>
 <div class="name">${p.id}. ${p.name}</div>
 <div class="price">UGX ${p.price.toLocaleString()}<span class="old">${p.old.toLocaleString()}</span></div>
 <button class="btn" onclick="openLoc(${p.id})">+ ADD TO BAG</button>
@@ -236,25 +228,15 @@ document.getElementById('countAll').innerText=products.length+' Items';
 }
 function openLoc(id){
 currentOrder=products.find(x=>x.id===id);
-let areaVal=document.getElementById('locArea').value;
-let del=getDelivery(areaVal);
+let del=getDelivery(document.getElementById('locArea').value);
 document.getElementById('locItem').innerText=currentOrder.name;
 document.getElementById('locPrice').innerText='UGX '+currentOrder.price.toLocaleString();
 document.getElementById('locDel').innerText='UGX '+del.toLocaleString();
 document.getElementById('locTotal').innerText='UGX '+(currentOrder.price+del).toLocaleString();
 document.getElementById('locModal').classList.add('show');
 }
-function getDelivery(area){
-let far=['Mukono','Entebbe','Other'];
-if(far.includes(area)) return 10000;
-return 5000;
-}
-document.getElementById('locArea').addEventListener('change',function(){
-if(!currentOrder) return;
-let del=getDelivery(this.value);
-document.getElementById('locDel').innerText='UGX '+del.toLocaleString();
-document.getElementById('locTotal').innerText='UGX '+(currentOrder.price+del).toLocaleString();
-});
+function getDelivery(area){let far=['Mukono','Entebbe','Other'];if(far.includes(area)) return 10000;return 5000;}
+document.getElementById('locArea').addEventListener('change',function(){if(!currentOrder) return;let del=getDelivery(this.value);document.getElementById('locDel').innerText='UGX '+del.toLocaleString();document.getElementById('locTotal').innerText='UGX '+(currentOrder.price+del).toLocaleString();});
 function closeLoc(){document.getElementById('locModal').classList.remove('show');}
 function confirmOrder(){
 let name=document.getElementById('locName').value.trim();
@@ -265,11 +247,10 @@ if(!name||!phone||!area||!detail){alert('Please fill all fields');return;}
 let del=getDelivery(area);
 let total=currentOrder.price+del;
 let orders=getOrders();
-let newOrder={id:Date.now(),item:currentOrder.name,price:currentOrder.price,delivery:del,total:total,name:name,phone:phone,area:area,detail:detail,time:new Date().toLocaleString(),status:'New'};
-orders.unshift(newOrder);
+orders.unshift({id:Date.now(),item:currentOrder.name,price:currentOrder.price,delivery:del,total:total,name:name,phone:phone,area:area,detail:detail,time:new Date().toLocaleString(),status:'New'});
 saveOrders(orders);
 cart++;document.getElementById('c1').innerText=cart;document.getElementById('c2').innerText=cart;document.getElementById('orderCount').innerText=orders.length;
-let msg=`Hello Thrift Shop UG\nI want: ${currentOrder.name}\nPrice: UGX ${currentOrder.price}\nDelivery (${area}): UGX ${del}\nTotal: UGX ${total}\nName: ${name}\nPhone: ${phone}\nArea: ${area}\nLocation: ${detail}\nAirtel: 0749253155`;
+let msg=`Hello Thrift Shop UG\nI want: ${currentOrder.name}\nPrice: UGX ${currentOrder.price}\nDelivery (${area}): UGX ${del}\nTotal: UGX ${total}\nName: ${name}\nPhone: ${phone}\nArea: ${area}\nLocation: ${detail}`;
 window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');
 closeLoc();
 }
@@ -287,8 +268,7 @@ if(localStorage.getItem('thrift_admin')=='yes'){showPage('admin');return;}
 document.getElementById('adminLoginModal').classList.add('show');
 }
 function checkAdmin(){
-let pass=document.getElementById('adminPass').value;
-if(pass===ADMIN_PASS){localStorage.setItem('thrift_admin','yes');document.getElementById('adminLoginModal').classList.remove('show');showPage('admin');}
+if(document.getElementById('adminPass').value===ADMIN_PASS){localStorage.setItem('thrift_admin','yes');document.getElementById('adminLoginModal').classList.remove('show');showPage('admin');}
 else{alert('Wrong password');}
 }
 function logoutAdmin(){localStorage.removeItem('thrift_admin');showPage('home');}
@@ -297,24 +277,13 @@ let orders=getOrders();
 document.getElementById('statOrders').innerText=orders.length;
 document.getElementById('statProducts').innerText=products.length;
 document.getElementById('statRevenue').innerText=orders.reduce((s,o)=>s+o.total,0).toLocaleString();
-document.getElementById('adminOrders').innerHTML=orders.length==0?'<div style="padding:12px;background:#fff;margin:10px;border-radius:12px">No orders yet</div>':orders.map(o=>`
-<div class="orderCard">
-<b>${o.item}</b> - UGX ${o.total.toLocaleString()} (Item ${o.price}+Del ${o.delivery})<br>
-👤 ${o.name} | 📞 ${o.phone}<br>
-📍 ${o.area} - ${o.detail}<br>
-⏰ ${o.time} - <span style="color:${o.status=='Delivered'?'green':'orange'}">${o.status}</span>
-<div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
-<button onclick="markDelivered(${o.id})" style="padding:6px 10px;border:none;background:#00A651;color:#fff;border-radius:6px">Delivered</button>
-<button onclick="deleteOrder(${o.id})" style="padding:6px 10px;border:none;background:#eee;border-radius:6px">Delete</button>
-<button onclick="window.open('https://wa.me/256${o.phone.slice(-9)}?text=Hello','_blank')" style="padding:6px 10px;border:none;background:#111;color:#fff;border-radius:6px">WhatsApp</button>
-</div>
-</div>`).join('');
+document.getElementById('adminOrders').innerHTML=orders.length==0?'<div style="padding:12px;background:#fff;margin:10px;border-radius:12px">No orders yet</div>':orders.map(o=>`<div class="orderCard"><b>${o.item}</b> - UGX ${o.total.toLocaleString()}<br>👤 ${o.name} | 📞 ${o.phone}<br>📍 ${o.area} - ${o.detail}<br>⏰ ${o.time} - ${o.status}<br><div style="margin-top:6px"><button onclick="markDelivered(${o.id})" style="padding:6px 10px;border:none;background:#00A651;color:#fff;border-radius:6px">Delivered</button> <button onclick="deleteOrder(${o.id})" style="padding:6px 10px;border:none;background:#eee;border-radius:6px">Delete</button></div></div>`).join('');
 document.getElementById('adminProducts').innerHTML=products.map(p=>`
 <div class="orderCard" style="display:flex;gap:10px;align-items:center">
 <img src="${p.img}" style="width:50px;height:50px;object-fit:cover;border-radius:8px" onerror="this.src='https://via.placeholder.com/50'">
 <div style="flex:1"><b>${p.name}</b><br>UGX ${p.price.toLocaleString()} - ${p.cat}</div>
-<button onclick="editProduct(${p.id})" style="padding:6px 10px;border:none;background:#0080FF;color:#fff;border-radius:6px">Edit</button>
-<button onclick="deleteProduct(${p.id})" style="padding:6px 10px;border:none;background:#ff4444;color:#fff;border-radius:6px">X</button>
+<button onclick="editProduct(${p.id})" style="padding:8px 12px;border:none;background:#0080FF;color:#fff;border-radius:8px;font-weight:800">Edit</button>
+<button onclick="deleteProduct(${p.id})" style="padding:8px 12px;border:none;background:#ff4444;color:#fff;border-radius:8px;font-weight:800">X</button>
 </div>`).join('');
 }
 function addProduct(){
@@ -324,7 +293,6 @@ let oldP=parseInt(document.getElementById('adOld').value)||price+10000;
 let cat=document.getElementById('adCat').value;
 let img=document.getElementById('adImg').value.trim()||'https://via.placeholder.com/400?text=Thrift';
 if(!name||!price){alert('Name and price required');return;}
-
 if(editingId){
  let p=products.find(x=>x.id===editingId);
  p.name=name; p.price=price; p.old=oldP; p.cat=cat; p.img=img;
@@ -341,10 +309,11 @@ render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
 render(products,'grid');
 renderAdmin();
 document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';
-alert('Saved! Check home page - product updated.');
+alert('Saved! Product list updated.');
 }
 function editProduct(id){
 let p=products.find(x=>x.id===id);
+if(!p){alert('Product not found');return;}
 document.getElementById('adName').value=p.name;
 document.getElementById('adPrice').value=p.price;
 document.getElementById('adOld').value=p.old;
@@ -354,17 +323,12 @@ editingId=id;
 document.getElementById('addBtnText').innerText='Update Product';
 document.getElementById('cancelEditBtn').style.display='block';
 window.scrollTo(0,0);
+document.querySelector('.admin-form').scrollIntoView({behavior:'smooth'});
 }
-function cancelEdit(){
-editingId=null;
-document.getElementById('addBtnText').innerText='Add Product';
-document.getElementById('cancelEditBtn').style.display='none';
-document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';
-}
-function deleteProduct(id){if(!confirm('Delete product?'))return;products=products.filter(p=>p.id!==id);saveProducts();render(products.filter(p=>p.price>=18000).slice(0,6),'hot');render(products,'grid');renderAdmin();}
+function cancelEdit(){editingId=null;document.getElementById('addBtnText').innerText='Add Product';document.getElementById('cancelEditBtn').style.display='none';document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';}
+function deleteProduct(id){if(!confirm('Delete this product? This cannot be undone.'))return;products=products.filter(p=>p.id!==id);saveProducts();render(products.filter(p=>p.price>=18000).slice(0,6),'hot');render(products,'grid');renderAdmin();}
 function deleteOrder(id){let orders=getOrders().filter(o=>o.id!==id);saveOrders(orders);renderAdmin();document.getElementById('orderCount').innerText=orders.length;}
 function markDelivered(id){let orders=getOrders();let o=orders.find(x=>x.id===id);if(o){o.status='Delivered';saveOrders(orders);renderAdmin();}}
-
 render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
 render(products,'grid');
 document.getElementById('orderCount').innerText=getOrders().length;
