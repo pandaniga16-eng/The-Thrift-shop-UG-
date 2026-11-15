@@ -11,9 +11,9 @@
 <meta name="apple-mobile-web-app-title" content="Shoes Kasese">
 <link rel="apple-touch-icon" href="/icon-192.png">
 <link rel="icon" href="/icon-192.png">
-<meta name="google-site-verification" content="5IupPj5G94xF3adB7YKOvs7j1As9bcx1dag4bBbY8go" />
-<meta name="google-site-verification" content="c3a01e527e9ce6f6" />
 <title>Original Shoes Kasese</title>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <style>
 :root{--g:#00A651;--org:#FF8A00}
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
@@ -77,6 +77,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 .stockOk{position:absolute;top:12px;right:12px;background:#111;color:#fff;font-size:8px;padding:4px 6px;border-radius:6px;font-weight:800;z-index:3}
 .wa-float{position:fixed;bottom:95px;right:16px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 12px rgba(0,0,0,.3);z-index:999;animation:waPulse 2s infinite;text-decoration:none}
 #installBtn{display:none;background:#000;color:#fff;padding:14px 20px;width:100%;border:none;border-radius:12px;font-weight:bold;font-size:16px;cursor:pointer}
+.cloudStatus{padding:8px 12px;text-align:center;font-size:11px;font-weight:700}
 @keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.7)}70%{box-shadow:0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes popUp{from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1}}
@@ -89,6 +90,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <div style="display:flex;justify-content:space-between"><div class="logo">Original <span>Shoes Kasese</span></div><div>🛒 <span id="c1">0</span> | <span style="font-size:10px" onclick="openAdmin()">ADMIN</span></div></div>
 <input id="search" placeholder="Search Original Shoes Kasese..." oninput="s(this.value)">
 </header>
+<div id="cloudStatus" class="cloudStatus" style="background:#fff3cd;color:#856404">⏳ Connecting to Firebase...</div>
 <div style="background:#fff;padding:0 12px 10px;">
 <button id="installBtn">📲 INSTALL APP - Original Shoes Kasese</button>
 <p id="installHint" style="display:none;font-size:11px;text-align:center;color:#666;margin-top:6px;">Tap INSTALL to add to home screen like WhatsApp</p>
@@ -134,7 +136,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 </div>
 <div id="adminPage" class="page">
 <div style="padding:12px;background:#111;color:#fff;font-weight:800;display:flex;justify-content:space-between"><span onclick="showPage('home')">← Exit Admin</span><span onclick="logoutAdmin()">Logout</span></div>
-<div style="background:#fff3cd;padding:10px;text-align:center;font-size:12px;font-weight:800">🔐 ADMIN ONLY - Only you can post here</div>
+<div style="background:#d4edda;padding:10px;text-align:center;font-size:12px;font-weight:800">🔥 FIREBASE ONLINE - Everybody sees your posts instantly</div>
 <div class="admin-stat">
 <div class="stat"><b id="statOrders">0</b>Orders</div>
 <div class="stat"><b id="statProducts">0</b>Products</div>
@@ -142,7 +144,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 </div>
 <div class="admin-form">
 <h3 style="text-align:center">➕ POST NEW PRODUCT - ADMIN ONLY</h3>
-<p style="text-align:center;font-size:12px;color:#666;margin:6px 0">1. Choose Photo &nbsp; 2. Type Name & Price &nbsp; 3. Tap POST</p>
+<p style="text-align:center;font-size:12px;color:#666;margin:6px 0">1. Choose Photo &nbsp; 2. Type Name & Price &nbsp; 3. Tap POST - Everybody sees it!</p>
 <label class="admin-photo-btn" for="adFile">📸 TAP TO CHOOSE PHOTO<br><span style="font-size:11px;font-weight:400;color:#666">From Gallery or Camera</span></label>
 <input type="file" id="adFile" accept="image/*" style="display:none" onchange="previewNewPhoto(this)">
 <img id="adPreview" class="admin-photo-preview">
@@ -152,9 +154,9 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <select id="adCat"><option value="shoes">👟 Shoes</option><option value="bags">🎒 Bags</option><option value="slides">🩴 Slides</option><option value="clothes">👕 Clothes</option></select>
 <input id="adStock" type="number" placeholder="How many left? e.g. 5">
 <input id="adImg" placeholder="OR paste image link (optional)" style="font-size:12px">
-<button onclick="addProduct()" style="background:var(--g);font-size:16px;padding:16px"><span id="addBtnText">🚀 POST PRODUCT NOW</span></button>
+<button onclick="addProduct()" style="background:var(--g);font-size:16px;padding:16px"><span id="addBtnText">🚀 POST PRODUCT NOW - TO EVERYONE</span></button>
 <button id="cancelEditBtn" onclick="cancelEdit()" style="background:#eee;color:#333;display:none">Cancel Edit</button>
-<div style="font-size:11px;color:#666;margin-top:8px;text-align:center">✅ Auto-saved - <span id="saveStatus" style="color:var(--g);font-weight:800">Saved</span></div>
+<div style="font-size:11px;color:#666;margin-top:8px;text-align:center">🔥 Firebase - <span id="saveStatus" style="color:var(--g);font-weight:800">Ready</span></div>
 </div>
 <div style="padding:12px;font-weight:800">📦 Orders</div>
 <div id="adminOrders"></div>
@@ -223,6 +225,24 @@ Item: <span id="payItem"></span>
 <script>
 const WA="256784779336";
 const ADMIN_PASS="thrift2026";
+// --- YOUR FIREBASE CONFIG - ALREADY FILLED ---
+const firebaseConfig = {
+  apiKey: "AIzaSyDJXTY9hWXB7L1n2w8dF_p59deaUxFiXZo",
+  authDomain: "original-shoes.firebaseapp.com",
+  databaseURL: "https://original-shoes-default-rtdb.firebaseio.com",
+  projectId: "original-shoes",
+  storageBucket: "original-shoes.firebasestorage.app",
+  messagingSenderId: "219821298370",
+  appId: "1:219821298370:web:41dbecc03dbed5e0d8215b",
+  measurementId: "G-E0T9D6N667"
+};
+let db=null;
+let firebaseReady=false;
+try{
+  firebase.initializeApp(firebaseConfig);
+  db = firebase.database();
+  firebaseReady=true;
+}catch(e){ console.log("Firebase error", e); }
 let cart=0;
 let currentOrder=null;
 let editingId=null;
@@ -234,6 +254,10 @@ function isAdmin(){ return localStorage.getItem('thrift_admin')==='yes'; }
 function requireAdmin(){
   if(!isAdmin()){ alert('⛔ Only Admin can do this. Please login as Admin first.'); openAdmin(); return false; }
   return true;
+}
+function setCloudStatus(msg,color,bg){
+  let el=document.getElementById('cloudStatus');
+  if(el){ el.innerText=msg; el.style.color=color; el.style.background=bg; }
 }
 let defaultProducts=[
 {id:1,name:"Beige Hiking Backpack Thrift",price:18000,old:35000,cat:"bags",img:"IMG_2599.jpeg",stock:2},
@@ -266,17 +290,53 @@ let defaultProducts=[
 {id:28,name:"Red Black Tote Bag",price:10000,old:14000,cat:"bags",img:"IMG_2485.png",stock:4},
 {id:29,name:"Blue Canvas Shoes Second Hand",price:15000,old:18000,cat:"shoes",img:"IMG_2481.jpeg",stock:2}
 ];
-let products = JSON.parse(localStorage.getItem('thrift_products') || 'null') || defaultProducts;
-products = products.map(p=>{ if(p.stock===undefined) p.stock=2; return p; });
-products.sort((a,b)=>a.price-b.price);
-function saveProducts(){
-  if(!isAdmin()){ alert('⛔ Only Admin can save products'); return false; }
-  try{ localStorage.setItem('thrift_products',JSON.stringify(products)); }catch(e){ alert('Phone storage full - photo too big.'); return false; }
-  let st=document.getElementById('saveStatus');
-  if(st){st.innerText='Saved ✓ '+new Date().toLocaleTimeString(); setTimeout(()=>{st.innerText='Saved';},2000);}
-  return true;
+let products = [...defaultProducts];
+function renderAll(){
+  render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
+  render(products,'grid');
+  document.getElementById('orderCount').innerText=getOrders().length;
+  document.getElementById('c1').innerText=getOrders().length;
+  document.getElementById('c2').innerText=getOrders().length;
 }
-if(!localStorage.getItem('thrift_products')){ localStorage.setItem('thrift_products',JSON.stringify(products)); }
+async function saveToFirebase(){
+  if(!firebaseReady) return false;
+  if(!isAdmin()){ alert('⛔ Only Admin can save to Firebase'); return false; }
+  try{
+    setCloudStatus("⏳ Uploading to Firebase - everybody will see it...", "#856404", "#fff3cd");
+    await db.ref('products').set(products);
+    setCloudStatus("✅ POSTED TO FIREBASE - Everybody can see it now!", "#155724", "#d4edda");
+    let st=document.getElementById('saveStatus'); if(st) st.innerText="Posted to Firebase ✓";
+    return true;
+  }catch(e){
+    setCloudStatus("❌ Firebase save failed - check Rules / Database created?", "#721c24", "#f8d7da");
+    alert("Firebase save failed. Did you create Realtime Database in test mode?");
+    return false;
+  }
+}
+function listenFirebase(){
+  if(!firebaseReady){ setCloudStatus("⚠️ Firebase error", "#856404", "#fff3cd"); renderAll(); return; }
+  setCloudStatus("⏳ Connecting to Firebase...", "#856404", "#fff3cd");
+  db.ref('products').on('value', (snap)=>{
+    let val = snap.val();
+    if(val && Array.isArray(val) && val.length>0){
+      products = val;
+      products.sort((a,b)=>a.price-b.price);
+      setCloudStatus("🔥 FIREBASE LIVE - Everybody sees same products - " + products.length + " items", "#155724", "#d4edda");
+    } else if(val && typeof val==='object'){
+      let arr = Object.values(val);
+      if(arr.length>0){ products=arr; products.sort((a,b)=>a.price-b.price); setCloudStatus("🔥 FIREBASE LIVE - " + products.length + " items", "#155724", "#d4edda"); }
+      else { db.ref('products').set(products); }
+    } else {
+      db.ref('products').set(products);
+      setCloudStatus("🔥 FIREBASE LIVE - Database ready", "#155724", "#d4edda");
+    }
+    renderAll();
+    if(document.getElementById('adminPage') && document.getElementById('adminPage').classList.contains('active')) renderAdmin();
+  }, (err)=>{
+    setCloudStatus("❌ Firebase error - check Database Rules - create DB in test mode", "#721c24", "#f8d7da");
+    renderAll();
+  });
+}
 function getOrders(){return JSON.parse(localStorage.getItem('thrift_orders')||'[]');}
 function saveOrders(o){localStorage.setItem('thrift_orders',JSON.stringify(o));}
 function sanitize(t){ let d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
@@ -302,11 +362,11 @@ function previewNewPhoto(input){
     let img=new Image();
     img.onload=function(){
       let canvas=document.createElement('canvas');
-      let maxW=800;
+      let maxW=700;
       let scale=Math.min(1, maxW/img.width);
       canvas.width=img.width*scale; canvas.height=img.height*scale;
       let ctx=canvas.getContext('2d'); ctx.drawImage(img,0,0,canvas.width,canvas.height);
-      newPhotoData=canvas.toDataURL('image/jpeg',0.75);
+      newPhotoData=canvas.toDataURL('image/jpeg',0.65);
       let prev=document.getElementById('adPreview');
       prev.src=newPhotoData; prev.style.display='block';
     };
@@ -405,12 +465,6 @@ cart++;document.getElementById('c1').innerText=cart;document.getElementById('c2'
 let msg=`*NEW ORDER - ORIGINAL SHOES KASESE* 🛒\n\n📦 *Item:* ${currentOrder.name}\n💰 *Price:* UGX ${currentOrder.price.toLocaleString()}\n🚚 *Delivery (${area}):* UGX ${del.toLocaleString()}\n💳 *Total:* UGX ${total.toLocaleString()}\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n📍 *Area:* ${area}\n🏠 *Location:* ${detail}\n\n⏰ Stock left: ${currentOrder.stock} - Please confirm`;
 window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');
 closeLoc();
-if(isAdmin()){
-  currentOrder.stock=Math.max(0,currentOrder.stock-1);
-  saveProducts();
-}
-render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
-render(products,'grid');
 }
 function f(c,el){document.querySelectorAll('.filt button').forEach(b=>b.classList.remove('active'));el.classList.add('active');if(c=='all'){render(products,'grid')}else{render(products.filter(x=>x.cat==c),'grid')}}
 function s(v){let a=v.toLowerCase();render(products.filter(p=>sanitize(p.name).toLowerCase().includes(a)),'grid')}
@@ -447,7 +501,7 @@ document.getElementById('adminProducts').innerHTML=products.map(p=>`
 <button onclick="deleteProduct(${p.id})" style="padding:8px 12px;border:none;background:#ff4444;color:#fff;border-radius:8px;font-weight:800">X</button>
 </div>`).join('');
 }
-function addProduct(){
+async function addProduct(){
 if(!requireAdmin()) return;
 let name=document.getElementById('adName').value.trim();
 let price=parseInt(document.getElementById('adPrice').value);
@@ -463,19 +517,18 @@ if(editingId){
  let p=products.find(x=>x.id===editingId);
  if(p){ p.name=sanitize(name); p.price=price; p.old=oldP; p.cat=cat; if(newPhotoData||linkImg) p.img=img; p.stock=stockVal; }
  editingId=null;
- document.getElementById('addBtnText').innerText='🚀 POST PRODUCT NOW';
+ document.getElementById('addBtnText').innerText='🚀 POST PRODUCT NOW - TO EVERYONE';
  document.getElementById('cancelEditBtn').style.display='none';
 } else {
  let newId=products.length?Math.max(...products.map(p=>p.id))+1:1;
  products.push({id:newId,name:sanitize(name),price:price,old:oldP,cat:cat,img:img,stock:stockVal});
 }
 products.sort((a,b)=>a.price-b.price);
-if(!saveProducts()) return;
-render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
-render(products,'grid');
+let ok = await saveToFirebase();
+renderAll();
 renderAdmin();
 document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';document.getElementById('adStock').value='';document.getElementById('adFile').value='';newPhotoData='';document.getElementById('adPreview').style.display='none';
-alert('✅ POSTED! Only Admin posted this. It is now live!');
+if(ok) alert('✅ POSTED TO FIREBASE! Everybody can see it now - instantly!');
 }
 function editProduct(id){
 if(!requireAdmin()) return;
@@ -495,15 +548,11 @@ document.getElementById('cancelEditBtn').style.display='block';
 window.scrollTo(0,0);
 document.querySelector('.admin-form').scrollIntoView({behavior:'smooth'});
 }
-function cancelEdit(){editingId=null;newPhotoData='';document.getElementById('addBtnText').innerText='🚀 POST PRODUCT NOW';document.getElementById('cancelEditBtn').style.display='none';document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';document.getElementById('adStock').value='';document.getElementById('adFile').value='';document.getElementById('adPreview').style.display='none';}
-function deleteProduct(id){if(!requireAdmin()) return; if(!confirm('Delete this product? Only Admin can delete.'))return;products=products.filter(p=>p.id!==id);saveProducts();render(products.filter(p=>p.price>=18000).slice(0,6),'hot');render(products,'grid');renderAdmin();}
-function deleteOrder(id){if(!requireAdmin()) return; let orders=getOrders().filter(o=>o.id!==id);saveOrders(orders);renderAdmin();document.getElementById('orderCount').innerText=orders.length;}
+function cancelEdit(){editingId=null;newPhotoData='';document.getElementById('addBtnText').innerText='🚀 POST PRODUCT NOW - TO EVERYONE';document.getElementById('cancelEditBtn').style.display='none';document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';document.getElementById('adStock').value='';document.getElementById('adFile').value='';document.getElementById('adPreview').style.display='none';}
+async function deleteProduct(id){if(!requireAdmin()) return; if(!confirm('Delete this product? Everybody will stop seeing it.'))return;products=products.filter(p=>p.id!==id);await saveToFirebase();renderAll();renderAdmin();}
+async function deleteOrder(id){if(!requireAdmin()) return; let orders=getOrders().filter(o=>o.id!==id);saveOrders(orders);renderAdmin();document.getElementById('orderCount').innerText=orders.length;}
 function markDelivered(id){if(!requireAdmin()) return; let orders=getOrders();let o=orders.find(x=>x.id===id);if(o){o.status='Delivered';saveOrders(orders);renderAdmin();}}
-render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
-render(products,'grid');
-document.getElementById('orderCount').innerText=getOrders().length;
-document.getElementById('c1').innerText=getOrders().length;
-document.getElementById('c2').innerText=getOrders().length;
+listenFirebase();
 let bannerBox=document.getElementById('bannerBox');
 let bannerPaused=false;
 if(bannerBox){
