@@ -24,9 +24,10 @@ body{background:#f5f5f5;padding-bottom:90px}
 header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:0 1px 5px rgba(0,0,0,.1)}
 .logo{font-weight:900;font-size:18px}.logo span{color:var(--g)}
 #search{width:100%;margin-top:10px;padding:12px;border-radius:12px;border:1px solid #ddd}
-.banners{display:flex;gap:10px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory}
+.banners{display:flex;gap:12px;overflow-x:auto;padding:12px;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
 .banners::-webkit-scrollbar{display:none}
-.banners img{min-width:100%;height:240px;object-fit:cover;border-radius:16px;background:#000;scroll-snap-align:center;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.banners img{min-width:100%;height:300px;object-fit:cover;border-radius:18px;background:#000;scroll-snap-align:center;box-shadow:0 6px 18px rgba(0,0,0,.30);flex-shrink:0}
+.banner-dots{text-align:center;font-size:11px;color:#888;margin-top:2px;letter-spacing:4px}
 .title{padding:12px 12px 2px;font-weight:900;font-size:15px;display:flex;justify-content:space-between}
 .title small{background:var(--g);color:#fff;padding:3px 8px;border-radius:10px;font-size:10px}
 .filt{display:flex;gap:8px;overflow-x:auto;padding:10px 12px}
@@ -102,7 +103,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <img src="C1EE65D6-5CBA-490E-AA11-46BBC740C195.png" onerror="smartImgFallback(this, 'C1EE65D6-5CBA-490E-AA11-46BBC740C195.png')">
 <img src="6B53B628-5F94-4C1E-A077-D63FBD7FDCFD.png" onerror="smartImgFallback(this, '6B53B628-5F94-4C1E-A077-D63FBD7FDCFD.png')">
 </div>
-<div style="text-align:center;font-size:11px;color:#888;margin-top:-4px">● ● &nbsp; Swipe to see more</div>
+<div class="banner-dots">● ● &nbsp; Swipe &nbsp; ← →</div>
 <div class="title">🔥 Hot Deals <small>Original Shoes</small></div>
 <div class="grid" id="hot"></div>
 <div class="title">All Items - Original Shoes <small id="countAll">Kasese</small></div>
@@ -479,13 +480,21 @@ document.getElementById('orderCount').innerText=getOrders().length;
 document.getElementById('c1').innerText=getOrders().length;
 document.getElementById('c2').innerText=getOrders().length;
 window.addEventListener('beforeunload', saveProducts);
-// --- AUTO SLIDE BANNERS ---
+// --- BIG SMOOTH SCROLLABLE BANNERS ---
+let bannerBox=document.getElementById('bannerBox');
+let bannerPaused=false;
+if(bannerBox){
+  bannerBox.addEventListener('touchstart',()=>{bannerPaused=true;});
+  bannerBox.addEventListener('touchend',()=>{setTimeout(()=>{bannerPaused=false;},3000);});
+  bannerBox.addEventListener('mousedown',()=>{bannerPaused=true;});
+  bannerBox.addEventListener('mouseup',()=>{setTimeout(()=>{bannerPaused=false;},3000);});
+}
 setInterval(()=>{
   let box=document.getElementById('bannerBox');
-  if(!box) return;
+  if(!box || bannerPaused) return;
   if(box.scrollLeft + box.clientWidth >= box.scrollWidth - 5){ box.scrollTo({left:0,behavior:'smooth'}); }
   else { box.scrollTo({left:box.scrollLeft + box.clientWidth,behavior:'smooth'}); }
-},4000);
+},3000);
 // --- PWA INSTALL ---
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js');
