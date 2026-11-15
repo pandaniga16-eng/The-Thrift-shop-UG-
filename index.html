@@ -24,9 +24,9 @@ body{background:#f5f5f5;padding-bottom:90px}
 header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:0 1px 5px rgba(0,0,0,.1)}
 .logo{font-weight:900;font-size:18px}.logo span{color:var(--g)}
 #search{width:100%;margin-top:10px;padding:12px;border-radius:12px;border:1px solid #ddd}
-.banners{display:flex;gap:6px;overflow-x:auto;padding:6px 12px;scroll-snap-type:x mandatory}
+.banners{display:flex;gap:8px;padding:8px 12px;overflow:hidden}
 .banners::-webkit-scrollbar{display:none}
-.banners img{height:70px;width:auto;max-width:92%;min-width:0;object-fit:contain;border-radius:10px;background:#fff;scroll-snap-align:center;margin:0 auto}
+.banners img{width:48% !important;min-width:0 !important;max-width:48% !important;height:85px !important;object-fit:cover !important;border-radius:10px;background:#ddd;flex-shrink:0}
 .title{padding:12px 12px 2px;font-weight:900;font-size:15px;display:flex;justify-content:space-between}
 .title small{background:var(--g);color:#fff;padding:3px 8px;border-radius:10px;font-size:10px}
 .filt{display:flex;gap:8px;overflow-x:auto;padding:10px 12px}
