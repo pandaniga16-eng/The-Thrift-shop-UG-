@@ -39,18 +39,14 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 .card:active{transform:scale(0.97)}
 .card img{width:100%;height:170px;object-fit:cover;border-radius:12px;background:#eee}
 .badge{position:absolute;top:12px;left:12px;background:var(--g);color:#fff;font-size:8px;padding:4px 6px;border-radius:6px;font-weight:800;z-index:2}
-.saveBadge{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.6);color:#fff;font-size:10px;padding:5px 7px;border-radius:8px;font-weight:800;cursor:pointer}
 .cat{font-size:8px;color:#888;margin-top:6px;font-weight:700}
 .name{font-size:12px;font-weight:700;min-height:30px}
 .price{font-weight:900;color:var(--g);font-size:13px}
 .old{font-size:10px;color:#999;text-decoration:line-through;margin-left:4px}
 .btn{width:100%;background:#111;color:#fff;border:none;padding:9px;border-radius:10px;font-size:11px;font-weight:800;margin-top:5px;cursor:pointer}
 .btn2{width:100%;background:var(--g);color:#fff;display:block;text-align:center;text-decoration:none;padding:8px;border-radius:10px;font-size:11px;font-weight:800;margin-top:5px}
-.btnSave{width:100%;background:#fff;border:1px solid #ddd;color:#111;display:block;text-align:center;text-decoration:none;padding:8px;border-radius:10px;font-size:11px;font-weight:800;margin-top:5px;cursor:pointer}
 .page{display:none}.page.active{display:block}
 .jumia-acc{background:#fff}
-.j-search{background:#fff;padding:10px;border-bottom:1px solid #eee}
-.j-search input{width:100%;padding:14px 14px 14px 40px;border-radius:30px;border:none;background:#f1f1f1}
 .j-welcome{padding:16px;background:#fff}
 .j-welcome b{font-size:18px}
 .j-welcome p{color:#FF8A00;font-size:14px;margin-top:2px}
@@ -58,7 +54,6 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 .j-buttons{display:flex;gap:10px;padding:12px 16px;background:#f5f5f5}
 .j-live{flex:1;background:var(--org);color:#fff;border:none;padding:14px;border-radius:8px;font-weight:800;font-size:15px}
 .j-wa{flex:1;background:#fff;border:2px solid var(--g);color:var(--g);padding:12px;border-radius:8px;font-weight:800;font-size:15px}
-.j-section{background:#f5f5f5;padding:12px 16px;font-weight:800;font-size:14px;color:#333;margin-top:8px}
 .j-item{display:flex;justify-content:space-between;align-items:center;padding:16px;background:#fff;border-bottom:1px solid #f0f0f0}
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #eee;z-index:998}
 .nav{text-align:center;font-size:10px;color:#888;text-decoration:none}
@@ -77,9 +72,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 .admin-form input,.admin-form select{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:1px solid #ddd;font-size:14px}
 .admin-photo-btn{display:block;text-align:center;background:#f1fff4;border:2px dashed var(--g);color:var(--g);padding:22px 10px;border-radius:12px;font-weight:900;font-size:15px;cursor:pointer;margin:6px 0}
 .admin-photo-preview{width:100%;height:200px;object-fit:cover;border-radius:12px;display:none;margin:8px 0;background:#eee}
-.btnSave,.saveBadge{display:none !important}
 .airtelBox{background:#fff;margin:12px;border-radius:16px;padding:18px;border-left:4px solid var(--g);cursor:pointer}
-.airtelNum{color:#0000FF;text-decoration:underline;font-weight:900;font-size:18px}
 .stockBadge{position:absolute;top:12px;right:12px;background:#FF0000;color:#fff;font-size:9px;padding:4px 6px;border-radius:6px;font-weight:900;animation:pulse 1.5s infinite;z-index:3}
 .stockOk{position:absolute;top:12px;right:12px;background:#111;color:#fff;font-size:8px;padding:4px 6px;border-radius:6px;font-weight:800;z-index:3}
 .wa-float{position:fixed;bottom:95px;right:16px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 12px rgba(0,0,0,.3);z-index:999;animation:waPulse 2s infinite;text-decoration:none}
@@ -127,8 +120,7 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 <button class="j-wa" onclick="window.open('https://wa.me/256784779336','_blank')">WhatsApp</button>
 </div>
 <div class="j-item"><span>📦 Orders (<span id="orderCount">0</span>)</span><span>›</span></div>
-<div class="j-item" onclick="openAdmin()" style="color:var(--g)"><span>🔐 Admin Panel</span><span>›</span></div>
-<div class="j-item" onclick="openAdmin()" style="color:#111"><span>➕ POST NEW PRODUCT</span><span>›</span></div>
+<div class="j-item" onclick="openAdmin()" style="color:var(--g)"><span>🔐 Admin Panel - Only Owner</span><span>›</span></div>
 </div>
 </div>
 <div id="paymentPage" class="page">
@@ -142,31 +134,28 @@ header{background:#fff;padding:12px;position:sticky;top:0;z-index:99;box-shadow:
 </div>
 <div id="adminPage" class="page">
 <div style="padding:12px;background:#111;color:#fff;font-weight:800;display:flex;justify-content:space-between"><span onclick="showPage('home')">← Exit Admin</span><span onclick="logoutAdmin()">Logout</span></div>
+<div style="background:#fff3cd;padding:10px;text-align:center;font-size:12px;font-weight:800">🔐 ADMIN ONLY - Only you can post here</div>
 <div class="admin-stat">
 <div class="stat"><b id="statOrders">0</b>Orders</div>
 <div class="stat"><b id="statProducts">0</b>Products</div>
 <div class="stat"><b id="statRevenue">0</b>UGX Rev</div>
 </div>
-
 <div class="admin-form">
-<h3 style="text-align:center">➕ POST NEW PRODUCT</h3>
+<h3 style="text-align:center">➕ POST NEW PRODUCT - ADMIN ONLY</h3>
 <p style="text-align:center;font-size:12px;color:#666;margin:6px 0">1. Choose Photo &nbsp; 2. Type Name & Price &nbsp; 3. Tap POST</p>
-
 <label class="admin-photo-btn" for="adFile">📸 TAP TO CHOOSE PHOTO<br><span style="font-size:11px;font-weight:400;color:#666">From Gallery or Camera</span></label>
 <input type="file" id="adFile" accept="image/*" style="display:none" onchange="previewNewPhoto(this)">
 <img id="adPreview" class="admin-photo-preview">
-
 <input id="adName" placeholder="Product Name e.g. Nike Sneakers">
 <input id="adPrice" type="number" placeholder="Price UGX e.g. 35000">
 <input id="adOld" type="number" placeholder="Old Price (optional) e.g. 50000">
 <select id="adCat"><option value="shoes">👟 Shoes</option><option value="bags">🎒 Bags</option><option value="slides">🩴 Slides</option><option value="clothes">👕 Clothes</option></select>
 <input id="adStock" type="number" placeholder="How many left? e.g. 5">
-<input id="adImg" placeholder="OR paste image link (optional) - leave empty if you chose photo above" style="font-size:12px">
+<input id="adImg" placeholder="OR paste image link (optional)" style="font-size:12px">
 <button onclick="addProduct()" style="background:var(--g);font-size:16px;padding:16px"><span id="addBtnText">🚀 POST PRODUCT NOW</span></button>
 <button id="cancelEditBtn" onclick="cancelEdit()" style="background:#eee;color:#333;display:none">Cancel Edit</button>
 <div style="font-size:11px;color:#666;margin-top:8px;text-align:center">✅ Auto-saved - <span id="saveStatus" style="color:var(--g);font-weight:800">Saved</span></div>
 </div>
-
 <div style="padding:12px;font-weight:800">📦 Orders</div>
 <div id="adminOrders"></div>
 <div style="padding:12px;font-weight:800">📝 Manage Products - TAP EDIT OR X BELOW</div>
@@ -216,8 +205,8 @@ Item: <span id="payItem"></span>
 </div>
 <div id="adminLoginModal">
 <div class="locBox">
-<h3>🔐 Admin Login</h3>
-<p style="font-size:12px;color:#666">Enter password to post products</p>
+<h3>🔐 Admin Login - Owner Only</h3>
+<p style="font-size:12px;color:#666">Only admin can post products. Enter password.</p>
 <input id="adminPass" type="password" placeholder="Password">
 <button onclick="checkAdmin()">Login</button>
 <button onclick="document.getElementById('adminLoginModal').classList.remove('show')" style="background:#eee;color:#333">Cancel</button>
@@ -241,6 +230,11 @@ let currentSaveProduct=null;
 let lastAmount=0;
 let loginAttempts=0;
 let newPhotoData="";
+function isAdmin(){ return localStorage.getItem('thrift_admin')==='yes'; }
+function requireAdmin(){
+  if(!isAdmin()){ alert('⛔ Only Admin can do this. Please login as Admin first.'); openAdmin(); return false; }
+  return true;
+}
 let defaultProducts=[
 {id:1,name:"Beige Hiking Backpack Thrift",price:18000,old:35000,cat:"bags",img:"IMG_2599.jpeg",stock:2},
 {id:2,name:"North Face Grey Backpack Used",price:20000,old:40000,cat:"bags",img:"IMG_2598.jpeg",stock:5},
@@ -276,13 +270,13 @@ let products = JSON.parse(localStorage.getItem('thrift_products') || 'null') || 
 products = products.map(p=>{ if(p.stock===undefined) p.stock=2; return p; });
 products.sort((a,b)=>a.price-b.price);
 function saveProducts(){
-  try{ localStorage.setItem('thrift_products',JSON.stringify(products)); }catch(e){ alert('Phone storage full - photo too big. Try smaller photo or delete old products.'); return false; }
-  localStorage.setItem('thrift_products_backup',JSON.stringify(products));
+  if(!isAdmin()){ alert('⛔ Only Admin can save products'); return false; }
+  try{ localStorage.setItem('thrift_products',JSON.stringify(products)); }catch(e){ alert('Phone storage full - photo too big.'); return false; }
   let st=document.getElementById('saveStatus');
   if(st){st.innerText='Saved ✓ '+new Date().toLocaleTimeString(); setTimeout(()=>{st.innerText='Saved';},2000);}
   return true;
 }
-if(!localStorage.getItem('thrift_products')){ saveProducts(); }
+if(!localStorage.getItem('thrift_products')){ localStorage.setItem('thrift_products',JSON.stringify(products)); }
 function getOrders(){return JSON.parse(localStorage.getItem('thrift_orders')||'[]');}
 function saveOrders(o){localStorage.setItem('thrift_orders',JSON.stringify(o));}
 function sanitize(t){ let d=document.createElement('div'); d.textContent=t; return d.innerHTML; }
@@ -300,6 +294,7 @@ function smartImgFallback(img, original){
   next();
 }
 function previewNewPhoto(input){
+  if(!requireAdmin()){ input.value=''; return; }
   let file=input.files[0];
   if(!file) return;
   let reader=new FileReader();
@@ -325,14 +320,12 @@ if(!el) return;
 el.innerHTML=list.map((p,idx)=>`
 <div class="card" style="animation-delay:${idx*0.04}s"><div class="badge">THRIFT</div>
 ${p.stock<=2?`<div class="stockBadge">Only ${p.stock} left!</div>`:`<div class="stockOk">${p.stock} in stock</div>`}
-<div class="saveBadge" onclick="openImageSave(${p.id})">📸</div>
 <img src="${p.img}" onclick="openImageSave(${p.id})" onerror="smartImgFallback(this, '${p.img}')">
 <div class="cat">${p.cat.toUpperCase()}</div>
 <div class="name">${p.id}. ${sanitize(p.name)}</div>
 <div class="price">UGX ${p.price.toLocaleString()}<span class="old">${p.old.toLocaleString()}</span></div>
 <button class="btn" onclick="openLoc(${p.id})">+ ADD TO BAG</button>
 <a class="btn2" href="#" onclick="openLoc(${p.id});return false">WhatsApp Order</a>
-<button class="btnSave" onclick="openImageSave(${p.id})">📸 Save Photo</button>
 </div>`).join('');
 document.getElementById('countAll').innerText=products.length+' Items';
 }
@@ -412,8 +405,10 @@ cart++;document.getElementById('c1').innerText=cart;document.getElementById('c2'
 let msg=`*NEW ORDER - ORIGINAL SHOES KASESE* 🛒\n\n📦 *Item:* ${currentOrder.name}\n💰 *Price:* UGX ${currentOrder.price.toLocaleString()}\n🚚 *Delivery (${area}):* UGX ${del.toLocaleString()}\n💳 *Total:* UGX ${total.toLocaleString()}\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n📍 *Area:* ${area}\n🏠 *Location:* ${detail}\n\n⏰ Stock left: ${currentOrder.stock} - Please confirm`;
 window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');
 closeLoc();
-currentOrder.stock=Math.max(0,currentOrder.stock-1);
-saveProducts();
+if(isAdmin()){
+  currentOrder.stock=Math.max(0,currentOrder.stock-1);
+  saveProducts();
+}
 render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
 render(products,'grid');
 }
@@ -422,13 +417,13 @@ function s(v){let a=v.toLowerCase();render(products.filter(p=>sanitize(p.name).t
 function showPage(p){
 document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
 let target=p=='payment'?'paymentPage':p+'Page';
-if(target==='adminPage' && localStorage.getItem('thrift_admin')!=='yes'){ openAdmin(); return; }
+if(target==='adminPage' && !isAdmin()){ openAdmin(); return; }
 document.getElementById(target).classList.add('active');
-if(p=='admin'){renderAdmin();}
+if(p=='admin'){ if(!requireAdmin()) return; renderAdmin(); }
 window.scrollTo(0,0);
 }
 function openAdmin(){
-if(localStorage.getItem('thrift_admin')=='yes'){showPage('admin');return;}
+if(isAdmin()){showPage('admin');return;}
 document.getElementById('adminLoginModal').classList.add('show');
 }
 function checkAdmin(){
@@ -438,6 +433,7 @@ else{loginAttempts++; document.getElementById('loginError').style.display='block
 }
 function logoutAdmin(){localStorage.removeItem('thrift_admin');showPage('home');}
 function renderAdmin(){
+if(!requireAdmin()) return;
 let orders=getOrders();
 document.getElementById('statOrders').innerText=orders.length;
 document.getElementById('statProducts').innerText=products.length;
@@ -452,6 +448,7 @@ document.getElementById('adminProducts').innerHTML=products.map(p=>`
 </div>`).join('');
 }
 function addProduct(){
+if(!requireAdmin()) return;
 let name=document.getElementById('adName').value.trim();
 let price=parseInt(document.getElementById('adPrice').value);
 let oldP=parseInt(document.getElementById('adOld').value)||price+10000;
@@ -478,9 +475,10 @@ render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
 render(products,'grid');
 renderAdmin();
 document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';document.getElementById('adStock').value='';document.getElementById('adFile').value='';newPhotoData='';document.getElementById('adPreview').style.display='none';
-alert('✅ POSTED! Your product is now live on the shop!');
+alert('✅ POSTED! Only Admin posted this. It is now live!');
 }
 function editProduct(id){
+if(!requireAdmin()) return;
 let p=products.find(x=>x.id===id);
 if(!p){alert('Product not found');return;}
 document.getElementById('adName').value=p.name;
@@ -498,15 +496,14 @@ window.scrollTo(0,0);
 document.querySelector('.admin-form').scrollIntoView({behavior:'smooth'});
 }
 function cancelEdit(){editingId=null;newPhotoData='';document.getElementById('addBtnText').innerText='🚀 POST PRODUCT NOW';document.getElementById('cancelEditBtn').style.display='none';document.getElementById('adName').value='';document.getElementById('adPrice').value='';document.getElementById('adOld').value='';document.getElementById('adImg').value='';document.getElementById('adStock').value='';document.getElementById('adFile').value='';document.getElementById('adPreview').style.display='none';}
-function deleteProduct(id){if(!confirm('Delete this product?'))return;products=products.filter(p=>p.id!==id);saveProducts();render(products.filter(p=>p.price>=18000).slice(0,6),'hot');render(products,'grid');renderAdmin();}
-function deleteOrder(id){let orders=getOrders().filter(o=>o.id!==id);saveOrders(orders);renderAdmin();document.getElementById('orderCount').innerText=orders.length;}
-function markDelivered(id){let orders=getOrders();let o=orders.find(x=>x.id===id);if(o){o.status='Delivered';saveOrders(orders);renderAdmin();}}
+function deleteProduct(id){if(!requireAdmin()) return; if(!confirm('Delete this product? Only Admin can delete.'))return;products=products.filter(p=>p.id!==id);saveProducts();render(products.filter(p=>p.price>=18000).slice(0,6),'hot');render(products,'grid');renderAdmin();}
+function deleteOrder(id){if(!requireAdmin()) return; let orders=getOrders().filter(o=>o.id!==id);saveOrders(orders);renderAdmin();document.getElementById('orderCount').innerText=orders.length;}
+function markDelivered(id){if(!requireAdmin()) return; let orders=getOrders();let o=orders.find(x=>x.id===id);if(o){o.status='Delivered';saveOrders(orders);renderAdmin();}}
 render(products.filter(p=>p.price>=18000).slice(0,6),'hot');
 render(products,'grid');
 document.getElementById('orderCount').innerText=getOrders().length;
 document.getElementById('c1').innerText=getOrders().length;
 document.getElementById('c2').innerText=getOrders().length;
-window.addEventListener('beforeunload', saveProducts);
 let bannerBox=document.getElementById('bannerBox');
 let bannerPaused=false;
 if(bannerBox){
